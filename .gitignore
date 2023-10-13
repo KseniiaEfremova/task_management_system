@@ -1,0 +1,1 @@
+A .gitignore file is used in Git version control systems to specify files and directories that should be ignored and not tracked by Git. When you add rules to the .gitignore file, Git will not include those files when you run commands like git add . to stage changes for commit. This helps to keep your repository clean and avoids cluttering it with unnecessary or sensitive files.
