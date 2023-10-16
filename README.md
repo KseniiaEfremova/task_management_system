@@ -134,5 +134,5 @@ Follow for more:
 * 📫 You can reach me on [LinkedIn](https://www.linkedin.com/in/kerritanya/)
 
 #### Here's a happy sloth to make you smile 
-![Happy sloth](https://ibb.co/LnT1zjF)
+![Happy sloth](https://imgbb.com/][img]https://i.ibb.co/FgQzbZr/3f7c91a415b6008f75ab430a065aba84.jpg)
 
