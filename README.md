@@ -143,3 +143,5 @@ Follow for more:
 * 👩🏻‍🔬👷🏻‍♀️ I am a first class Chemical Engineering graduate.
 * 🎹 I am currently self teaching myself the piano. 
 * 📖 I love reading.
+
+#### A picture and quote describing my current *mood*: 
