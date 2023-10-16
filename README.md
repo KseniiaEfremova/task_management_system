@@ -142,3 +142,4 @@ Follow for more:
 * 👵🏼 I am 23 years old.
 * 👩🏻‍🔬👷🏻‍♀️ I am a first class Chemical Engineering graduate.
 * 🎹 I am currently self teaching myself the piano. 
+* 📖 I love reading.
