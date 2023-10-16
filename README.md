@@ -108,6 +108,7 @@ Follow for more:
 
 [Email Me](mailto:k.stopczynska@gmail.com) [LinkedIn](https://www.linkedin.com/in/klaudia-stopczynska/) [Github](https://github.com/k-stopczynska)
 
+
 ## Hey there, I am Kseniia! 
 ### My hobby:
 * :volleyball: Volleyball
@@ -121,3 +122,4 @@ Follow for more:
 > “Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young.”
 > 
 ![alt text](https://www.mindset2millions.com/wp-content/uploads/2020/12/Anyone-who-stops-learning-is-old-whether-at-twenty-or-eighty.-Anyone-who-keeps-learning-stays-young-Henry-Ford.png "Henry Ford quote")
+
