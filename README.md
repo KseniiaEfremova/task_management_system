@@ -26,7 +26,7 @@ def caesar_cipher_encryptor(string, key):
         return newStr.join(letters)
 ```
 
-_____________________________________________________________________
+_______
 
 - Binary Search
 
@@ -49,7 +49,7 @@ def rec_binary_search(array, target, start, end):
 def recursive_binary_search(array, target):      
     return rec_binary_search(array, target, 0, len(array) - 1)
 ```
-______________________________________________________________________
+______
 
 - Two Number Sum
 
@@ -72,7 +72,7 @@ def twoNumberSum(array, targetSum):
     return []
 ```
 
-========================================================
+---
 
  ## Places to start your coding journey for free:
 
@@ -81,7 +81,7 @@ def twoNumberSum(array, targetSum):
 3. [Odin Project](https://www.theodinproject.com/)
 4. [Harvard CS50](https://pll.harvard.edu/course/cs50-introduction-computer-science)
 
-========================================================
+---
 
 ## Places to practice your algorithms and data structures:
 
@@ -90,7 +90,15 @@ def twoNumberSum(array, targetSum):
 - [Hackerrank](https://www.hackerrank.com/)
 - [Coderpad](https://coderpad.io/)
 
-========================================================
+---
+
+## Contact
+
+Follow for more:
+
+[Email Me](mailto:k.stopczynska@gmail.com) [LinkedIn](https://www.linkedin.com/in/klaudia-stopczynska/) [Github](https://github.com/k-stopczynska)
+
+
 
 
 
