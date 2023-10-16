@@ -72,6 +72,26 @@ def twoNumberSum(array, targetSum):
     return []
 ```
 
+========================================================
+
+ ## Places to start your coding journey for free:
+
+1. [FreeCodeCamp](https://www.freecodecamp.org/)
+2. [Codecademy](https://www.codecademy.com/)
+3. [Odin Project](https://www.theodinproject.com/)
+4. [Harvard CS50](https://pll.harvard.edu/course/cs50-introduction-computer-science)
+
+========================================================
+
+## Places to practice your algorithms and data structures:
+
+- [Leetcode](https://leetcode.com/)
+- [Codewars](https://www.codewars.com/)
+- [Hackerrank](https://www.hackerrank.com/)
+- [Coderpad](https://coderpad.io/)
+
+========================================================
+
 
 
 
