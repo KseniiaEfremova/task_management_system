@@ -126,8 +126,13 @@ Follow for more:
 
 ---
 
-## Hey I'm Kerri 👋
+## Hey I'm Kerri
+### About me:
 * 🔭 I’m currently studying the **CFGDegree** at **Code First Girls**, sponsored by **Goldman Sachs**
 * 🌱 I’m currently learning: Python and SQL
 * 👯 I’m looking to collaborate on *anything* and *everything*
 * 📫 You can reach me on [LinkedIn](https://www.linkedin.com/in/kerritanya/)
+
+#### Here's a happy sloth to make you smile 
+![Happy sloth](https://ibb.co/LnT1zjF)
+
