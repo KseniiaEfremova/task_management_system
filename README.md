@@ -123,3 +123,16 @@ Follow for more:
 > 
 ![alt text](https://www.mindset2millions.com/wp-content/uploads/2020/12/Anyone-who-stops-learning-is-old-whether-at-twenty-or-eighty.-Anyone-who-keeps-learning-stays-young-Henry-Ford.png "Henry Ford quote")
 
+
+---
+
+## Hey I'm Kerri
+### About me:
+* 🔭 I’m currently studying the **CFGDegree** at **Code First Girls**, sponsored by **Goldman Sachs**
+* 🌱 I’m currently learning: Python and SQL
+* 👯 I’m looking to collaborate on *anything* and *everything*
+* 📫 You can reach me on [LinkedIn](https://www.linkedin.com/in/kerritanya/)
+
+#### Here's a happy sloth to make you smile 
+![Happy sloth](https://i.ibb.co/FgQzbZr/3f7c91a415b6008f75ab430a065aba84.jpg)
+
