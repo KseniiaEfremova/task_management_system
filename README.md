@@ -136,3 +136,15 @@ Follow for more:
 #### Here's a happy sloth to make you smile 
 ![Happy sloth](https://i.ibb.co/FgQzbZr/3f7c91a415b6008f75ab430a065aba84.jpg)
 
+---
+## Hi I'm sadaf!
+### Here are some facts about me: 
+* 👵🏼 I am 23 years old.
+* 👩🏻‍🔬👷🏻‍♀️ I am a first class Chemical Engineering graduate.
+* 🎹 I am currently self teaching myself the piano. 
+* 📖 I love reading.
+
+#### A picture and quote describing my current *mood*: 
+> " I have dreams, but who says the rabbits in the garden don't aswell"
+
+![mood](https://pbs.twimg.com/media/F7n7rscXgAAD8LX?format=jpg&name=900x900)
