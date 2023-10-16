@@ -1,0 +1,22 @@
+
+Requirements.txt file is used to manage ddependencies in Python projects.
+Dependencies are external libraries/ modules that are used within your project like Pretty Printer or Pygame, and your code relies on them to function correctly.
+
+We can ensure that everyone can reproduce our program exactly, and get the same results, by creating a requirements.txt file which will list all the dependencies and their versions.
+We can easily manage our dependenncies by adding, updating or deleting them from a file without tracking them manually.
+We can avoid version conflicts.
+That provides very clean way to share our project, and install all the relevant dependencies.
+
+Steps to create requirements.txt:
+1. create and activate virtual environment:
+python -m venv myenv
+on Windows:
+myenv\Scripts\activate
+on Mac:
+source myenv/bin/activate
+
+2. install your dependencies:
+pip install <module_name>
+
+3. generate requirements.txt:
+pip freeze > requirements.txt
