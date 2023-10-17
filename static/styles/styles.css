@@ -50,10 +50,11 @@ body {
 	border-bottom: 1px solid var(--primary-200);
 	cursor: pointer;
 	padding: 0.6rem 1.2rem;
+	transition: all 0.4s ease-in-out;
 }
 
-.list__item:hover,
-.list__item:focus {
+.list__item-link:hover,
+.list__item-link:focus {
 	background: var(--primary-200);
 	border-radius: var(--border-radius);
 }
