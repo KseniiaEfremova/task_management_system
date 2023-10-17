@@ -68,6 +68,12 @@ body {
 	line-height: 1.4rem;
 }
 
+.main__section {
+	height: 100%;
+	max-width: 60rem;
+	margin-top: 3rem;
+}
+
 @media (min-width: 768px) {
 	body {
 		grid-template-columns: 10% 90%;
