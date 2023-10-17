@@ -6,6 +6,17 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--primary-100: #ab52db;
+	--primary-200: #ebdaf4;
+	--light-100: #f3f2f7;
+	--dark-900: #464255;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
+	background: var(--light-100);
+	color: var(--dark-900);
+	display: grid;
+	grid-template-columns: 10% 90%;
 }
