@@ -18,7 +18,9 @@ def connect_to_mysql_database():
         db_connection = mysql.connector.connect(
             host="localhost",
             user=user,
-            passwd=password
+            passwd=password,
+            auth_plugin='mysql_native_password',
+            database='task_management_system'
         )
         return db_connection
     except mysql.connector.Error as e:
