@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static',filename='styles/styles.css') }}"
+		/>
+		<title>{% block title %}{% endblock %}</title>
+	</head>
+	<body>
+		<nav class="nav__container">
+			<ul class="list__container">
+				<li class="list__item">
+					<a class="list__item-link"
+						><img src="static/assets/home.png" alt="home" /><span
+							>Home</span
+						></a
+					>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link">
+						<img src="static/assets/about.png" alt="about" /><span
+							>About</span
+						></a
+					>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link">
+						<img
+							src="static/assets/author.png"
+							alt="authors"
+						/><span>Authors</span></a
+					>
+				</li>
+			</ul>
+		</nav>
+		<main class="main__container">
+			<h1 class="main__heading">Task management system</h1>
+			<section class="main__section">
+				{% block content %} {% endblock %}
+			</section>
+		</main>
+	</body>
+</html>
