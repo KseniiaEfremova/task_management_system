@@ -21,13 +21,13 @@ def connect_to_mysql_database():
             passwd=password
         )
         return db_connection
-    except mysql.connector.Error as err:
-        print(f"Error connecting to MySQL database: {err}")
-        raise err
-    except ValueError as err:
-        print(f"ValueError: {err}")
-        raise err
+    except mysql.connector.Error as e:
+        print(f"Error connecting to MySQL database: {e}")
+        raise e
+    except ValueError as e:
+        print(f"ValueError: {e}")
+        raise e
     except Exception as e:
         # Catch unexpected exceptions, log them, and raise to crash the program
         logging.exception(f"Unexpected error occurred: {e}")
-        raise
+        raise e

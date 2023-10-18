@@ -25,13 +25,13 @@ def get_user_and_passwd_from_file(file_name: str) -> tuple:
             print("Invalid user or password in JSON configuration.")
             raise ValueError("Invalid user or password in JSON configuration.")
         return user, passwd
-    except FileNotFoundError:
+    except FileNotFoundError as e:
         print(f"The file '{file_name}' does not exist.")
-        raise
+        raise e
     except (KeyError, json.JSONDecodeError) as e:
         print(f"Error reading JSON data from '{file_name}': {e}")
-        raise
+        raise e
     except Exception as e:
         # Catch unexpected exceptions, log them, and raise to crash the program
         logging.exception(f"Unexpected error occurred: {e}")
-        raise
+        raise e
