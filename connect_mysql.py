@@ -1,12 +1,12 @@
 import mysql.connector
-from utils import get_user_and_passwd_from_file
+from utils import get_host_user_and_passwd_from_file
 import logging
 
-# Retrieve user and password from a JSON configuration file
-user, password = get_user_and_passwd_from_file("mysql.json")
+# Retrieve host, user and password from a JSON configuration file
+host, user, password = get_host_user_and_passwd_from_file("mysql.json")
 
 
-def connect_to_mysql_database():
+def connect_to_mysql_database(db_name):
     """
     Connects to a MySQL database using credentials from a JSON file.
     Returns:
@@ -16,11 +16,11 @@ def connect_to_mysql_database():
     """
     try:
         db_connection = mysql.connector.connect(
-            host="localhost",
+            host=host,
             user=user,
             passwd=password,
             auth_plugin='mysql_native_password',
-            database='task_management_system'
+            database=db_name
         )
         return db_connection
     except mysql.connector.Error as e:
