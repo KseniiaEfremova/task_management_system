@@ -2,13 +2,13 @@ import json
 import logging
 
 
-def get_user_and_passwd_from_file(file_name: str) -> tuple:
+def get_host_user_and_passwd_from_file(file_name: str) -> tuple:
     """
     Retrieves user and password information from a JSON configuration file.
     Args:
         file_name (str): The name of the JSON configuration file.
     Returns:
-        tuple: A tuple containing user (str) and password (str) extracted from the file.
+        tuple: A tuple containing host (str), user (str) and password (str) extracted from the file.
     Raises:
         ValueError: If the retrieved credentials (user or password) are empty or None.
         FileNotFoundError: If the specified file does not exist.
@@ -18,13 +18,14 @@ def get_user_and_passwd_from_file(file_name: str) -> tuple:
     try:
         with open(file_name, 'r') as config_file:
             data = json.load(config_file)
+            host = data["host"]
             user = data["user"]
             passwd = data["passwd"]
-        if not user or not passwd:
-            # Print an error message and raise a ValueError if user or password is empty or None
-            print("Invalid user or password in JSON configuration.")
-            raise ValueError("Invalid user or password in JSON configuration.")
-        return user, passwd
+        if not host or not user or not passwd:
+            # Print an error message and raise a ValueError if user or password or host is empty or None
+            print("Invalid user or password or host in JSON configuration.")
+            raise ValueError("Invalid user or password or host in JSON configuration.")
+        return host, user, passwd
     except FileNotFoundError as e:
         print(f"The file '{file_name}' does not exist.")
         raise e
