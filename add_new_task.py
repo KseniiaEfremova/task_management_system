@@ -17,12 +17,14 @@ def insert_new_task():
         description = input("Please enter a description of your task: ")
         try:
                 deadline_date_input = input("Please enter the date deadline of your task in DD/MM/YYYY format: ")     
+                deadline_date = datetime.strptime(deadline_date_input, "%d/%m/%Y")
+                formatted_deadline_date = deadline_date.strftime("%Y-%m-%d")
         except ValueError:
                 print("Invalid date format. Please use DD/MM/YYYY.")
         status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
         
         # Query
-        query = """INSERT INTO {db_name} ({}) VALUES ('{}', '{}', '{}', '{}')""", (project_id, description, deadline_date_input, status)
+        query = """INSERT INTO {db_name} ({}) VALUES ('{}', '{}', '{}', '{}')""", (project_id, description, formatted_deadline_date, status)
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
