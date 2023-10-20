@@ -11,9 +11,10 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/projects", methods=["GET"])
+@app.route("/projects")
 def get_projects():
-    res = get_all_projects(DB_NAME)
+    project_table = "projects"
+    res = dict(get_all_projects(DB_NAME, project_table))
     return jsonify(res)
 
 
