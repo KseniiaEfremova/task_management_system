@@ -82,6 +82,7 @@ def run():
                 except ValueError:
                     print("Invalid date format. Please use DD/MM/YYYY.")
             input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
+            add_task(input_project_id, input_description, formatted_deadline_date, input_status)
             print("Adding new task was successful!")
 
         # ====If User Selects 5====
