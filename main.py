@@ -49,7 +49,20 @@ def run():
         # ====If User Selects 4====
         # function is called to add a task to a project
         elif selection == 4:
-            pass
+            # Get user input
+            input_project_id = int(input("Please enter the Project ID number you would like to add a task to: "))
+            input_description = input("Please enter a description of your task: ")
+            # while True loop will break if a valid date is entered
+            # or loop if a Value error and ask the user to reenter a valid date
+            while True:
+                try:
+                    deadline_date_input = input("Please enter the date deadline of your task in DD/MM/YYYY format: ")
+                    deadline_date = datetime.strptime(deadline_date_input, "%d/%m/%Y")
+                    formatted_deadline_date = deadline_date.strftime("%Y-%m-%d")
+                    break
+                except ValueError:
+                    print("Invalid date format. Please use DD/MM/YYYY.")
+            input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
 
         # ====If User Selects 5====
         # function is called to update a task
