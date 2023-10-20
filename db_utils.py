@@ -1,6 +1,7 @@
 import mysql.connector
 import logging
 from mysql.connector import errorcode
+from datetime import datetime
 from config import data
 
 host, user, password = data["host"], data["user"], data["passwd"]
