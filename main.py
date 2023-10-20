@@ -12,3 +12,4 @@ def display_projects(table_name):
             number_of_project += 1
     else:
         print("You don't have any projects")
+
