@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from db_utils import get_all_projects, add_new_task, DB_NAME
 
 
@@ -21,13 +21,13 @@ def get_projects():
 @app.route("/newtask", methods=['PUT'])
 def adding_task():
     new_task = request.get_json()
-    {
-        "project_id": input_project_id,
-        "description": input_description,
-        "deadline": formatted_deadline_date,
-        "status": input_status,
-    }
-
+    add_new_task(
+        project_id = new_task['project_id'],
+        description = new_task['description'],
+        deadline = new_task['deadline'],
+        status = new_task['status'],
+        )
+    return new_task
 
 
 if __name__ == '__main__':
