@@ -27,7 +27,7 @@ def insert_new_task():
         status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
         
         # Query
-        query = """INSERT INTO {db_name} ({}) VALUES ('{}', '{}', '{}', '{}')""", (project_id, description, formatted_deadline_date, status)
+        query = """INSERT INTO tasks ({}) VALUES ('{}', '{}', '{}', '{}')""", (project_id, description, formatted_deadline_date, status)
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
