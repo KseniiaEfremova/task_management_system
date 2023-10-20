@@ -10,9 +10,9 @@ In order to install dependencies:
 
 ---
 Here are concise instructions for using the mysql.json file to store MySQL database credentials securely:
-1. Create a file named mysql.json in your project directory with the following format:
+1. Create a file named config.py in your project directory with the following format:
 ```
-{
+data = {
   "host": "your_host",
   "user": "your_username",
   "passwd": "your_password"
