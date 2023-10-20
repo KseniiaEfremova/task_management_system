@@ -94,13 +94,16 @@ def get_all_projects(db_name, table_name):
 def add_new_task(project_id, description, deadline, status):
     try:
         db_name = 'task_management_system' 
-        # connecting to database
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f'Connected to database: {db_name}')
 
         
         # Query
-        query = """INSERT INTO tasks ({}) VALUES ('{}', '{}', '{}', '{}')""".format(project_id, description, deadline, status)
+        query = """
+        INSERT INTO tasks ({}) 
+        VALUES ('{}', '{}', '{}', '{}')
+        """.format(project_id, description, deadline, status)
+       
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
