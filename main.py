@@ -1,3 +1,6 @@
+import requests
+import json
+from datetime import datetime
 from db_utils import get_all_projects, DB_NAME
 
 
@@ -13,6 +16,23 @@ def display_projects(table_name):
     else:
         print("You don't have any projects")
 
+
+def add_task(input_project_id, input_description, formatted_deadline_date, input_status):
+
+    new_task = {
+        "project_id": input_project_id,
+        "description": input_description,
+        "deadline": formatted_deadline_date,
+        "status": input_status,
+    }
+
+    result = requests.put(
+        'http://127.0.0.1:5001/newtask',
+        headers={'content-type': 'application/json'},
+        data=json.dumps(new_task)
+    )
+
+    return result.json()
 
 def run():
     try:
@@ -40,7 +60,6 @@ def run():
         elif selection == 2:
             pass
 
-
         # ====If User Selects 3====
         # function is called to add a new project
         elif selection == 3:
@@ -63,6 +82,7 @@ def run():
                 except ValueError:
                     print("Invalid date format. Please use DD/MM/YYYY.")
             input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
+            print("Adding new task was successful!")
 
         # ====If User Selects 5====
         # function is called to update a task
