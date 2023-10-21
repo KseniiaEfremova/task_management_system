@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from db_utils import get_all_projects, DB_NAME
+from db_utils import get_all_projects, DB_NAME, connect_to_database_or_create_if_not_exists
 
 
 def display_projects(table_name):
@@ -36,7 +36,7 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
 
 def run():
     try:
-
+        connect_to_database_or_create_if_not_exists(DB_NAME)
         selection = int(input('''\nWelcome to the Task Management System
 
     Please choose one of the following options below:

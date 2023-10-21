@@ -17,3 +17,5 @@ CREATE TABLE IF NOT EXISTS `tasks` (
     PRIMARY KEY (`task_id`),
     FOREIGN KEY (`project_id`) REFERENCES `projects`(`project_id`)
     );
+    
+    
