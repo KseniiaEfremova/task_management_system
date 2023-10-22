@@ -1,7 +1,7 @@
 import requests
 import json
 from datetime import datetime
-from db_utils import get_all_projects, DB_NAME, connect_to_database_or_create_if_not_exists
+from db_utils import DB_NAME, get_all_projects, connect_to_database_or_create_if_not_exists
 
 
 def display_projects(table_name):
@@ -26,13 +26,13 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
         "status": input_status,
     }
 
-    result = requests.put(
+    result = requests.post(
         'http://127.0.0.1:5000/newtask',
-        headers={'content-type': 'application/json'},
-        data=json.dumps(new_task)
+        json=new_task
     )
 
     return result.json()
+
 
 def run():
     try:
@@ -61,6 +61,7 @@ def run():
         # function is called to view all tasks in a project
         elif selection == 2:
             pass
+            
 
         # ====If User Selects 3====
         # Please add your view add new project function here :)
@@ -73,7 +74,7 @@ def run():
         elif selection == 4:
             # Get user input
             input_project_id = int(input("Please enter the Project ID number you would like to add a task to: "))
-            input_description = input("Please enter a description of your task: ")
+            input_description = input("Please enter a description of your new task: ")
             # while True loop will break if a valid date is entered
             # or loop if a Value error and ask the user to reenter a valid date
             while True:
@@ -111,12 +112,13 @@ def run():
         elif selection == 0:
             print('\Goodbye, you are exiting the Task Management System\n')
    
-        # Else, the user is informed that they made the wrong choice
+        # Else, the user is informed that they made the wrong choice of number
         else:
             print("\nIncorrect choice of number, options are between 0-7 only\n")
-
+    # Except value error - if user enters something other than a number
     except ValueError:
         print("\nInvalid input, enter a numerical digit between 0-7\n")
 
 if __name__ == '__main__':
     run()
+    

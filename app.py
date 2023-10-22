@@ -18,15 +18,18 @@ def get_projects():
     return jsonify(res)
 
 
-@app.route("/newtask", methods=['PUT'])
+@app.route("/newtask", methods=['POST'])
 def adding_task():
+
     new_task = request.get_json()
+    
     add_new_task(
         project_id = new_task['project_id'],
         description = new_task['description'],
         deadline = new_task['deadline'],
         status = new_task['status'],
         )
+
     return new_task
 
 
