@@ -1,6 +1,6 @@
 import requests
+from tabulate import tabulate
 from db_utils import get_all_projects, DB_NAME
-from app import get_tasks_per_project_by_status
 
 
 def display_projects(table_name):
@@ -19,7 +19,7 @@ def display_projects(table_name):
 def get_tasks_in_project():
     project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
     tasks = requests.get(f"http://localhost:5001/projects/{project_id}/todo", headers= {"content-type":"application/json"})
-    print(tasks.json())
+    print(list(tasks.json()))
  
 
 

@@ -20,7 +20,7 @@ def connect_to_mysql_database(db_name):
             host=host,
             user=user,
             passwd=password,
-            auth_plugin='mysql_native_password',
+            # auth_plugin='mysql_native_password',
             database=db_name
         )
         return db_connection
@@ -72,19 +72,18 @@ connect_to_database_or_create_if_not_exists(DB_NAME)
 
 
 def map_tuple_to_dict(collection):
-	data = []
-	for tuple in collection:
-		data.append({
-			'task_id': tuple[0],
-            'project_id' :tuple[1],
-		 	'description': tuple[2],
-		 	'deadline': tuple[3],
-		 	'status': tuple[4]})
-	return data
+    formatted_data = []
+    for item in collection:
+        data.append({
+            'task_id': item[0],
+            'project_id': item[1],
+            'description': item[2],
+            'deadline': item[3],
+            'status': item[4]})
+    return formatted_data
 
 
 def get_all_projects(db_name, table_name):
-    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
