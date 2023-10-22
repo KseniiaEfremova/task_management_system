@@ -23,15 +23,21 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
         "project_id": input_project_id,
         "description": input_description,
         "deadline": formatted_deadline_date,
-        "status": input_status,
+        "status": input_status
     }
 
-    result = requests.post(
+    response = requests.post(
         'http://127.0.0.1:5000/newtask',
         json=new_task
     )
 
-    return result.json()
+    # return response.json()
+    if response.status_code == 201:
+        print("Task added successfully!")
+        return response.json()  
+    else:
+        print("Failed to add task!")
+        return None  
 
 
 def run():
@@ -87,7 +93,6 @@ def run():
                     print("Invalid date format. Please use DD/MM/YYYY.")
             input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
             add_task(input_project_id, input_description, formatted_deadline_date, input_status)
-            print("Adding new task was successful!")
 
         # ====If User Selects 5====
         # Please add your update task function here :)

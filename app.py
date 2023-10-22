@@ -22,16 +22,19 @@ def get_projects():
 def adding_task():
 
     new_task = request.get_json()
+
+    if new_task:
+        project_id = new_task['project_id']
+        description = new_task['description']
+        deadline = new_task['deadline']
+        status = new_task['status']
+
+        add_new_task(project_id, description, deadline, status)
+
+        return jsonify(new_task), 201
+    else:
+        return jsonify({'message': 'Invalid data'}), 400
     
-    add_new_task(
-        project_id = new_task['project_id'],
-        description = new_task['description'],
-        deadline = new_task['deadline'],
-        status = new_task['status'],
-        )
-
-    return new_task
-
 
 if __name__ == '__main__':
     app.run(debug=True)
