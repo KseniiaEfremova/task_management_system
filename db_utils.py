@@ -69,17 +69,15 @@ def connect_to_database_or_create_if_not_exists(db_name):
 
 
 connect_to_database_or_create_if_not_exists(DB_NAME)
-def delete_task():
+
+
+def delete_task(task_id):
     delete = input('Would you like to delete a task? y/n ')
     if delete == 'y':
         try:
             db_name = 'task_management_system'
             cursor, db_connection = get_cursor_and_connection(db_name)
             print(f"Connected to database {db_name}")
-
-            # Get user input
-            task_id = input('Please enter the Task ID of the task you would like to delete: ')
-            task_id = int(task_id)  # Convert the input from str to int
 
             # Query deleting the task with ID provided by the user from the db
             query = """DELETE FROM tasks WHERE TASK_id = '{x}'""".format(x=task_id)
@@ -96,6 +94,3 @@ def delete_task():
             if db_connection:
                 db_connection.close()
 
-
-
-delete_task()
