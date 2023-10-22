@@ -1,4 +1,6 @@
+import requests
 from db_utils import get_all_projects, DB_NAME
+from app import get_tasks_per_project_by_status
 
 
 def display_projects(table_name):
@@ -13,3 +15,20 @@ def display_projects(table_name):
     else:
         print("You don't have any projects")
 
+
+def get_tasks_in_project():
+    project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
+    tasks = requests.get(f"http://localhost:5001/projects/{project_id}/todo", headers= {"content-type":"application/json"})
+    print(tasks.json())
+ 
+
+
+def run():
+    display_projects('projects')
+    get_tasks_in_project()
+
+
+
+
+if __name__ == '__main__':
+    run()

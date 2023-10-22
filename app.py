@@ -5,7 +5,6 @@ tasks_table = 'tasks'
 
 
 app = Flask(__name__)
-app.secret_key = 'paskudzio'
 
 
 @app.route('/')
@@ -27,4 +26,4 @@ def get_tasks_per_project_by_status(project_id, status):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
