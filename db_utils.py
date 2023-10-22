@@ -101,3 +101,22 @@ def get_all_projects(db_name, table_name):
             print("DB connection is closed")
 
     return projects
+
+
+def get_tasks_by_status(db_name, table_name, status):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        query = """SELECT * FROM {} as t WHERE t.status = '{}'""".format(table_name, status)
+        cursor.execute(query)
+        results = cursor.fetchall()
+        tasks = map_tuple_to_dict(results)
+        cursor.close()
+
+    except Exception as e:
+        print(e)
+
+    finally: 
+        if db_connection:
+            db_connection.close()
+
+    return tasks
