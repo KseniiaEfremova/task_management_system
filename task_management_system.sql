@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS task_management_system;
+
 CREATE DATABASE task_management_system;
 
 USE task_management_system;
@@ -18,4 +20,17 @@ CREATE TABLE IF NOT EXISTS `tasks` (
     FOREIGN KEY (`project_id`) REFERENCES `projects`(`project_id`)
     );
     
-    
+INSERT INTO projects 
+(project_name) 
+VALUES 
+('Test Project'),
+('Group Project');
+
+INSERT INTO tasks 
+(project_id, description, deadline, status) 
+VALUES 
+(1, 'Plan test project', '2023-10-25', 'done'),
+(2, 'Plan with group', '2023-10-29', 'todo');
+
+SELECT * FROM projects;
+SELECT * FROM tasks;
