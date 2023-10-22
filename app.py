@@ -1,5 +1,7 @@
 from flask import Flask, render_template, jsonify
-from db_utils import get_all_projects, DB_NAME
+from db_utils import get_all_projects, get_tasks_by_status, DB_NAME
+
+tasks_table = 'tasks'
 
 
 app = Flask(__name__)
@@ -18,6 +20,10 @@ def get_projects():
     return jsonify(res)
 
 
+@app.route("/projects/<project_id>/<status>")
+def get_tasks_per_project_by_status(project_id, status):
+    res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
+    return jsonify(res)
 
 
 if __name__ == '__main__':
