@@ -71,6 +71,18 @@ def connect_to_database_or_create_if_not_exists(db_name):
 connect_to_database_or_create_if_not_exists(DB_NAME)
 
 
+def map_tuple_to_dict(collection):
+	data = []
+	for tuple in collection:
+		data.append({
+			'task_id': tuple[0],
+            'project_id' :tuple[1],
+		 	'description': tuple[2],
+		 	'deadline': tuple[3],
+		 	'status': tuple[4]})
+	return data
+
+
 def get_all_projects(db_name, table_name):
     projects = []
     try:
