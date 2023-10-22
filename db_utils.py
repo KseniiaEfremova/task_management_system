@@ -103,10 +103,10 @@ def get_all_projects(db_name, table_name):
     return projects
 
 
-def get_tasks_by_status(db_name, table_name, status):
+def get_tasks_by_status(db_name, table_name, project_id, status):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
-        query = """SELECT * FROM {} as t WHERE t.status = '{}'""".format(table_name, status)
+        query = """SELECT * FROM {} as t WHERE t.project_id = {} AND t.status = '{}'""".format(table_name, project_id, status)
         cursor.execute(query)
         results = cursor.fetchall()
         tasks = map_tuple_to_dict(results)
