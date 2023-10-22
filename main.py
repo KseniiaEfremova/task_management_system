@@ -27,7 +27,7 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
     }
 
     result = requests.put(
-        'http://127.0.0.1:5001/newtask',
+        'http://127.0.0.1:5000/newtask',
         headers={'content-type': 'application/json'},
         data=json.dumps(new_task)
     )
