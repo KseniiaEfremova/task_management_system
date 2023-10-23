@@ -7,23 +7,7 @@ const submitButton = document.querySelector('.submit__button');
 const deleteProjectButton = document.querySelector('.list__delete-project');
 
 
-const getProjects = async () => {
-     try {
-         const response = await fetch(BASE_URL + 'projects', {
-             headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Origin': '*',
-                },})
-    if (!response.ok) {
-        throw new Error('Could not fetch projects!');
-    }
-        const projects = await response.json();
-        return projects;
-    } catch (err) {
-        console.log(err);
-    }
-}
+
 
 const createProjectElem = (listElem) => {
     return `<h3 class="list__elem-title">${listElem['title']}</h3>
@@ -106,114 +90,13 @@ const renderTasksByStatus = async () => {
 }
 
 
-const getResponse = async (params) => {
-    const { endpointUrl, method, body, errorMessage } = params
-    try {
-              const response = await fetch(BASE_URL + endpointUrl,
-            {
-                method: method,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    "Access-Control-Origin": "*",
-                },
-                body: JSON.stringify(body),
-            })    
-        if (!response.ok) {
-            throw new Error(errorMessage);
-        }
-        const data = await response.json();
-        return data;
-    } catch (err) {
-        console.log(err);
-    }
-}
 
-const getTaskById = async (taskId, projectId) => {
-    try {
-        const response = await fetch(BASE_URL + `projects/${projectId}/${taskId}`, {
-            headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Origin': '*',
-                },})
-    if (!response.ok) {
-        throw new Error('Could not fetch this one!');
-    }
-        const task = await response.json();
-        return task
-    } catch (err) {
-        console.log(err);
-    }
-}
 
-const getTasksByStatus = async (status, project_id) => {
-     try {
-         const response = await fetch(BASE_URL + `projects/${project_id}/${status}`, {
-             headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Origin': '*',
-                },})
-    if (!response.ok) {
-        throw new Error('Could not fetch tasks!');
-    }
-        const tasks = await response.json();
-        return tasks;
-    } catch (err) {
-        console.log(err);
-    }
-}
 
-const postNewTask = (newTask) => {
-    const params = {
-        endpointUrl: 'new_task',
-        method: 'POST',
-        body: newTask,
-        errorMessage: 'Could not add new task!'
-    }
-    getResponse(params)
-}
 
-const postNewProject = (newProject) => {
-     const params = {
-        endpointUrl: 'new_project',
-        method: 'POST',
-        body: newProject,
-        errorMessage: 'Could not add new project!'
-    }
-    getResponse(params)
-}
 
-const updateExistingTask = (taskToUpdate) => {
-    const params = {
-        endpointUrl: 'update_task',
-        method: 'PUT',
-        body: taskToUpdate,
-        errorMessage: 'Could not update this task!'
-    }
-    getResponse(params)
-}
 
-const deleteTask = (taskId) => {
-    const params = {
-        endpointUrl: '/',
-        method: 'DELETE',
-        body: taskId,
-        errorMessage: 'Could not delete todo!'
-    }
-    getResponse(params)
-}
 
-const deleteProject = (projectId) => {
-    const params = {
-        endpointUrl: '/delete',
-        method: 'DELETE',
-        body: projectId,
-        errorMessage: 'Could not delete this project!'
-    }
-    getResponse(params)
-}
 
 const submitProject = (e) => {
     e.preventDefault();
@@ -254,7 +137,7 @@ const submitForm = (e) => {
         form[3].value = '';
         window.location.href = "http://localhost:5500/client/index.html"
     } else {
-        
+        formError.classList.add('active')
     }
 }
 
