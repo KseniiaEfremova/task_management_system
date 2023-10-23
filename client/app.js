@@ -1,6 +1,6 @@
 const BASE_URL = 'http://127.0.0.1:5001/';
 
-const getProjects = () => {
+const getProjects = async () => {
      try {
          const response = await fetch(BASE_URL + 'projects', {
              headers: {
@@ -41,3 +41,10 @@ const createListElem = (listElements, elem) => {
             list.append(listElem)
     }
 }
+
+const renderProjects = async () => {
+    const projects = await getProjects();
+    createListElem(projects, projectElem)
+}
+
+if (window.location.href === "http://localhost:5001/client/index.html") createListElem();
