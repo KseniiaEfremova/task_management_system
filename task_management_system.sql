@@ -1,5 +1,3 @@
-DROP DATABASE IF EXISTS task_management_system;
-
 CREATE DATABASE task_management_system;
 
 USE task_management_system;
@@ -31,6 +29,3 @@ INSERT INTO tasks
 VALUES 
 (1, 'Plan test project', '2023-10-25', 'done'),
 (2, 'Plan with group', '2023-10-29', 'todo');
-
-SELECT * FROM projects;
-SELECT * FROM tasks;
