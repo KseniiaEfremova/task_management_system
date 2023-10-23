@@ -80,6 +80,7 @@ const renderProjects = async () => {
 }
 
 if (window.location.href === "http://127.0.0.1:5500/client/index.html") renderProjects();
+if (window.location.href === "http://127.0.0.1:5500/client/tasks.html") renderTasksByStatus();
 
 
 const renderTasksByStatus = async () => {
