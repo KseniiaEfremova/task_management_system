@@ -1,7 +1,8 @@
 import requests
+import tabulate
+from db_utils import get_all_projects, DB_NAME
 import json
 from datetime import datetime
-from db_utils import DB_NAME, get_all_projects, connect_to_database_or_create_if_not_exists
 
 
 def display_projects(table_name):
@@ -16,6 +17,31 @@ def display_projects(table_name):
     else:
         print("You don't have any projects")
 
+
+def tabulate_data(tasks):
+    dataset = list(tasks.json())
+    header = dataset[0].keys()
+    rows = [task.values() for task in dataset]
+    print(tabulate.tabulate(rows, header))
+
+
+def get_tasks_in_project():
+    project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
+    statuses = ['todo', 'in progress', 'in review', 'done']
+    for status in statuses:
+        try:
+            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
+            print(status.upper())
+            tabulate_data(tasks)
+        except requests.exceptions.HTTPError as error_HTTP:
+            print("Http Error:", error_HTTP)
+        except requests.exceptions.ConnectionError as err_connect:
+            print("Error Connecting:", err_connect)
+        except requests.exceptions.Timeout as err_timeout:
+            print("Timeout Error:", err_timeout)
+        except requests.exceptions.RequestException as err:
+            print("OOps: Something Else", err)
+ 
 
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes five parameters 
@@ -69,7 +95,7 @@ def run():
         # Please call your view all tasks function here :)
         # function is called to view all tasks in a project
         elif selection == 2:
-            pass
+            get_tasks_in_project()
             
 
         # ====If User Selects 3====
