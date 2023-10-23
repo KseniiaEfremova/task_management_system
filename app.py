@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from db_utils import get_all_projects, DB_NAME
+from db_utils import delete_project
 
 
 app = Flask(__name__)
@@ -11,11 +11,10 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/projects")
-def get_projects():
-    project_table = "projects"
-    res = dict(get_all_projects(DB_NAME, project_table))
-    return jsonify(res)
+@app.route('/delete_project', methods=['DELETE'])
+def delete_project_route():
+    result = delete_project()
+    return jsonify(result)
 
 
 if __name__ == '__main__':
