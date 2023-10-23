@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fbf9c95c-693b-4706-bbda-713d77c1a030" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tasks.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/tasks.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/about.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/static/assets/about.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/author.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/static/assets/author.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/assets/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/client/static/assets/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/static/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/new_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/new_task.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
