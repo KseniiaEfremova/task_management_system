@@ -1,9 +1,10 @@
 from flask import Flask, render_template, jsonify
+from flask_cors import CORS
 from db_utils import get_all_projects, DB_NAME
 
 
 app = Flask(__name__)
-app.secret_key = 'paskudzio'
+CORS(app)
 
 
 # @app.route('/')

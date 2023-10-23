@@ -27,8 +27,8 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: var(--dark-900);
+	text-decoration: none;
+	color: var(--dark-900);
 }
 
 .nav__container {
@@ -110,7 +110,8 @@ a {
 	gap: 1rem;
 }
 
-.list__wrapper-todo .list__elem {
+.list__wrapper-todo .list__elem,
+.section__list-wrapper .list__elem {
 	border: 1px solid var(--primary-200);
 	box-shadow: 1px 1px 10px var(--primary-200);
 }

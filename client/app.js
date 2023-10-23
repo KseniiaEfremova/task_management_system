@@ -1,5 +1,6 @@
 const BASE_URL = 'http://127.0.0.1:5001/';
-const mainList = document.querySelector('section__list-wrapper')
+const mainList = document.querySelector('.section__list-wrapper');
+
 
 const getProjects = async () => {
      try {
@@ -19,35 +20,38 @@ const getProjects = async () => {
     }
 }
 
-const projectElem = `<h3 class="list__elem-title">${list['title']}</h3>
-                <p class="list__elem-desc">${list['project_id']}</p>
+const createProjectElem = (listElem) => {
+    return `<h3 class="list__elem-title">${listElem['title']}</h3>
+                <p class="list__elem-desc">${listElem['project_id']}</p>
                 <div class="list__elem-just-between">
-                    <a href='#' data-id="update-${project.project_id}">
-                        <img class="list__elem-img" src='../assets/update.png' alt='update' data-id="update-${list.project_id}"/>
+                    <a href='#' data-id="update-${listElem.project_id}">
+                        <img class="list__elem-img" src='./static/assets/update.png' alt='update' data-id="update-${listElem.project_id}"/>
                     </a>
-                    <button data-id="delete-${project.project_id}" >
-                        <img class="list__elem-img" src='../assets/delete.png' alt='delete' data-id="delete-${list.project_id}"/>
+                    <button data-id="delete-${listElem.project_id}" >
+                        <img class="list__elem-img" src='./static/assets/delete.png' alt='delete' data-id="delete-${listElem.project_id}"/>
                     </button>
                 </div>
-            `
+            `}
 
 
-const createListElem = (listElements, elem, list) => {
-     for (const listElem of listElement) {
-            const listElem = document.createElement('li')
-            listElem.classList.add('list__elem')
-            const date = new Date(project.deadline)
+const createListElem = (listElements, list) => {
+     for (const listEl of listElements) {
+        const listElem = document.createElement('li')
+        listElem.classList.add('list__elem')
+         if (listElements !== 'projects') {
+             const date = new Date(listEl.deadline)
+         }
             listElem.insertAdjacentHTML(
-                'afterbegin', elem)
+                'afterbegin', createProjectElem(listEl))
             list.append(listElem)
     }
 }
 
 const renderProjects = async () => {
-    const projects = await getProjects();
-    console.log(projects);
-    createListElem(projects, projectElem, mainList)
+    // const projects = await getProjects();
+    // TODO: change this hardcoded data to projects pulled from db
+    const projects = [{ project_id: 2, title: 'Learn Flask' }, {project_id: 1, title: 'task management system'}]
+    createListElem(projects, mainList)
 }
 
-//if (window.location.href === "http://localhost:5001/client/index.html")
-renderProjects();
+if (window.location.href === "http://127.0.0.1:5500/client/index.html") renderProjects();
