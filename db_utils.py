@@ -67,10 +67,6 @@ def connect_to_database_or_create_if_not_exists(db_name):
             exit(1)
     print(f"You are using {db_name} database.")
 
-
-connect_to_database_or_create_if_not_exists(DB_NAME)
-
-
 def get_all_projects(db_name, table_name):
     projects = []
     try:

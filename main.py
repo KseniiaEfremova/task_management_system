@@ -42,7 +42,6 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
 
 def run():
     try:
-        connect_to_database_or_create_if_not_exists(DB_NAME)
         selection = int(input('''\nWelcome to the Task Management System
 
     Please choose one of the following options below:
@@ -126,4 +125,3 @@ def run():
 
 if __name__ == '__main__':
     run()
-    
