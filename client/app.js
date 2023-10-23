@@ -79,3 +79,13 @@ const getResponse = async (params) => {
         console.log(err);
     }
 }
+
+const postNewTask = (newTask) => {
+    const params = {
+        endpointUrl: 'new_task',
+        method: 'POST',
+        body: newTask,
+        errorMessage: 'Could not add new todo!'
+    }
+    getResponse(params)
+}
