@@ -1,5 +1,9 @@
 const BASE_URL = 'http://127.0.0.1:5001/';
 const mainList = document.querySelector('.section__list-wrapper');
+const taskLists = document.querySelectorAll('.list__wrapper');
+const form = document.querySelector('.form__control');
+const formError = document.querySelector('.form__error');
+const submitButton = document.querySelector('.submit__button');
 
 
 const getProjects = async () => {
@@ -114,6 +118,16 @@ const updateExistingTask = (taskToUpdate) => {
         method: 'PUT',
         body: taskToUpdate,
         errorMessage: 'Could not update this task!'
+    }
+    getResponse(params)
+}
+
+const deleteTask = (taskId, projectId) => {
+    const params = {
+        endpointUrl: '/',
+        method: 'DELETE',
+        body: {task_id: taskId, project_id: projectId},
+        errorMessage: 'Could not delete todo!'
     }
     getResponse(params)
 }
