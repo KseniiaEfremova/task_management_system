@@ -109,7 +109,8 @@ const submitForm = (e) => {
     if (project_id !== '' && description !== '' && status !== '' && deadline !== '') {
         formError.classList.remove('active')
         const newTask = { description, status, deadline, project_id }
-        const task_id = JSON.parse(localStorage.getItem('id'))['task_id']
+        const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
+        const project_id = JSON.parse(localStorage.getItem('task-id')['project_id'])
         const taskToUpdate = {project_id, description, status, deadline, task_id }
         if (window.location.href === "http://localhost:5500/client/new_task.html") {
             postNewTask(newTask);
@@ -124,6 +125,16 @@ const submitForm = (e) => {
     } else {
         formError.classList.add('active')
     }
+}
+
+const handleUpdateTask = (e) => {
+    if (e.target.getAttribute('data-id').includes('update')) {
+        const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
+        localStorage.setItem('task-id', JSON.stringify(taskId));
+        window.location.href = "http://localhost:5500/client/update_task.html"; 
+    } else {
+        return
+    } 
 }
 
 if (submitButton) submitButton.addEventListener('click', submitForm);
