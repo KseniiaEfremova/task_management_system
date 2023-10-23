@@ -24,6 +24,30 @@ const getProjects = async () => {
     }
 }
 
+const renderTasksByStatus = async () => {
+    const projectId = JSON.parse(localstorage.getItem('projectId')['project_id']);
+    const taskListTodo = document.querySelector('.list__wrapper-todo');
+    const taskListInProgress = document.querySelector('.list__wrapper-inprogress');
+    const taskListInReview = document.querySelector('.list__wrapper-inreview');
+    const taskListDone = document.querySelector('.list__wrapper-done');
+    const todoTasks = await getTasksByStatus(projectId, 'todo');
+    const inReviewTasks = await getTasksByStatus(projectId, 'in review');
+    const inProgressTasks = await getTasksByStatus(projectId, 'in progress');
+    const doneTasks = await getTasksByStatus(projectId, 'done');
+    if (todoTodos) {
+       createListElem(todoTasks, taskListTodo)
+    }
+    if (inReviewTasks) {
+       createListElem(inReviewTodos, taskListInReview)
+    }
+    if (inProgressTasks) {
+       createListElem(inProgressTasks, taskListInProgress)
+    }
+    if (doneTasks) {
+       createListElem(doneTasks, taskListDone)
+    }
+}
+
 const createProjectElem = (listElem) => {
     return `<h3 class="list__elem-title">${listElem['title']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
