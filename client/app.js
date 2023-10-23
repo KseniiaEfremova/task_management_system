@@ -37,7 +37,7 @@ const createProjectElem = (listElem) => {
                 </div>
             `}
 
-const createTaskElem = (listElem) => {
+const createTaskElem = (listElem, date) => {
     return        `<h3 class="list__elem-title">${listElem.description}</h3>
                 <div class="list__elem-just-between">
                     <h4 class="list__elem-status">${listElem.status}</h4>
@@ -59,12 +59,16 @@ const createListElem = (listElements, list) => {
      for (const listEl of listElements) {
         const listElem = document.createElement('li')
         listElem.classList.add('list__elem')
-         if (listElements !== 'projects') {
-             const date = new Date(listEl.deadline)
-         }
+         if (list === mainList) {
             listElem.insertAdjacentHTML(
                 'afterbegin', createProjectElem(listEl))
-            list.append(listElem)
+         } else {
+            const date = new Date(listEl.deadline)
+            listElem.insertAdjacentHTML(
+                'afterbegin', createTaskElem(listEl, date))
+         }
+            
+        list.append(listElem)
     }
 }
 
