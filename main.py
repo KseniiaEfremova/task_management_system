@@ -35,7 +35,6 @@ def add_task(input_project_id, input_description, formatted_deadline_date, input
         json=new_task
     )
 
-    # return response.json()
     if response.status_code == 201:
         print("Task added successfully!")
         return response.json()  
