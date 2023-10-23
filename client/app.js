@@ -80,6 +80,24 @@ const getResponse = async (params) => {
     }
 }
 
+const getTaskById = async (taskId, projectId) => {
+    try {
+        const response = await fetch(BASE_URL + `projects/${projectId}/${taskId}`, {
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Origin': '*',
+                },})
+    if (!response.ok) {
+        throw new Error('Could not fetch this one!');
+    }
+        const task = await response.json();
+        return task
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const postNewTask = (newTask) => {
     const params = {
         endpointUrl: 'new_task',
