@@ -102,6 +102,24 @@ const getTaskById = async (taskId, projectId) => {
     }
 }
 
+const getTasksByStatus = async (status, project_id) => {
+     try {
+         const response = await fetch(BASE_URL + `projects/${project_id}/${status}`, {
+             headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Origin': '*',
+                },})
+    if (!response.ok) {
+        throw new Error('Could not fetch tasks!');
+    }
+        const tasks = await response.json();
+        return tasks;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 const postNewTask = (newTask) => {
     const params = {
         endpointUrl: 'new_task',
@@ -122,11 +140,11 @@ const updateExistingTask = (taskToUpdate) => {
     getResponse(params)
 }
 
-const deleteTask = (taskId, projectId) => {
+const deleteTask = (taskId) => {
     const params = {
         endpointUrl: '/',
         method: 'DELETE',
-        body: {task_id: taskId, project_id: projectId},
+        body: taskId,
         errorMessage: 'Could not delete todo!'
     }
     getResponse(params)
@@ -184,5 +202,7 @@ const handleUpdateTask = (e) => {
         return
     } 
 }
+
+
 
 if (submitButton) submitButton.addEventListener('click', submitForm);
