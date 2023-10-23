@@ -55,3 +55,27 @@ const renderProjects = async () => {
 }
 
 if (window.location.href === "http://127.0.0.1:5500/client/index.html") renderProjects();
+
+
+const getResponse = async (params) => {
+    const { endpointUrl, method, body, errorMessage } = params
+    try {
+              const response = await fetch(BASE_URL + endpointUrl,
+            {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    "Access-Control-Origin": "*",
+                },
+                body: JSON.stringify(body),
+            })    
+        if (!response.ok) {
+            throw new Error(errorMessage);
+        }
+        const data = await response.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
