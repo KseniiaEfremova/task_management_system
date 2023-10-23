@@ -70,22 +70,32 @@ def connect_to_database_or_create_if_not_exists(db_name):
 
 connect_to_database_or_create_if_not_exists(DB_NAME)
 
-
-def get_all_projects(db_name, table_name):
-    projects = []
+def delete_project():
     try:
+        db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
-        print("Connected to DB: %s" % db_name)
+        print(f"Connected to database {db_name}")
 
-        query = """SELECT project_id, project_name FROM {}""".format(table_name)
+        # User input
+        project_name = input("Please enter the name of the project you want to delete: ")
 
-        cursor.execute(query)
+        # Query
+        query = "DELETE FROM projects WHERE project_name = %s"
+        cursor.execute(query, (project_name,))
+        db_connection.commit()
 
-        projects = cursor.fetchall()
-        cursor.close()
+        if cursor.rowcount > 0:
+            print(f"Project '{project_name}' has been deleted.")
+        else:
+            print(f"No project found with the name '{project_name}'.")
+
+    except Exception as exc:
+        print(exc)
+
     finally:
+        cursor.close()
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
 
-    return projects
+
+delete_project()
