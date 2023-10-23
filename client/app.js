@@ -253,3 +253,5 @@ const handleUpdateTask = (e) => {
 
 
 if (submitButton) submitButton.addEventListener('click', submitForm);
+if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
+if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
