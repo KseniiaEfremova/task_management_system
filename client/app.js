@@ -89,3 +89,29 @@ const postNewTask = (newTask) => {
     }
     getResponse(params)
 }
+
+const submitForm = (e) => {
+    e.preventDefault();
+    const description = form[0].value.trim();
+    const status = form[1].value.trim();
+    const deadline = form[2].value.trim();
+    const project_id = form[3].value.trim();
+    if (project_id !== '' && description !== '' && status !== '' && deadline !== '') {
+        formError.classList.remove('active')
+        const newTask = { description, status, deadline, project_id }
+        const task_id = JSON.parse(localStorage.getItem('id'))['task_id']
+        const taskToUpdate = {project_id, description, status, deadline, task_id }
+        if (window.location.href === "http://localhost:5500/client/new_task.html") {
+            postNewTask(newTask);
+        } else {
+            updateExistingTask(taskToUpdate)
+        }
+        form[0].value = '';
+        form[1].value = '';
+        form[2].value = '';
+        form[3].value = '';
+        window.location.href = "http://localhost:5500/client/index.html"
+    } else {
+        formError.classList.add('active')
+    }
+}
