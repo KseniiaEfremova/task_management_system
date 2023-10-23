@@ -1,15 +1,21 @@
-from db_utils import get_all_projects, DB_NAME
+import requests
+from flask import Flask, render_template
 
 
-def display_projects(table_name):
-    projects = get_all_projects(DB_NAME, table_name)
-    print("################################\n")
-    print("All projects:")
-    number_of_project = 1
-    if projects:
-        for project in projects:
-            print(f"{number_of_project}. {project[1].capitalize()}")
-            number_of_project += 1
+app = Flask(__name__)
+app.secret_key = 'paskudzio'
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+def delete_project(project_name):
+    response = requests.delete(f"http://127.0.0.1:5001/delete_project/<int:project_name>")
+    if response.status_code == 200:
+        print(f"Project: {project_name} has successfully been deleted")
     else:
-        print("You don't have any projects")
+        print(f"Failed to delete project.")
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
