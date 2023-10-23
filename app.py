@@ -11,9 +11,9 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/delete_project', methods=['DELETE'])
-def delete_project_route():
-    result = delete_project()
+@app.route('/delete_project/<int:project_id>', methods=['DELETE'])
+def delete_project_route(project_id):
+    result = delete_project(project_id)
     return jsonify(result)
 
 
