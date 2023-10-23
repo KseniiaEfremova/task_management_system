@@ -1,4 +1,5 @@
 const BASE_URL = 'http://127.0.0.1:5001/';
+const mainList = document.querySelector('section__list-wrapper')
 
 const getProjects = async () => {
      try {
@@ -31,8 +32,8 @@ const projectElem = `<h3 class="list__elem-title">${list['title']}</h3>
             `
 
 
-const createListElem = (listElements, elem) => {
-     for (const list of listElement) {
+const createListElem = (listElements, elem, list) => {
+     for (const listElem of listElement) {
             const listElem = document.createElement('li')
             listElem.classList.add('list__elem')
             const date = new Date(project.deadline)
@@ -44,7 +45,9 @@ const createListElem = (listElements, elem) => {
 
 const renderProjects = async () => {
     const projects = await getProjects();
-    createListElem(projects, projectElem)
+    console.log(projects);
+    createListElem(projects, projectElem, mainList)
 }
 
-if (window.location.href === "http://localhost:5001/client/index.html") createListElem();
+//if (window.location.href === "http://localhost:5001/client/index.html")
+renderProjects();
