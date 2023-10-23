@@ -5,18 +5,27 @@ import json
 from datetime import datetime
 
 
-def display_projects(table_name):
-    projects = get_all_projects(DB_NAME, table_name)
-    print("################################\n")
-    print("All projects:")
-    number_of_project = 1
-    if projects:
-        for project in projects:
-            print(f"{number_of_project}. {project[1].capitalize()}")
-            number_of_project += 1
-    else:
-        print("You don't have any projects")
-
+def display_projects():
+    try:
+        result = requests.get('http://127.0.0.1:5000/projects')
+        data = result.json()
+        print("################################\n")
+        print("All projects:")
+        if data:
+            for proj_id in data:
+                print(f"{proj_id}. {data[proj_id].capitalize()}")
+        else:
+            print("You don't have any projects")
+    except requests.exceptions.HTTPError as errh:
+        print(f"Failed to retrieve data. HTTP Error occurred: {errh}")
+    except requests.exceptions.ConnectionError as errc:
+        print(f"Failed to retrieve data. Error connecting: {errc}")
+    except requests.exceptions.Timeout as errt:
+        print(f"Failed to retrieve data. Timeout error: {errt}")
+    except requests.exceptions.RequestException as err:
+        print(f"Failed to retrieve data. An error occurred: {err}")
+    except Exception as erre:
+        print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
 def tabulate_data(tasks):
     dataset = list(tasks.json())
