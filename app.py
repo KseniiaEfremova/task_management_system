@@ -21,11 +21,12 @@ def get_projects():
 @app.route("/newtask", methods=['POST'])
 def adding_task():
     """ adding_task() function handles POST requests made to /newtask,
-    new_task variable receives JSON data, parses it into a Python dict 
+    try the new_task variable receives JSON data, parses it into a Python dict 
     if data for new_task has been recieved - this is extracted into variables
     these are passed as params into the add_new_task() function, which is called
     new task data is and a status code of 201, indicating success.
     else if received JSON data is invalid or missing, and error message and status code of 400 is returned
+    except used to catch exceptions, which will print the exception and return an error
     """
     try:
         new_task = request.get_json()

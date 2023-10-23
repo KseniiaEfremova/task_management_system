@@ -88,9 +88,9 @@ def get_all_projects(db_name, table_name):
 
 
 def add_new_task(db_name, table_name, project_id, description, deadline, status):
-    """add_new_task() function takes in four params, which will be inserted into the DB
-    establishes a connection to the DB
-    executes SQL query to insert a new task into the DB using the params as values
+    """add_new_task() function takes in 6 params
+    establishes a connection to the DB - uses the db_name variable
+    executes SQL query to insert a new task into the DB using the table_name variable and other params as values
     commits changes to the DB and closes DB connection
     if any exception occurs an error message will be  printed
     """

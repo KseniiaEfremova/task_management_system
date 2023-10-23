@@ -18,8 +18,8 @@ def display_projects(table_name):
 
 
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
-    """ add_task() function akes four parameters 
-    creates a dictionary called new_task with four key-value pairs using the params
+    """ add_task() function akes five parameters 
+    creates a dictionary called new_task with five key-value pairs using the params
     sends a POST request to URL - new_task dict as the request body in JSON format
     checks the response from the server - if status code is 201, it prints success
     """
@@ -81,6 +81,7 @@ def run():
         # ====If User Selects 4====
         # function is called to add a task to a project
         elif selection == 4:
+            # table_name variable will = tasks as we are adding tasks
             # Get user input
             table_name = "tasks"
             input_project_id = int(input("Please enter the Project ID number you would like to add a task to: "))
