@@ -4,7 +4,7 @@ const taskLists = document.querySelectorAll('.list__wrapper');
 const form = document.querySelector('.form__control');
 const formError = document.querySelector('.form__error');
 const submitButton = document.querySelector('.submit__button');
-const deleteProjectButton = document.querySelector('.list__delete-project')
+const deleteProjectButton = document.querySelector('.list__delete-project');
 
 
 const getProjects = async () => {
@@ -57,7 +57,7 @@ const createListElem = (listElements, list) => {
      for (const listEl of listElements) {
         const listElem = document.createElement('li')
         listElem.classList.add('list__elem')
-         if (list === mainList) {
+         if (window.location.href === "http://127.0.0.1:5500/client/index.html") {
             listElem.insertAdjacentHTML(
                 'afterbegin', createProjectElem(listEl))
          } else {
@@ -175,6 +175,16 @@ const postNewTask = (newTask) => {
     getResponse(params)
 }
 
+const postNewProject = (newProject) => {
+     const params = {
+        endpointUrl: 'new_project',
+        method: 'POST',
+        body: newProject,
+        errorMessage: 'Could not add new project!'
+    }
+    getResponse(params)
+}
+
 const updateExistingTask = (taskToUpdate) => {
     const params = {
         endpointUrl: 'update_task',
@@ -205,6 +215,22 @@ const deleteProject = (projectId) => {
     getResponse(params)
 }
 
+const submitProject = (e) => {
+    e.preventDefault();
+    const projectForm = document.querySelector('.form__control-project')
+    const project_id = projectForm[0].value.trim();
+    if (project_id !== '') {
+        formError.classList.remove('active');
+        const newProject = { project_id };
+        postNewProject(newProject);
+         form[0].value = ''
+    } else {
+        formError.classList.add('active')
+    }
+   
+
+}
+
 const submitForm = (e) => {
     e.preventDefault();
     const description = form[0].value.trim();
@@ -228,13 +254,13 @@ const submitForm = (e) => {
         form[3].value = '';
         window.location.href = "http://localhost:5500/client/index.html"
     } else {
-        formError.classList.add('active')
+        
     }
 }
 
 const prepopulateForm = async (task_id, project_id) => {
     const taskToUpdate = await getTaskById(task_id, project_id);
-    const { project_id, description, status, deadline } = taskToUpdate[0];
+    const { description, status, deadline } = taskToUpdate[0];
     date = new Date(deadline)
     form[0].value = description;
     form[1].value = status;
@@ -293,6 +319,7 @@ const handleDeleteProject = (e) => {
 
 
 if (submitButton) submitButton.addEventListener('click', submitForm);
-if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
-if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
-if (deleteProjectButton) deleteProjectButton.addEventListener('click', handleDeleteProject)
+if (submitProjectButton) submitProjectButton.addEventListener('click', submitProject)
+if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
+if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
+if (deleteProjectButton) deleteProjectButton.addEventListener('click', handleDeleteProject);

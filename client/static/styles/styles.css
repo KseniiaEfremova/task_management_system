@@ -110,6 +110,10 @@ a {
 	gap: 1rem;
 }
 
+.form__control-project {
+	height: 5rem;
+}
+
 .list__wrapper-todo .list__elem,
 .section__list-wrapper .list__elem {
 	border: 1px solid var(--primary-200);
@@ -171,7 +175,8 @@ a {
 
 .input__control input,
 .input__control select,
-.input__control textarea {
+.input__control textarea,
+.input__project {
 	padding: 0.5rem 1rem;
 }
 
