@@ -56,20 +56,20 @@ def run():
     Type your option here: '''))
 
         # ====If User Selects 1 ====
-        # Please add your view all projects function here :)
+        # Please call your view all projects function here :)
         # function is called to view all existing projects
         if selection == 1:
             pass
 
         # ====If User Selects 2 ====
-        # Please add your view all tasks function here :)
+        # Please call your view all tasks function here :)
         # function is called to view all tasks in a project
         elif selection == 2:
             pass
             
 
         # ====If User Selects 3====
-        # Please add your view add new project function here :)
+        # Please call your view add new project function here :)
         # function is called to add a new project
         elif selection == 3:
             pass
@@ -94,19 +94,19 @@ def run():
             add_task(input_project_id, input_description, formatted_deadline_date, input_status)
 
         # ====If User Selects 5====
-        # Please add your update task function here :)
+        # Please call your update task function here :)
         # function is called to update a task
         elif selection == 5:
             pass
 
         # ====If User Selects 6====
-        # Please add your delete a project function here :)
+        # Please call your delete a project function here :)
         # function is called to delete a project
         elif selection == 6:
             pass
 
         # ====If User Selects 7====
-        # Please add your delete a task function here :)
+        # Please call your delete a task function here :)
         # function is called to delete a task
         elif selection == 7:
             pass
