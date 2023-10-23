@@ -250,6 +250,22 @@ const handleUpdateTask = (e) => {
     } 
 }
 
+const handleDeleteTodo = (e) => {
+    if (e.target.getAttribute('data-id').includes('delete')) {
+        const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) }
+        deleteTask(taskId);
+        for (list of taskLists) {
+            while (list.lastElementChild) {
+                list.removeChild(list.lastElementChild);
+            }
+        }
+       
+       renderTasksByStatus();
+    } else {
+        return
+    }
+}
+
 
 
 if (submitButton) submitButton.addEventListener('click', submitForm);
