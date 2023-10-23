@@ -1,4 +1,5 @@
 import requests
+import tabulate
 from db_utils import get_all_projects, DB_NAME
 
 
@@ -15,10 +16,20 @@ def display_projects(table_name):
         print("You don't have any projects")
 
 
+def tabulate_data(tasks):
+    dataset = list(tasks.json())
+    header = dataset[0].keys()
+    rows = [task.values() for task in dataset]
+    print(tabulate.tabulate(rows, header))
+
+
 def get_tasks_in_project():
     project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
-    tasks = requests.get(f"http://localhost:5001/projects/{project_id}/todo", headers= {"content-type":"application/json"})
-    print(tasks.json())
+    statuses = ['todo', 'in progress', 'in review', 'done']
+    for status in statuses:
+        tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
+        print(status.upper())
+        tabulate_data(tasks)
  
 
 def run():
