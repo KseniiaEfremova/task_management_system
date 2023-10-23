@@ -88,6 +88,12 @@ def get_all_projects(db_name, table_name):
 
 
 def add_new_task(project_id, description, deadline, status):
+    """add_new_task() function takes in four params, which will be inserted into the DB
+    establishes a connection to the DB
+    executes SQL query to insert a new task into the DB using the params as values
+    commits changes to the DB and closes DB connection
+    if any exception occurs an error message will be  printed
+    """
     try:
         db_name = 'task_management_system' 
         cursor, db_connection = get_cursor_and_connection(db_name)

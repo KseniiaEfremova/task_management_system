@@ -18,7 +18,11 @@ def display_projects(table_name):
 
 
 def add_task(input_project_id, input_description, formatted_deadline_date, input_status):
-
+    """ add_task() function akes four parameters 
+    creates a dictionary called new_task with four key-value pairs using the params
+    sends a POST request to URL - new_task dict as the request body in JSON format
+    checks the response from the server - if status code is 201, it prints success
+    """
     new_task = {
         "project_id": input_project_id,
         "description": input_description,
@@ -82,6 +86,8 @@ def run():
             input_description = input("Please enter a description of your new task: ")
             # while True loop will break if a valid date is entered
             # or loop if a Value error and ask the user to reenter a valid date
+            # useful as this is a common input error and means the user won't have
+            # to restart the whole program
             while True:
                 try:
                     deadline_date_input = input("Please enter the date deadline of your task in DD/MM/YYYY format: ")
@@ -91,6 +97,7 @@ def run():
                 except ValueError:
                     print("Invalid date format. Please use DD/MM/YYYY.")
             input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
+            # add_task() function called
             add_task(input_project_id, input_description, formatted_deadline_date, input_status)
 
         # ====If User Selects 5====
