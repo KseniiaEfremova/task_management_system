@@ -1,5 +1,4 @@
 import requests
-from tabulate import tabulate
 from db_utils import get_all_projects, DB_NAME
 
 
@@ -19,15 +18,12 @@ def display_projects(table_name):
 def get_tasks_in_project():
     project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
     tasks = requests.get(f"http://localhost:5001/projects/{project_id}/todo", headers= {"content-type":"application/json"})
-    print(list(tasks.json()))
+    print(tasks.json())
  
-
 
 def run():
     display_projects('projects')
     get_tasks_in_project()
-
-
 
 
 if __name__ == '__main__':
