@@ -95,7 +95,7 @@ def run():
         # Please call your view all tasks function here :)
         # function is called to view all tasks in a project
         elif selection == 2:
-            pass
+            get_tasks_in_project()
             
 
         # ====If User Selects 3====
