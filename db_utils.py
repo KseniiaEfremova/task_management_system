@@ -77,17 +77,17 @@ def delete_project():
         print(f"Connected to database {db_name}")
 
         # User input
-        project_name = input("Please enter the name of the project you want to delete: ")
+        project_id = input("Please enter the name of the project you want to delete: ")
 
         # Query
-        query = "DELETE FROM projects WHERE project_name = %s"
-        cursor.execute(query, (project_name,))
+        query = "DELETE FROM projects WHERE project_id = %s"
+        cursor.execute(query, (project_id,))
         db_connection.commit()
 
         if cursor.rowcount > 0:
-            print(f"Project '{project_name}' has been deleted.")
+            print(f"Project '{project_id}' has been deleted.")
         else:
-            print(f"No project found with the name '{project_name}'.")
+            print(f"No project found with the id '{project_id}'.")
 
     except Exception as exc:
         print(exc)
