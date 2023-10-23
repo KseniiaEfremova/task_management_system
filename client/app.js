@@ -85,7 +85,17 @@ const postNewTask = (newTask) => {
         endpointUrl: 'new_task',
         method: 'POST',
         body: newTask,
-        errorMessage: 'Could not add new todo!'
+        errorMessage: 'Could not add new task!'
+    }
+    getResponse(params)
+}
+
+const updateExistingTask = (taskToUpdate) => {
+    const params = {
+        endpointUrl: 'update_task',
+        method: 'PUT',
+        body: taskToUpdate,
+        errorMessage: 'Could not update this task!'
     }
     getResponse(params)
 }
@@ -115,3 +125,5 @@ const submitForm = (e) => {
         formError.classList.add('active')
     }
 }
+
+if (submitButton) submitButton.addEventListener('click', submitForm);
