@@ -3,7 +3,6 @@ from db_utils import get_all_projects, add_new_task, DB_NAME
 
 
 app = Flask(__name__)
-app.secret_key = 'paskudzio'
 
 
 @app.route('/')
@@ -49,4 +48,4 @@ def adding_task():
     
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

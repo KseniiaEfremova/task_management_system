@@ -32,7 +32,7 @@ def add_task(table_name, input_project_id, input_description, formatted_deadline
     }
 
     response = requests.post(
-        'http://127.0.0.1:5000/newtask',
+        'http://127.0.0.1:5001/newtask',
         json=new_task
     )
 
