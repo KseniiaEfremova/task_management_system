@@ -1,6 +1,6 @@
 import mysql.connector
 import logging
-from mysql.connector import errorcode
+# from mysql.connector import errorcode
 from config import data
 
 host, user, password = data["host"], data["user"], data["passwd"]
@@ -24,9 +24,9 @@ def connect_to_mysql_database(db_name):
             database=db_name
         )
         return db_connection
-    except mysql.connector.Error as e:
-        print(f"Error connecting to MySQL database: {e}")
-        raise e
+    # except mysql.connector.Error as e:
+    #     print(f"Error connecting to MySQL database: {e}")
+    #     raise e
     except ValueError as e:
         print(f"ValueError: {e}")
         raise e
@@ -52,23 +52,23 @@ def create_database(db_name):
         exit(1)
 
 
-def connect_to_database_or_create_if_not_exists(db_name):
-    try:
-        cursor, db_connection = get_cursor_and_connection(db_name)
-        cursor.execute("USE {}".format(db_name))
-    except mysql.connector.Error as err:
-        print("Database {} does not exists.".format(db_name))
-        if err.errno == errorcode.ER_BAD_DB_ERROR:
-            create_database(db_name)
-            print("Database {} created successfully.".format(db_name))
-            db_connection.database = db_name
-        else:
-            print(err)
-            exit(1)
-    print(f"You are using {db_name} database.")
+# def connect_to_database_or_create_if_not_exists(db_name):
+#     try:
+#         cursor, db_connection = get_cursor_and_connection(db_name)
+#         cursor.execute("USE {}".format(db_name))
+#     except mysql.connector.Error as err:
+#         print("Database {} does not exists.".format(db_name))
+        # if err.errno == errorcode.ER_BAD_DB_ERROR:
+        #     create_database(db_name)
+        #     print("Database {} created successfully.".format(db_name))
+        #     db_connection.database = db_name
+    #     else:
+    #         print(err)
+    #         exit(1)
+    # print(f"You are using {db_name} database.")
 
 
-connect_to_database_or_create_if_not_exists(DB_NAME)
+# connect_to_database_or_create_if_not_exists(DB_NAME)
 
 
 def get_all_projects(db_name, table_name):
