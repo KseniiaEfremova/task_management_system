@@ -4,6 +4,7 @@ const taskLists = document.querySelectorAll('.list__wrapper');
 const form = document.querySelector('.form__control');
 const formError = document.querySelector('.form__error');
 const submitButton = document.querySelector('.submit__button');
+const deleteProjectButton = document.querySelector('.list__delete-project')
 
 
 const getProjects = async () => {
@@ -28,14 +29,14 @@ const createProjectElem = (listElem) => {
     return `<h3 class="list__elem-title">${listElem['title']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
                 <div class="list__elem-just-between">
-                    <button data-id="delete-${listElem.project_id}" >
-                        <img class="list__elem-img" src='./static/assets/delete.png' alt='delete' data-id="delete-${listElem.project_id}"/>
+                    <button data-id="delete-${listElem.project_id}" class="list__delete-project">
+                        <img class="list__elem-img" src='./static/assets/delete.png' alt='delete' data-id="delete-${listElem.project_id} class="list__delete-project""/>
                     </button>
                 </div>
             `}
 
 const createTaskElem = (listElem, date) => {
-    return        `<h3 class="list__elem-title">${listElem.description}</h3>
+    return  `<h3 class="list__elem-title">${listElem.description}</h3>
                 <div class="list__elem-just-between">
                     <h4 class="list__elem-status">${listElem.status}</h4>
                     <p class="list__elem-date">${date.toJSON().split('T')[0]}</p>
@@ -194,6 +195,16 @@ const deleteTask = (taskId) => {
     getResponse(params)
 }
 
+const deleteProject = (projectId) => {
+    const params = {
+        endpointUrl: '/delete',
+        method: 'DELETE',
+        body: projectId,
+        errorMessage: 'Could not delete this project!'
+    }
+    getResponse(params)
+}
+
 const submitForm = (e) => {
     e.preventDefault();
     const description = form[0].value.trim();
@@ -268,3 +279,4 @@ const handleDeleteTodo = (e) => {
 if (submitButton) submitButton.addEventListener('click', submitForm);
 if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
 if (taskLists) todoLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
+if (deleteProjectButton) deleteProjectButton.addEventListener('click', handleDeleteProject)
