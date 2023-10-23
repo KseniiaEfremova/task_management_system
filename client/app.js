@@ -28,9 +28,6 @@ const createProjectElem = (listElem) => {
     return `<h3 class="list__elem-title">${listElem['title']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
                 <div class="list__elem-just-between">
-                    <a href='#' data-id="update-${listElem.project_id}">
-                        <img class="list__elem-img" src='./static/assets/update.png' alt='update' data-id="update-${listElem.project_id}"/>
-                    </a>
                     <button data-id="delete-${listElem.project_id}" >
                         <img class="list__elem-img" src='./static/assets/delete.png' alt='delete' data-id="delete-${listElem.project_id}"/>
                     </button>
