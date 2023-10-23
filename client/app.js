@@ -24,30 +24,6 @@ const getProjects = async () => {
     }
 }
 
-const renderTasksByStatus = async () => {
-    const projectId = JSON.parse(localstorage.getItem('projectId')['project_id']);
-    const taskListTodo = document.querySelector('.list__wrapper-todo');
-    const taskListInProgress = document.querySelector('.list__wrapper-inprogress');
-    const taskListInReview = document.querySelector('.list__wrapper-inreview');
-    const taskListDone = document.querySelector('.list__wrapper-done');
-    const todoTasks = await getTasksByStatus(projectId, 'todo');
-    const inReviewTasks = await getTasksByStatus(projectId, 'in review');
-    const inProgressTasks = await getTasksByStatus(projectId, 'in progress');
-    const doneTasks = await getTasksByStatus(projectId, 'done');
-    if (todoTodos) {
-       createListElem(todoTasks, taskListTodo)
-    }
-    if (inReviewTasks) {
-       createListElem(inReviewTodos, taskListInReview)
-    }
-    if (inProgressTasks) {
-       createListElem(inProgressTasks, taskListInProgress)
-    }
-    if (doneTasks) {
-       createListElem(doneTasks, taskListDone)
-    }
-}
-
 const createProjectElem = (listElem) => {
     return `<h3 class="list__elem-title">${listElem['title']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
@@ -60,6 +36,23 @@ const createProjectElem = (listElem) => {
                     </button>
                 </div>
             `}
+
+const createTaskElem = (listElem) => {
+    return        `<h3 class="list__elem-title">${listElem.description}</h3>
+                <div class="list__elem-just-between">
+                    <h4 class="list__elem-status">${listElem.status}</h4>
+                    <p class="list__elem-date">${date.toJSON().split('T')[0]}</p>
+                </div>
+                <div class="list__elem-just-between">
+                    <a href='#' data-id="update-${listElem.task_id}-${listElem.project_id}">
+                        <img class="list__elem-img" src='../assets/update.png' alt='update' data-id="update-${listElem.task_id}-${listElem.project_id}"/>
+                    </a>
+                    <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
+                        <img class="list__elem-img" src='../assets/delete.png' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}}"/>
+                    </button>
+                </div>
+            `
+}
 
 
 const createListElem = (listElements, list) => {
@@ -83,6 +76,31 @@ const renderProjects = async () => {
 }
 
 if (window.location.href === "http://127.0.0.1:5500/client/index.html") renderProjects();
+
+
+const renderTasksByStatus = async () => {
+    const projectId = JSON.parse(localstorage.getItem('projectId')['project_id']);
+    const taskListTodo = document.querySelector('.list__wrapper-todo');
+    const taskListInProgress = document.querySelector('.list__wrapper-inprogress');
+    const taskListInReview = document.querySelector('.list__wrapper-inreview');
+    const taskListDone = document.querySelector('.list__wrapper-done');
+    const todoTasks = await getTasksByStatus(projectId, 'todo');
+    const inReviewTasks = await getTasksByStatus(projectId, 'in review');
+    const inProgressTasks = await getTasksByStatus(projectId, 'in progress');
+    const doneTasks = await getTasksByStatus(projectId, 'done');
+    if (todoTodos) {
+       createListElem(todoTasks, taskListTodo)
+    }
+    if (inReviewTasks) {
+       createListElem(inReviewTodos, taskListInReview)
+    }
+    if (inProgressTasks) {
+       createListElem(inProgressTasks, taskListInProgress)
+    }
+    if (doneTasks) {
+       createListElem(doneTasks, taskListDone)
+    }
+}
 
 
 const getResponse = async (params) => {
