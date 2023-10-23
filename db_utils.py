@@ -68,29 +68,75 @@ def connect_to_database_or_create_if_not_exists(db_name):
     print(f"You are using {db_name} database.")
 
 
-connect_to_database_or_create_if_not_exists(DB_NAME)
+def get_all_projects(db_name, table_name):
+    projects = []
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print("Connected to DB: %s" % db_name)
+
+        query = """SELECT project_id, project_name FROM {}""".format(table_name)
+
+        cursor.execute(query)
+
+        projects = cursor.fetchall()
+        cursor.close()
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
+
+    return projects
 
 
-def delete_task(task_id):
-    delete = input('Would you like to delete a task? y/n ')
-    if delete == 'y':
-        try:
-            db_name = 'task_management_system'
-            cursor, db_connection = get_cursor_and_connection(db_name)
-            print(f"Connected to database {db_name}")
+def add_new_task(db_name, table_name, project_id, description, deadline, status):
+    """add_new_task() function takes in 6 params
+    establishes a connection to the DB - uses the db_name variable
+    executes SQL query to insert a new task into the DB using the table_name variable and other params as values
+    commits changes to the DB and closes DB connection
+    if any exception occurs an error message will be  printed
+    """
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print(f'Connected to database: {db_name}')
 
-            # Query deleting the task with ID provided by the user from the db
-            query = """DELETE FROM tasks WHERE TASK_id = '{x}'""".format(x=task_id)
-            cursor.execute(query)
-            db_connection.commit()
+        query = """INSERT INTO {} (project_id, description, deadline, status) 
+        VALUES ('{}', '{}', '{}', '{}')""".format(table_name, project_id, description, deadline, status)
 
-            cursor.close()
-            print('Your task has been deleted')
+        cursor.execute(query)
 
-        except Exception as exc:
-            print(exc)
+        db_connection.commit()
+        cursor.close()
+        print("\nYour task has been successfully entered into the database!")
 
-        finally:
-            if db_connection:
-                db_connection.close()
+    except Exception as exc:
+        print(exc)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("Connection closed")
+
+
+def delete_task_fromDB(task_id):
+    try:
+        db_name = 'task_management_system'
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print(f"Connected to database {db_name}")
+
+        # Query deleting the task with ID provided by the user from the db
+        query = """DELETE FROM tasks WHERE TASK_id = '{x}'""".format(x=task_id)
+        cursor.execute(query)
+        db_connection.commit()
+
+        cursor.close()
+        print('Your task has been deleted')
+
+    except Exception as exc:
+        print(exc)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+
+
 
