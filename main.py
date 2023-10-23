@@ -81,7 +81,7 @@ def run():
         # ====If User Selects 4====
         # function is called to add a task to a project
         elif selection == 4:
-            # table_name variable will = tasks as we are adding tasks
+            # table_name variable = tasks as we are adding tasks
             # Get user input
             table_name = "tasks"
             input_project_id = int(input("Please enter the Project ID number you would like to add a task to: "))
