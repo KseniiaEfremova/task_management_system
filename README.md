@@ -148,3 +148,15 @@ Follow for more:
 > " I have dreams, but who says the rabbits in the garden don't aswell"
 
 ![mood](https://pbs.twimg.com/media/F7n7rscXgAAD8LX?format=jpg&name=900x900)
+
+---
+## Hey I'm Sandra
+### About me:
+* I'm 27 years old
+* I'm a web developer & tech editor
+* I love cooking
+* Follow me on [Instagram](https://www.instagram.com/sandyintxch/)
+
+### Here is my favorite funny meme and quote
+> "Catch flights not feelings!"
+![screaming cat](https://tenor.com/en-GB/view/screaming-gif-18415503)
