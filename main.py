@@ -4,14 +4,6 @@ from db_utils import get_all_projects, DB_NAME
 import json
 from datetime import datetime
 
-def delete_project(project_id):
-    response = requests.delete(f"http://127.0.0.1:5001/delete_project/<int:project_id>")
-    if response.status_code == 200:
-        print(f"Project: {project_id} has successfully been deleted")
-    else:
-        print(f"Failed to delete project.")
-
-
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
@@ -36,6 +28,7 @@ def get_tasks_in_project():
         except requests.exceptions.RequestException as err:
             print("OOps: Something Else", err)
  
+
 
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes five parameters 
@@ -63,6 +56,12 @@ def add_task(table_name, input_project_id, input_description, formatted_deadline
         print("Failed to add task!")
         return None  
 
+def delete_project(project_id):
+    response = requests.delete(f"http://127.0.0.1:5001/delete_project/<int:project_id>")
+    if response.status_code == 200:
+        print(f"Project: {project_id} has successfully been deleted")
+    else:
+        print(f"Failed to delete project.")
 
 def run():
     try:
