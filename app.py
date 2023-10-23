@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from db_utils import get_all_projects, add_new_task, DB_NAME
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project
 
 
 app = Flask(__name__)
@@ -16,6 +16,34 @@ def get_projects():
     project_table = "projects"
     res = dict(get_all_projects(DB_NAME, project_table))
     return jsonify(res)
+
+
+@app.route("/newproject", methods=['POST'])
+def add_project():
+    """
+    Add a new project to the database. This endpoint allows clients to add a new project to the database.
+    Parameters:
+    None (uses JSON data from the request body)
+    Returns:
+    JSON: If the project is successfully added, returns the new project data with a 201 status code.
+          If the request data is invalid, returns an error message with a 400 status code.
+          If an error occurs during processing, returns an error message with a 500 status code.
+    """
+    try:
+        new_project = request.get_json()
+
+        if new_project:
+            table_name = new_project['table_name']
+            project_name = new_project['project_name']
+
+            insert_new_project(DB_NAME, table_name, project_name)
+            return jsonify(new_project), 201
+        else:
+            return jsonify({'message': 'Invalid data'}), 400
+
+    except Exception as exc:
+        print(f"An error occurred: {str(exc)}")
+        return jsonify({'message': 'An error occurred'}), 500
 
 
 @app.route("/newtask", methods=['POST'])
