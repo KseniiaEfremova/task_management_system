@@ -27,9 +27,18 @@ def get_tasks_in_project():
     project_id = input("Which project do you want to see? (pass it's number) ").strip().lower()
     statuses = ['todo', 'in progress', 'in review', 'done']
     for status in statuses:
-        tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
-        print(status.upper())
-        tabulate_data(tasks)
+        try:
+            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
+            print(status.upper())
+            tabulate_data(tasks)
+        except requests.exceptions.HTTPError as error_HTTP:
+            print("Http Error:", error_HTTP)
+        except requests.exceptions.ConnectionError as err_connect:
+            print("Error Connecting:", err_connect)
+        except requests.exceptions.Timeout as err_timeout:
+            print("Timeout Error:", err_timeout)
+        except requests.exceptions.RequestException as err:
+            print("OOps: Something Else", err)
  
 
 def run():
