@@ -6,9 +6,9 @@ app = Flask(__name__)
 app.secret_key = 'paskudzio'
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+# @app.route('/')
+# def home():
+#     return render_template('index.html')
 
 
 @app.route("/projects")
