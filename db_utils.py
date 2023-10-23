@@ -98,10 +98,13 @@ def add_new_task(db_name, project_id, description, deadline, status):
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f'Connected to database: {db_name}')
 
-        query = """
-        INSERT INTO tasks ({}) 
-        VALUES ('{}', '{}', '{}', '{}')
-        """.format(project_id, description, deadline, status)
+        # query = """
+        # INSERT INTO tasks ({}) 
+        # VALUES ('{}', '{}', '{}', '{}')
+        # """.format(project_id, description, deadline, status)
+
+        query = """INSERT INTO tasks (project_id, description, deadline, status) VALUES ('{}', '{}', '{}', '{}')""".format(project_id, description, deadline, status)
+
        
         cursor.execute(query)
         

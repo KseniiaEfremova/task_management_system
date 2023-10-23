@@ -35,7 +35,7 @@ def adding_task():
         deadline = new_task['deadline']
         status = new_task['status']
 
-        add_new_task(project_id, description, deadline, status)
+        add_new_task(DB_NAME, project_id, description, deadline, status)
 
         return jsonify(new_task), 201
     else:
