@@ -3,7 +3,11 @@
 <<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (venv)" project-jdk-type="Python SDK" />
 =======
+<<<<<<< HEAD
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11 (venv)" project-jdk-type="Python SDK" />
+=======
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.10 (task_management_system) (3)" project-jdk-type="Python SDK" />
+>>>>>>> develop2
 >>>>>>> develop2
   <component name="PyCharmProfessionalAdvertiser">
     <option name="shown" value="true" />
