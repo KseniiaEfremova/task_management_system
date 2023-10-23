@@ -258,7 +258,7 @@ const handleUpdateTask = (e) => {
     } 
 }
 
-const handleDeleteTodo = (e) => {
+const handleDeleteTask = (e) => {
     if (e.target.getAttribute('data-id').includes('delete')) {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) }
         deleteTask(taskId);
@@ -269,6 +269,22 @@ const handleDeleteTodo = (e) => {
         }
        
        renderTasksByStatus();
+    } else {
+        return
+    }
+}
+
+const handleDeleteProject = (e) => {
+        if (e.target.getAttribute('data-id').includes('delete')) {
+        const projectId = { project_id: +(e.target.getAttribute('data-id').slice(7)) }
+        deleteProject(projectId[project_id]);
+        for (list of projectLists) {
+            while (list.lastElementChild) {
+                list.removeChild(list.lastElementChild);
+            }
+        }
+       
+       renderProjects();
     } else {
         return
     }
