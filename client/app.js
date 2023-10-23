@@ -127,6 +127,22 @@ const submitForm = (e) => {
     }
 }
 
+const prepopulateForm = async (task_id, project_id) => {
+    const taskToUpdate = await getTaskById(task_id, project_id);
+    const { project_id, description, status, deadline } = taskToUpdate[0];
+    date = new Date(deadline)
+    form[0].value = description;
+    form[1].value = status;
+    form[2].value = date.toJSON().split('T')[0];
+    form[3].value = project_id;
+}
+
+if (window.location.href === "http://localhost:5500/client/update_task.html") {
+    const taskToUpdateId = JSON.parse(localStorage.getItem('task-id')['task_id']);
+    const taskToUpdateProject = JSON.parse(localStorage.getItem('task-id')['project_id']);
+    prepopulateForm(taskToUpdateId, taskToUpdateProject)
+}
+
 const handleUpdateTask = (e) => {
     if (e.target.getAttribute('data-id').includes('update')) {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
