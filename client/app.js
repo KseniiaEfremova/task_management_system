@@ -17,3 +17,27 @@ const getProjects = () => {
         console.log(err);
     }
 }
+
+const projectElem = `<h3 class="list__elem-title">${list['title']}</h3>
+                <p class="list__elem-desc">${list['project_id']}</p>
+                <div class="list__elem-just-between">
+                    <a href='#' data-id="update-${project.project_id}">
+                        <img class="list__elem-img" src='../assets/update.png' alt='update' data-id="update-${list.project_id}"/>
+                    </a>
+                    <button data-id="delete-${project.project_id}" >
+                        <img class="list__elem-img" src='../assets/delete.png' alt='delete' data-id="delete-${list.project_id}"/>
+                    </button>
+                </div>
+            `
+
+
+const createListElem = (listElements, elem) => {
+     for (const list of listElement) {
+            const listElem = document.createElement('li')
+            listElem.classList.add('list__elem')
+            const date = new Date(project.deadline)
+            listElem.insertAdjacentHTML(
+                'afterbegin', elem)
+            list.append(listElem)
+    }
+}
