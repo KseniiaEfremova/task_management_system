@@ -27,20 +27,24 @@ def adding_task():
     new task data is and a status code of 201, indicating success.
     else if received JSON data is invalid or missing, and error message and status code of 400 is returned
     """
-    new_task = request.get_json()
+    try:
+        new_task = request.get_json()
 
-    if new_task:
-        table_name = new_task['table_name']
-        project_id = new_task['project_id']
-        description = new_task['description']
-        deadline = new_task['deadline']
-        status = new_task['status']
+        if new_task:
+            table_name = new_task['table_name']
+            project_id = new_task['project_id']
+            description = new_task['description']
+            deadline = new_task['deadline']
+            status = new_task['status']
 
-        add_new_task(DB_NAME, table_name, project_id, description, deadline, status)
+            add_new_task(DB_NAME, table_name, project_id, description, deadline, status)
 
-        return jsonify(new_task), 201
-    else:
-        return jsonify({'message': 'Invalid data'}), 400
+            return jsonify(new_task), 201
+        else:
+            return jsonify({'message': 'Invalid data'}), 400
+    except Exception as exc:
+        print(f"An error occurred: {str(exc)}")
+        return jsonify({'message': 'An error occurred'}), 500
     
 
 if __name__ == '__main__':
