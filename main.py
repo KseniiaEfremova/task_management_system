@@ -9,14 +9,11 @@ def display_projects():
     try:
         result = requests.get('http://127.0.0.1:5000/projects')
         data = result.json()
-        print(data)
         print("################################\n")
         print("All projects:")
-        number_of_project = 1
         if data:
-            for project in data:
-                print(f"{number_of_project}. {data[project].capitalize()}")
-                number_of_project += 1
+            for proj_id in data:
+                print(f"{proj_id}. {data[proj_id].capitalize()}")
         else:
             print("You don't have any projects")
     except requests.exceptions.HTTPError as errh:
