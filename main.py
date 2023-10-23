@@ -17,13 +17,14 @@ def display_projects(table_name):
         print("You don't have any projects")
 
 
-def add_task(input_project_id, input_description, formatted_deadline_date, input_status):
+def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes four parameters 
     creates a dictionary called new_task with four key-value pairs using the params
     sends a POST request to URL - new_task dict as the request body in JSON format
     checks the response from the server - if status code is 201, it prints success
     """
     new_task = {
+        "table_name": table_name,
         "project_id": input_project_id,
         "description": input_description,
         "deadline": formatted_deadline_date,
@@ -81,6 +82,7 @@ def run():
         # function is called to add a task to a project
         elif selection == 4:
             # Get user input
+            table_name = "tasks"
             input_project_id = int(input("Please enter the Project ID number you would like to add a task to: "))
             input_description = input("Please enter a description of your new task: ")
             # while True loop will break if a valid date is entered
@@ -97,7 +99,7 @@ def run():
                     print("Invalid date format. Please use DD/MM/YYYY.")
             input_status = input("Please select the status of your task - 'todo', 'in progress', 'in review', 'done': ")
             # add_task() function called
-            add_task(input_project_id, input_description, formatted_deadline_date, input_status)
+            add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status)
 
         # ====If User Selects 5====
         # Please call your update task function here :)

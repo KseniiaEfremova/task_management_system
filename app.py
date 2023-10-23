@@ -30,12 +30,13 @@ def adding_task():
     new_task = request.get_json()
 
     if new_task:
+        table_name = new_task['table_name']
         project_id = new_task['project_id']
         description = new_task['description']
         deadline = new_task['deadline']
         status = new_task['status']
 
-        add_new_task(DB_NAME, project_id, description, deadline, status)
+        add_new_task(DB_NAME, table_name, project_id, description, deadline, status)
 
         return jsonify(new_task), 201
     else:

@@ -87,7 +87,7 @@ def get_all_projects(db_name, table_name):
     return projects
 
 
-def add_new_task(db_name, project_id, description, deadline, status):
+def add_new_task(db_name, table_name, project_id, description, deadline, status):
     """add_new_task() function takes in four params, which will be inserted into the DB
     establishes a connection to the DB
     executes SQL query to insert a new task into the DB using the params as values
@@ -98,8 +98,8 @@ def add_new_task(db_name, project_id, description, deadline, status):
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f'Connected to database: {db_name}')
 
-        query = """INSERT INTO tasks (project_id, description, deadline, status) 
-        VALUES ('{}', '{}', '{}', '{}')""".format(project_id, description, deadline, status)
+        query = """INSERT INTO {} (project_id, description, deadline, status) 
+        VALUES ('{}', '{}', '{}', '{}')""".format(table_name, project_id, description, deadline, status)
 
        
         cursor.execute(query)
