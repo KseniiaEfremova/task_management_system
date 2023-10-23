@@ -17,6 +17,29 @@ def display_projects(table_name):
         print("You don't have any projects")
 
 
+validate_project_name = lambda project_name: len(project_name) >= 3
+
+
+def add_new_project(table_name, project_name):
+    # Create a dictionary representing the new project data
+    new_project = {
+        "table_name": table_name,
+        "project_name": project_name,
+    }
+
+    response = requests.post(
+        'http://127.0.0.1:5000/newproject',
+        json=new_project
+    )
+
+    if response.status_code == 201:
+        print("Task added successfully!")
+        return response.json()
+    else:
+        print("Failed to add task!")
+        return None
+
+
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes five parameters 
     creates a dictionary called new_task with five key-value pairs using the params
@@ -70,13 +93,20 @@ def run():
         # function is called to view all tasks in a project
         elif selection == 2:
             pass
-            
+
 
         # ====If User Selects 3====
         # Please call your view add new project function here :)
         # function is called to add a new project
         elif selection == 3:
-            pass
+            table_name = "projects"
+            while True:
+                input_project_name = input("Please enter the name of the New Project: ")
+                if not validate_project_name(input_project_name):
+                    print("Invalid project name. Project name must be at least 3 characters long.")
+                else:
+                    add_new_project(table_name, input_project_name)
+                    break
 
         # ====If User Selects 4====
         # function is called to add a task to a project
@@ -124,7 +154,7 @@ def run():
         # Task Management System is exited
         elif selection == 0:
             print('\Goodbye, you are exiting the Task Management System\n')
-   
+
         # Else, the user is informed that they made the wrong choice of number
         else:
             print("\nIncorrect choice of number, options are between 0-7 only\n")
