@@ -16,7 +16,7 @@ def delete_project(project_name):
     else:
         print(f"Failed to delete project.")
 
-    def run():
+def run():
         try:
             selection = int(input('''\nWelcome to the Task Management System
 
