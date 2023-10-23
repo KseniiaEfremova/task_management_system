@@ -67,8 +67,19 @@ def connect_to_database_or_create_if_not_exists(db_name):
             exit(1)
     print(f"You are using {db_name} database.")
 
+def map_tuple_to_dict(collection):
+    formatted_data = []
+    for item in collection:
+        formatted_data.append({
+            'task_id': item[0],
+            'project_id': item[1],
+            'description': item[2],
+            'deadline': item[3],
+            'status': item[4]})
+    return formatted_data
+
+
 def get_all_projects(db_name, table_name):
-    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)

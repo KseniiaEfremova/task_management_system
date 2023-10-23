@@ -1,9 +1,22 @@
+from flask import Flask, render_template, jsonify, make_response, request
+tasks_table = 'tasks'
 from flask import Flask, render_template, jsonify, request
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project
-
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status
 
 app = Flask(__name__)
 app.secret_key = 'paskudzio'
+
+
+@app.errorhandler(404)
+def handle_404(error):
+    response = make_response(jsonify({'error': 'page not found'}), 404)
+    return response
+
+
+@app.errorhandler(500)
+def handle_500(error):
+    response = make_response(jsonify({'error': 'server is down, contact one of Coding Stars United Developer'}), 500)
+    return response
 
 
 @app.route('/')
