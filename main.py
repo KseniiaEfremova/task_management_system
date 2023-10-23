@@ -1,13 +1,9 @@
 import requests
-<<<<<<< HEAD
 from flask import Flask, render_template
-=======
 import tabulate
 from db_utils import get_all_projects, DB_NAME
 import json
 from datetime import datetime
->>>>>>> develop_2
-
 
 app = Flask(__name__)
 app.secret_key = 'paskudzio'
