@@ -118,7 +118,6 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
 
 
 def insert_new_project(db_name, table_name, project_name):
-    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
@@ -127,12 +126,9 @@ def insert_new_project(db_name, table_name, project_name):
 
         cursor.execute(query)
         db_connection.commit()
-        projects = cursor.fetchall()
         cursor.close()
         print(f"\nNew project '{project_name}' has been successfully entered into the database!")
     finally:
         if db_connection:
             db_connection.close()
             print("DB connection is closed")
-
-    return projects
