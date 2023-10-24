@@ -93,8 +93,10 @@ def adding_task():
         print(f"An error occurred: {str(exc)}")
         return jsonify({'message': 'An error occurred'}), 500
     
-
-
+@app.route('/delete_project/<int:project_id>', methods=['DELETE'])
+def delete_project_route(project_id):
+    result = delete_project(project_id)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
