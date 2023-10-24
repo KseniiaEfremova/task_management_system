@@ -118,6 +118,24 @@ def delete_project(project_id):
     else:
         print(f"Failed to delete project.")
 
+def update_task(table_name, input_project_id, input_task_id, input_description, input_deadline, input_status):
+    """ update_task() function takes six parameters, which we will get from the user input below in the run() function
+    It constructs a dictionary ‘updated_task’ with these parameters.
+    Then, it sends a PUT request to update the task using the ‘updated_task’ data.
+    If the update is successful (HTTP status code 200), it prints “Task updated successfully.”
+    """
+    updated_task = {
+        "table_name": table_name,
+        "project_id": input_project_id,
+        "task_id": input_task_id,
+        "description": input_description,
+        "deadline": input_deadline,
+        "status": input_status
+    }
+    response = requests.put(
+        "http://127.0.0.1:5001/updatetask",
+        json=updated_task
+    )
 
 def run():
     while True:
@@ -185,8 +203,23 @@ def run():
             # ====If User Selects 5====
             # Please call your update task function here :)
             # function is called to update a task
-            elif selection == 5:
-                pass
+           elif selection == 5:
+                table_name = "tasks"
+                input_project_id = int(input("Please enter the Project ID number you would like to update a task in: "))
+                input_task_id = int(input("Please enter the Task ID number you would like to update: "))
+                input_description = input("Please enter the new description for the task: ")
+        
+            while True:
+                try:
+                    deadline_date_input = input("Please enter the new deadline for the task in DD/MM/YYYY format: ")
+                    deadline_date = datetime.strptime(deadline_date_input, “%d/%m/%Y”)
+                    formatted_deadline_date = deadline_date.strftime(“%Y-%m-%d”)
+                break
+            
+            except ValueError:
+            print(“Invalid date format. Please use DD/MM/YYYY.“)
+                input_status = input(“Please select the new status for your task - ‘todo’, ‘in progress’, ‘in review’, ‘done’: “)
+                update_task(table_name, input_project_id, input_task_id, input_description, formatted_deadline_date, input_status)
 
             # ====If User Selects 6====
             # Please call your delete a project function here :)
@@ -231,48 +264,10 @@ def run():
 if __name__ == '__main__':
     run()
 
-def update_task(table_name, input_project_id, input_task_id, input_description, input_deadline, input_status):
-    """ update_task() function takes six parameters, which we will get from the user input below in the run() function
-    It constructs a dictionary ‘updated_task’ with these parameters.
-    Then, it sends a PUT request to update the task using the ‘updated_task’ data.
-    If the update is successful (HTTP status code 200), it prints “Task updated successfully.”
-    """
-    updated_task = {
-        “table_name”: table_name,
-        “project_id”: input_project_id,
-        “task_id”: input_task_id,
-        “description”: input_description,
-        “deadline”: input_deadline,
-        “status”: input_status
-    }
-    response = requests.put(
-        "http://127.0.0.1:5001/updatetask",
-        json=updated_task
-    )
-    if response.status_code == 200:
+if response.status_code == 200:
         print(“Task updated successfully!“)
 
         return response.json()
     else:
         print(“Failed to update task!“)
         return None
-        
-#The run function is below the functions above- but this is what runs and asks the user for inputs, which you # will use in the update_task function above - I set option 5 to update tasks
-# So in selection == 5 (Update a task) within the run() function in the main.py file add the following:
-elif selection == 5:
-    table_name = “tasks”
-    input_project_id = int(input(“Please enter the Project ID number you would like to update a task in: “))
-    input_task_id = int(input(“Please enter the Task ID number you would like to update: “))
-    input_description = input(“Please enter the new description for the task: “)
-                              
-    # Format the deadline date, as it needs to be a certain format for DB (DD/MM/YYYY to YYYY-MM-DD)
-    while True:
-        try:
-            deadline_date_input = input(“Please enter the new deadline for the task in DD/MM/YYYY format: “)
-            deadline_date = datetime.strptime(deadline_date_input, “%d/%m/%Y”)
-            formatted_deadline_date = deadline_date.strftime(“%Y-%m-%d”)
-            break
-        except ValueError:
-            print(“Invalid date format. Please use DD/MM/YYYY.“)
-    input_status = input(“Please select the new status for your task - ‘todo’, ‘in progress’, ‘in review’, ‘done’: “)
-    update_task(table_name, input_project_id, input_task_id, input_description, formatted_deadline_date, input_status) 
