@@ -81,16 +81,15 @@ def map_tuple_to_dict(collection):
 
 
 def get_all_projects(db_name, table_name):
+    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
-
         query = """SELECT project_id, project_name FROM {}""".format(table_name)
-
         cursor.execute(query)
-
         projects = cursor.fetchall()
         cursor.close()
+        
     finally:
         if db_connection:
             db_connection.close()
@@ -129,13 +128,9 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f'Connected to database: {db_name}')
-
         query = """INSERT INTO {} (project_id, description, deadline, status) 
         VALUES ('{}', '{}', '{}', '{}')""".format(table_name, project_id, description, deadline, status)
-
-       
         cursor.execute(query)
-        
         db_connection.commit()
         cursor.close()
         print("\nYour task has been successfully entered into the database!")

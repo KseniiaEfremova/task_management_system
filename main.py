@@ -121,7 +121,7 @@ def run():
         # Please call your view all projects function here :)
         # function is called to view all existing projects
         if selection == 1:
-            pass
+            display_projects()
 
         # ====If User Selects 2 ====
         # Please call your view all tasks function here :)
