@@ -62,7 +62,7 @@ def add_new_project(table_name, project_name):
     }
 
     response = requests.post(
-        'http://127.0.0.1:5000/newproject',
+        'http://127.0.0.1:5001/newproject',
         json=new_project
     )
 
