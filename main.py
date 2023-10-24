@@ -75,6 +75,7 @@ def add_new_project(table_name, project_name):
         return None
 
 
+
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes five parameters 
     creates a dictionary called new_task with five key-value pairs using the params
@@ -109,6 +110,12 @@ def delete_task(task_id):
     else:
         print(f"Failed to delete task with ID: {task_id}")
 
+def delete_project(project_id):
+    response = requests.delete(f"http://127.0.0.1:5001/delete_project/<int:project_id>")
+    if response.status_code == 200:
+        print(f"Project: {project_id} has successfully been deleted")
+    else:
+        print(f"Failed to delete project.")
 
 def run():
     try:
@@ -185,7 +192,16 @@ def run():
         # Please call your delete a project function here :)
         # function is called to delete a project
         elif selection == 6:
-            pass
+                try:
+                    project_id = int(input("Please enter the ID of the project you want to delete: "))
+                    delete_project(project_id)  # Call your delete project function
+
+                    # Provide feedback based on the result of the delete operation
+                    print(f"Project with ID {project_id} has been deleted successfully.")
+                except ValueError:
+                    print("Invalid project ID. Please enter a valid numerical ID.")
+                except Exception as exc:
+                    print(f"An error occurred while deleting the project: {exc}")
 
         # ====If User Selects 7====
         # Please call your delete a task function here :)

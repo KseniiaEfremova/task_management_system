@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
+            "sha256": "59d3ea42b325aa97239cb33d1fc80191c3684e17d909283ab175ea60d417a2ac"
+=======
             "sha256": "43f360e09b19e28f803e98852266d768f9ddfe27493708792b2d95825b2def65"
+>>>>>>> develop_2
         },
         "pipfile-spec": 6,
         "requires": {
@@ -24,6 +28,8 @@
             "markers": "python_version >= '3.7'",
             "version": "==1.6.3"
         },
+<<<<<<< HEAD
+=======
         "certifi": {
             "hashes": [
                 "sha256:539cc1d13202e33ca466e88b2807e29f4c13049d6d87031a3c110744495cb082",
@@ -128,6 +134,7 @@
             "markers": "python_full_version >= '3.7.0'",
             "version": "==3.3.0"
         },
+>>>>>>> develop_2
         "click": {
             "hashes": [
                 "sha256:ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28",
@@ -145,6 +152,8 @@
             "markers": "python_version >= '3.8'",
             "version": "==3.0.0"
         },
+<<<<<<< HEAD
+=======
         "idna": {
             "hashes": [
                 "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4",
@@ -153,6 +162,7 @@
             "markers": "python_version >= '3.5'",
             "version": "==3.4"
         },
+>>>>>>> develop_2
         "itsdangerous": {
             "hashes": [
                 "sha256:2c2349112351b88699d8d4b6b075022c0808887cb7ad10069318a8b0bc88db44",
@@ -235,6 +245,8 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.1.3"
         },
+<<<<<<< HEAD
+=======
         "mysql-connector-python": {
             "hashes": [
                 "sha256:1d292d8ee08a3e0103f3e9aba81f292c12c244c1d5345168375bf6842b2b3e9b",
@@ -307,6 +319,7 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.0.7"
         },
+>>>>>>> develop_2
         "werkzeug": {
             "hashes": [
                 "sha256:3ffff4dcc32db52ef3cc94dff3000a3c2846890f3a5a51800a27b909c5e770f0",

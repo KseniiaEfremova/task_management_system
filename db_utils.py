@@ -82,7 +82,6 @@ def map_tuple_to_dict(collection):
 
 
 def get_all_projects(db_name, table_name):
-    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
@@ -92,8 +91,8 @@ def get_all_projects(db_name, table_name):
         cursor.close()
     
     except Exception as e:
-        print(e)
-        
+    print(e)
+    
     finally:
         if db_connection:
             db_connection.close()
@@ -207,3 +206,30 @@ def insert_new_project(db_name, table_name, project_name):
         if db_connection:
             db_connection.close()
             print("DB connection is closed")
+
+def delete_project1():
+    try:
+        db_name = 'task_management_system'
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print(f"Connected to database {db_name}")
+
+        # Query
+        query = "DELETE FROM projects WHERE project_id = %s"
+        cursor.execute(query, (project_id,))
+        db_connection.commit()
+
+        if cursor.rowcount > 0:
+            print(f"Project '{project_id}' has been deleted.")
+        else:
+            print(f"No project found with the id '{project_id}'.")
+
+    except Exception as exc:
+        print(exc)
+
+    finally:
+        cursor.close()
+        if db_connection:
+            db_connection.close()
+
+
+delete_project()
