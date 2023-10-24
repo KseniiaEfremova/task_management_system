@@ -5,7 +5,7 @@ from datetime import datetime
 
 def display_projects():
     try:
-        result = requests.get('http://127.0.0.1:5000/projects')
+        result = requests.get('http://127.0.0.1:5001/projects')
         data = result.json()
         print("################################\n")
         print("All projects:")
@@ -100,7 +100,15 @@ def add_task(table_name, input_project_id, input_description, formatted_deadline
         return response.json()  
     else:
         print("Failed to add task!")
-        return None  
+        return None
+
+
+def delete_task(task_id):
+    response = requests.delete(f"http://127.0.0.1:5001/delete_task/{int(task_id)}")
+    if response.status_code == 200 or response.status_code == 204:
+        print(f"Task with ID: {task_id} successfully deleted")
+    else:
+        print(f"Failed to delete task with ID: {task_id}")
 
 def delete_project(project_id):
     response = requests.delete(f"http://127.0.0.1:5001/delete_project/<int:project_id>")
@@ -199,7 +207,11 @@ def run():
         # Please call your delete a task function here :)
         # function is called to delete a task
         elif selection == 7:
-            pass
+            try:
+                input_task_id = int(input('Please input ID of the task you would like to delete: '))
+                delete_task(input_task_id)
+            except ValueError:
+                print('Invalid Task ID. Please enter a valid ID of the task you would like to delete: ')
 
         # ====If User Selects 0 ====
         # Task Management System is exited
