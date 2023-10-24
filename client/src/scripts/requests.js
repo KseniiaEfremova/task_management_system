@@ -100,7 +100,7 @@ export const updateExistingTask = (taskToUpdate) => {
 
 export const deleteTask = (taskId) => {
     const params = {
-        endpointUrl: '/',
+        endpointUrl: `/delete_task/${taskId}`,
         method: 'DELETE',
         body: taskId,
         errorMessage: 'Could not delete todo!'
@@ -110,7 +110,7 @@ export const deleteTask = (taskId) => {
 
 export const deleteProject = (projectId) => {
     const params = {
-        endpointUrl: '/delete',
+        endpointUrl: `/delete_project/${projectId}`,
         method: 'DELETE',
         body: projectId,
         errorMessage: 'Could not delete this project!'
