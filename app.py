@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, make_response
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1
+from db_utils import (get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status,
+                      get_task_by_id, delete_task_fromDB, delete_project)
 tasks_table = 'tasks'
 projects_table = 'projects'
 
@@ -103,7 +104,7 @@ def adding_task():
 
 @app.route('/delete_project/<int:project_id>', methods=['DELETE'])
 def delete_project_route(project_id):
-    result = delete_project1(project_id)
+    result = delete_project(project_id)
     return jsonify(result)
 
 

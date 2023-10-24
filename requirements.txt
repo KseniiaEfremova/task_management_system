@@ -1,2 +1,4 @@
 Flask==3.0.0
 mysql_connector_repackaged==0.3.1
+Requests==2.31.0
+tabulate==0.8.10
