@@ -5,7 +5,7 @@ from datetime import datetime
 
 def display_projects():
     try:
-        result = requests.get('http://127.0.0.1:5000/projects')
+        result = requests.get('http://127.0.0.1:5001/projects')
         data = result.json()
         print("################################\n")
         print("All projects:")
