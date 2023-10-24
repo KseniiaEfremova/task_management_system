@@ -589,7 +589,7 @@ const createProjectElem = (listElem)=>{
                     <button data-id="delete-${listElem.project_id}" class="list__delete-project">
                         <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" class="list__delete-project"/>
                     </button>
-                      <button data-id="project-${listElem.project_id}" >
+                      <button data-id="project-${listElem.project_id}" type="button">
                         <img class="list__elem-img" src='/update.eaa90a6d.png' alt='update' data-id="project-${listElem.project_id}"/>
                     </button>
                 </div>
@@ -629,22 +629,24 @@ const renderProjects = async ()=>{
     createListElem(projects, mainList);
 };
 const renderTasksByStatus = async ()=>{
-    const projectId = JSON.parse(localstorage.getItem("projectId")["project_id"]);
+    const projectId = JSON.parse(localStorage.getItem("project-id"))["project_id"];
     const taskListTodo = document.querySelector(".list__wrapper-todo");
+    console.log(taskListTodo);
     const taskListInProgress = document.querySelector(".list__wrapper-inprogress");
     const taskListInReview = document.querySelector(".list__wrapper-inreview");
     const taskListDone = document.querySelector(".list__wrapper-done");
-    const todoTasks = await getTasksByStatus(projectId, "todo");
-    const inReviewTasks = await getTasksByStatus(projectId, "in review");
-    const inProgressTasks = await getTasksByStatus(projectId, "in progress");
-    const doneTasks = await getTasksByStatus(projectId, "done");
-    if (todoTodos) createListElem(todoTasks, taskListTodo);
-    if (inReviewTasks) createListElem(inReviewTodos, taskListInReview);
+    const todoTasks = await (0, _requests.getTasksByStatus)(projectId, "todo");
+    const inReviewTasks = await (0, _requests.getTasksByStatus)(projectId, "in review");
+    const inProgressTasks = await (0, _requests.getTasksByStatus)(projectId, "in progress");
+    const doneTasks = await (0, _requests.getTasksByStatus)(projectId, "done");
+    console.log(doneTasks);
+    if (todoTasks) createListElem(todoTasks, taskListTodo);
+    if (inReviewTasks) createListElem(inReviewTasks, taskListInReview);
     if (inProgressTasks) createListElem(inProgressTasks, taskListInProgress);
     if (doneTasks) createListElem(doneTasks, taskListDone);
 };
 if (window.location.href === BASE_LOCATION) renderProjects();
-if (window.location.href === BASE_LOCATION + "tasks") renderTasksByStatus();
+if (window.location.href === BASE_LOCATION + "tasks.html") renderTasksByStatus();
 if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleDeleteTask));
 if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleUpdateTask));
 if (deleteProjectButton) deleteProjectButton.addEventListener("click", handleDeleteProject);

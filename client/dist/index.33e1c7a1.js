@@ -578,6 +578,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getProjects", ()=>getProjects);
+parcelHelpers.export(exports, "getTaskById", ()=>getTaskById);
+parcelHelpers.export(exports, "getTasksByStatus", ()=>getTasksByStatus);
 const BASE_URL = "http://127.0.0.1:5001/";
 const headers = {
     "Content-Type": "application/json",
@@ -623,7 +625,7 @@ const getTaskById = async (taskId, projectId)=>{
         console.log(err);
     }
 };
-const getTasksByStatus = async (status, project_id)=>{
+const getTasksByStatus = async (project_id, status)=>{
     try {
         const response = await fetch(BASE_URL + `projects/${project_id}/${status}`, {
             headers: headers

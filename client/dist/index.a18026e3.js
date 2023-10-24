@@ -578,6 +578,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "handleGetProjectTasks", ()=>handleGetProjectTasks);
+const BASE_LOCATION = "http://localhost:1234/";
 const handleUpdateTask = (e)=>{
     if (e.target.getAttribute("data-id").includes("update")) {
         const taskId = {
@@ -606,7 +607,8 @@ const handleGetProjectTasks = (e)=>{
             project_id: +e.target.getAttribute("data-id").slice(8)
         };
         localStorage.setItem("project-id", JSON.stringify(projectId));
-        window.location.href = "http://localhost:1234/src/tasks.html";
+        window.location.href = BASE_LOCATION + "tasks";
+        return false;
     } else return;
 };
 const handleDeleteProject = (e)=>{

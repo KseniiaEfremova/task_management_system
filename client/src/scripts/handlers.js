@@ -1,3 +1,5 @@
+const BASE_LOCATION = 'http://localhost:1234/';
+
 const handleUpdateTask = (e) => {
     if (e.target.getAttribute('data-id').includes('update')) {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
@@ -29,7 +31,8 @@ export const handleGetProjectTasks = (e) => {
         console.log('project')
         const projectId = { project_id: +(e.target.getAttribute('data-id').slice(8)) };
         localStorage.setItem('project-id', JSON.stringify(projectId));
-        window.location.href = "http://localhost:1234/src/tasks.html"; 
+        window.location.href = BASE_LOCATION + 'tasks'; 
+        return false;
     } else {
         return
     }

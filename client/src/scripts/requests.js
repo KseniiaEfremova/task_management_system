@@ -40,7 +40,7 @@ export const getProjects = async () => {
 }
 
 
-const getTaskById = async (taskId, projectId) => {
+export const getTaskById = async (taskId, projectId) => {
     try {
         const response = await fetch(BASE_URL + `projects/${projectId}/${taskId}`, {
             headers: headers})
@@ -54,7 +54,7 @@ const getTaskById = async (taskId, projectId) => {
     }
 }
 
-const getTasksByStatus = async (status, project_id) => {
+export const getTasksByStatus = async (project_id, status) => {
      try {
          const response = await fetch(BASE_URL + `projects/${project_id}/${status}`, {
              headers: headers})
