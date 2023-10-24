@@ -67,6 +67,7 @@ def connect_to_database_or_create_if_not_exists(db_name):
             exit(1)
     print(f"You are using {db_name} database.")
 
+
 def map_tuple_to_dict(collection):
     formatted_data = []
     for item in collection:
@@ -141,3 +142,20 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
         if db_connection:
             db_connection.close()
             print("Connection closed")
+
+
+def insert_new_project(db_name, table_name, project_name):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print("Connected to DB: %s" % db_name)
+
+        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
+
+        cursor.execute(query)
+        db_connection.commit()
+        cursor.close()
+        print(f"\nNew project '{project_name}' has been successfully entered into the database!")
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
