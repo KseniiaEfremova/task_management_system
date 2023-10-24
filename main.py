@@ -27,6 +27,7 @@ def display_projects():
     except Exception as erre:
         print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
+
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
@@ -76,7 +77,16 @@ def add_task(table_name, input_project_id, input_description, formatted_deadline
         return response.json()  
     else:
         print("Failed to add task!")
-        return None  
+        return None
+
+
+def delete_task(task_id):
+    response = requests.delete(f"http://127.0.0.1:5001/delete_task/{int(task_id)}")
+    print(f"Response status code: {response.status_code}")
+    if response.status_code == 200 or response.status_code == 204:
+        print(f"Task with ID: {task_id} successfully deleted")
+    else:
+        print(f"Failed to delete task with ID: {task_id}")
 
 
 def run():
@@ -167,6 +177,7 @@ def run():
     # Except value error - if user enters something other than a number
     except ValueError:
         print("\nInvalid input, enter a numerical digit between 0-7\n")
+
 
 if __name__ == '__main__':
     run()
