@@ -1,0 +1,10 @@
+config.py
+myenv
+__pycache__
+.idea
+node_modules
+.parcel-cache
+*.pyc
+*.xml
+*.mdb
+
