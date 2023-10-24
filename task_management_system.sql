@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS `tasks` (
     `status` ENUM('todo', 'in progress', 'in review', 'done'),
     PRIMARY KEY (`task_id`),
     FOREIGN KEY (`project_id`) REFERENCES `projects`(`project_id`)
+    ON DELETE CASCADE
     );
 
 

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1
 tasks_table = 'tasks'
 projects_table = 'projects'
 
@@ -95,7 +95,19 @@ def adding_task():
     except Exception as exc:
         print(f"An error occurred: {str(exc)}")
         return jsonify({'message': 'An error occurred'}), 500
-    
+
+
+@app.route('/delete_project/<int:project_id>', methods=['DELETE'])
+def delete_project_route(project_id):
+    result = delete_project1(project_id)
+    return jsonify(result)
+
+
+@app.route("/delete_task/<int:task_id>", methods=['DELETE'])
+def delete_task_route(task_id):
+    delete_task_fromDB(task_id)
+    return f"Task with ID: {task_id} successfully deleted"
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

@@ -92,7 +92,6 @@ def map_project(collection):
 
 
 def get_all_projects(db_name, table_name):
-    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
@@ -104,7 +103,7 @@ def get_all_projects(db_name, table_name):
     
     except Exception as e:
         print(e)
-        
+    
     finally:
         if db_connection:
             db_connection.close()
@@ -179,6 +178,30 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
             print("Connection closed")
 
 
+def delete_task_fromDB(task_id):
+    try:
+        db_name = 'task_management_system'
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print(f"Connected to database {db_name}")
+
+        # Query deleting the task with ID provided by the user from the db
+        query = """DELETE FROM tasks WHERE TASK_id = '{x}'""".format(x=task_id)
+        cursor.execute(query)
+        db_connection.commit()
+
+        cursor.close()
+        print('Your task has been deleted')
+
+    except Exception as exc:
+        print(exc)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("Connection closed")
+
+
+
 def insert_new_project(db_name, table_name, project_name):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
@@ -198,3 +221,27 @@ def insert_new_project(db_name, table_name, project_name):
         if db_connection:
             db_connection.close()
             print("DB connection is closed")
+
+def delete_project1():
+    try:
+        db_name = 'task_management_system'
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print(f"Connected to database {db_name}")
+
+        # Query
+        query = "DELETE FROM projects WHERE project_id = %s"
+        cursor.execute(query, (project_id,))
+        db_connection.commit()
+
+        if cursor.rowcount > 0:
+            print(f"Project '{project_id}' has been deleted.")
+        else:
+            print(f"No project found with the id '{project_id}'.")
+
+    except Exception as exc:
+        print(exc)
+
+    finally:
+        cursor.close()
+        if db_connection:
+            db_connection.close()
