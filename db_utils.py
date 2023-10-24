@@ -85,33 +85,12 @@ def get_all_projects(db_name, table_name):
     try:
         db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
-<<<<<<< HEAD
-        print(f"Connected to database {db_name}")
-
-        # User input
-        project_id = input("Please enter the name of the project you want to delete: ")
-
-        # Query
-        query = "DELETE FROM projects WHERE project_id = %s"
-        cursor.execute(query, (project_id,))
-        db_connection.commit()
-
-        if cursor.rowcount > 0:
-            print(f"Project '{project_id}' has been deleted.")
-        else:
-            print(f"No project found with the id '{project_id}'.")
-
-    except Exception as exc:
-        print(exc)
-
-=======
         print("Connected to DB: %s" % db_name)
         query = """SELECT project_id, project_name FROM {}""".format(table_name)
         cursor.execute(query)
         projects = cursor.fetchall()
         cursor.close()
         
->>>>>>> develop_2
     finally:
         cursor.close()
         if db_connection:
@@ -165,7 +144,23 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
             db_connection.close()
             print("Connection closed")
 
-<<<<<<< HEAD
+
+def insert_new_project(db_name, table_name, project_name):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print("Connected to DB: %s" % db_name)
+
+        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
+
+        cursor.execute(query)
+        db_connection.commit()
+        cursor.close()
+        print(f"\nNew project '{project_name}' has been successfully entered into the database!")
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
+
 def delete_project():
     try:
         db_name = 'task_management_system'
@@ -195,21 +190,3 @@ def delete_project():
 
 
 delete_project()
-=======
-
-def insert_new_project(db_name, table_name, project_name):
-    try:
-        cursor, db_connection = get_cursor_and_connection(db_name)
-        print("Connected to DB: %s" % db_name)
-
-        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
-
-        cursor.execute(query)
-        db_connection.commit()
-        cursor.close()
-        print(f"\nNew project '{project_name}' has been successfully entered into the database!")
-    finally:
-        if db_connection:
-            db_connection.close()
-            print("DB connection is closed")
->>>>>>> develop_2
