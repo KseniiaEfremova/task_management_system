@@ -91,7 +91,7 @@ def get_all_projects(db_name, table_name):
         cursor.close()
     
     except Exception as e:
-    print(e)
+        print(e)
     
     finally:
         if db_connection:
