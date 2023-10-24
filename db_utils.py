@@ -82,23 +82,20 @@ def map_tuple_to_dict(collection):
 
 
 def get_all_projects(db_name, table_name):
-    projects = []
     try:
-        db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
+
         query = """SELECT project_id, project_name FROM {}""".format(table_name)
+
         cursor.execute(query)
+
         projects = cursor.fetchall()
         cursor.close()
-    
-    except Exception as e:
-        print(e)
-        
     finally:
-        cursor.close()
         if db_connection:
             db_connection.close()
+            print("DB connection is closed")
 
     return projects
 
