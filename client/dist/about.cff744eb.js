@@ -578,20 +578,20 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var _requests = require("./requests");
 const form = document.querySelector(".form__control");
 const formError = document.querySelector(".form__error");
-const submitButton = document.querySelector(".submit__button");
+const submitTaskButton = document.querySelector(".submit__button-task");
 const submitProjectButton = document.querySelector(".submit__button-project");
 const BASE_LOCATION = "http://localhost:1234/";
 const submitProject = (e)=>{
     e.preventDefault();
     const projectForm = document.querySelector(".form__control-project");
-    const project_id = projectForm[0].value.trim();
-    if (project_id !== "") {
+    const project_name = projectForm[0].value.trim();
+    if (project_name !== "") {
         formError.classList.remove("active");
         const newProject = {
-            project_id
+            project_name
         };
-        postNewProject(newProject);
-        form[0].value = "";
+        (0, _requests.postNewProject)(newProject);
+        projectForm[0].value = "";
     } else formError.classList.add("active");
 };
 const submitForm = (e)=>{
@@ -643,7 +643,7 @@ if (window.location.href === BASE_LOCATION + "update_task.html") {
     const taskToUpdateProject = JSON.parse(localStorage.getItem("task-id")["project_id"]);
     prepopulateForm(taskToUpdateId, taskToUpdateProject);
 }
-if (submitButton) submitButton.addEventListener("click", submitForm);
+if (submitTaskButton) submitTaskButton.addEventListener("click", submitForm);
 if (submitProjectButton) submitProjectButton.addEventListener("click", submitProject);
 
 },{"./requests":"dY7Is"}]},["bO0RY","298UJ"], "298UJ", "parcelRequiree8ef")

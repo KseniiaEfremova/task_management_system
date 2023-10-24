@@ -653,7 +653,7 @@ const postNewTask = (newTask)=>{
 };
 const postNewProject = (newProject)=>{
     const params = {
-        endpointUrl: "new_project",
+        endpointUrl: "newproject",
         method: "POST",
         body: newProject,
         errorMessage: "Could not add new project!"

@@ -23,14 +23,8 @@ def handle_500(error):
 
 @app.route("/projects")
 def get_projects():
-    projects = get_all_projects(DB_NAME, projects_table)
-    res = []
-    for project in projects:
-        id_and_name_project = dict()
-        id_and_name_project["project_id"] = project[0]
-        id_and_name_project["project_name"] = project[1]
-        res.append(id_and_name_project)
-    return jsonify(res)
+    response = get_all_projects(DB_NAME, projects_table)
+    return jsonify(response)
 
 
 @app.route('/projects/<project_id>id/<task_id>', endpoint='get_taksks_per_project_by_id')
@@ -41,8 +35,8 @@ def get_task_per_project_by_id(project_id, todo_id):
 
 @app.route("/projects/<project_id>/<status>", endpoint='get_tasks_per_project_by_status')
 def get_tasks_per_project_by_status(project_id, status):
-    res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
-    return jsonify(res)
+    response = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
+    return jsonify(response)
 
 
 @app.route("/newproject", methods=['POST'])
@@ -58,9 +52,9 @@ def add_project():
     """
     try:
         new_project = request.get_json()
-
+        print(new_project)
         if new_project:
-            table_name = new_project['table_name']
+            table_name = projects_table
             project_name = new_project['project_name']
 
             insert_new_project(DB_NAME, table_name, project_name)

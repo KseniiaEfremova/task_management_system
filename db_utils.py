@@ -183,13 +183,17 @@ def insert_new_project(db_name, table_name, project_name):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
-
-        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
+        print(table_name)
+        query = "INSERT INTO {} (project_name) VALUES ('{}')".format(table_name, project_name)
 
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
         print(f"\nNew project '{project_name}' has been successfully entered into the database!")
+
+    except Exception as exc:
+        print(exc)
+
     finally:
         if db_connection:
             db_connection.close()
