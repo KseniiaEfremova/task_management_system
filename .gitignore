@@ -2,3 +2,5 @@ config.py
 myenv
 *.pyc
 *.xml
+*.mdb
+node_modules
