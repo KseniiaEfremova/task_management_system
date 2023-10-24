@@ -47,7 +47,7 @@ def adding_task():
         new_task = request.get_json()
 
         if new_task:
-            table_name = new_task['table_name']
+            table_name = tasks_table
             project_id = new_task['project_id']
             description = new_task['description']
             deadline = new_task['deadline']

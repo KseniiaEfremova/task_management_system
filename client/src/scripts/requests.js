@@ -70,7 +70,7 @@ export const getTasksByStatus = async (project_id, status) => {
 
 export const postNewTask = (newTask) => {
     const params = {
-        endpointUrl: 'new_task',
+        endpointUrl: 'newtask',
         method: 'POST',
         body: newTask,
         errorMessage: 'Could not add new task!'

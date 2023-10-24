@@ -31,7 +31,6 @@ const submitForm = (e) => {
         formError.classList.remove('active')
         if (window.location.href === BASE_LOCATION + "new_task.html") {
             const newTask = { description, status, deadline, project_id }
-            console.log(newTask)
             postNewTask(newTask);
         } else {
             const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
@@ -43,7 +42,7 @@ const submitForm = (e) => {
         form[1].value = '';
         form[2].value = '';
         form[3].value = '';
-        // window.location.href = BASE_LOCATION
+        window.location.href = BASE_LOCATION
     } else {
         formError.classList.add('active')
     }
