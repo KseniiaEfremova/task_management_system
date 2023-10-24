@@ -150,6 +150,23 @@ Follow for more:
 ![mood](https://pbs.twimg.com/media/F7n7rscXgAAD8LX?format=jpg&name=900x900)
 
 ---
+## Hi I'm Natalia! 👋
+### ✨About me✨
+
+- **name:** Natalia Piotrowska 
+
+- **city:** Warsaw, Poland  
+
+- **something interesting:** i like *cats*, *baking* and *traveling with my dog*    
+     
+     
+- **currently reading:** 📚 The Catcher in the Rye by *J.D.Salinger*  
+> ***"I'm quite illiterate, but I read a lot."*** - Holden Caulfield, from *The Catcher in the Rye*
+
+
+![photo](https://i.imgur.com/sdEqqjn.png)
+
+---
 ## Hey I'm Sandra
 ### About me:
 * I'm 27 years old
