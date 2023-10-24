@@ -24,6 +24,18 @@ const handleDeleteTask = (e) => {
     }
 }
 
+export const handleGetProjectTasks = (e) => {
+    if (e.target.getAttribute('data-id').includes('project')) {
+        console.log('project')
+        const projectId = { project_id: +(e.target.getAttribute('data-id').slice(8)) };
+        localStorage.setItem('project-id', JSON.stringify(projectId));
+        window.location.href = "http://localhost:1234/src/tasks.html"; 
+    } else {
+        return
+    }
+     
+}
+
 const handleDeleteProject = (e) => {
         if (e.target.getAttribute('data-id').includes('delete')) {
         const projectId = { project_id: +(e.target.getAttribute('data-id').slice(7)) }

@@ -576,18 +576,24 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"bAabt":[function(require,module,exports) {
 var _requests = require("./requests");
+var _handlers = require("./handlers");
 const mainList = document.querySelector(".section__list-wrapper");
 const taskLists = document.querySelectorAll(".list__wrapper");
 const deleteProjectButton = document.querySelector(".list__delete-project");
 const BASE_LOCATION = "http://localhost:1234/";
 const createProjectElem = (listElem)=>{
-    return `<h3 class="list__elem-title">${listElem["project_name"]}</h3>
+    return `
+                <h3 class="list__elem-title">${listElem["project_name"]}</h3>
                 <p class="list__elem-desc">${listElem["project_id"]}</p>
                 <div class="list__elem-just-between">
                     <button data-id="delete-${listElem.project_id}" class="list__delete-project">
-                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id} class="list__delete-project""/>
+                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" class="list__delete-project"/>
+                    </button>
+                      <button data-id="project-${listElem.project_id}" >
+                        <img class="list__elem-img" src='/update.eaa90a6d.png' alt='update' data-id="project-${listElem.project_id}"/>
                     </button>
                 </div>
+            </a>
             `;
 };
 const createTaskElem = (listElem, date)=>{
@@ -601,7 +607,7 @@ const createTaskElem = (listElem, date)=>{
                         <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}-${listElem.project_id}"/>
                     </a>
                     <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
-                        <img class="list__elem-img" src=''/delete.8dd9e795.png'' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}}"/>
+                        <img class="list__elem-img" src=''/delete.8dd9e795.png'' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}"/>
                     </button>
                 </div>
             `;
@@ -642,7 +648,8 @@ if (window.location.href === BASE_LOCATION + "tasks") renderTasksByStatus();
 if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleDeleteTask));
 if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleUpdateTask));
 if (deleteProjectButton) deleteProjectButton.addEventListener("click", handleDeleteProject);
+mainList.addEventListener("click", (0, _handlers.handleGetProjectTasks));
 
-},{"./requests":"dY7Is"}]},["cvbMW","bAabt"], "bAabt", "parcelRequiree8ef")
+},{"./requests":"dY7Is","./handlers":"4TuL5"}]},["cvbMW","bAabt"], "bAabt", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.a56319bd.js.map

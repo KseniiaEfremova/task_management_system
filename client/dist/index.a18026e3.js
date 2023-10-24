@@ -575,6 +575,9 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"4TuL5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handleGetProjectTasks", ()=>handleGetProjectTasks);
 const handleUpdateTask = (e)=>{
     if (e.target.getAttribute("data-id").includes("update")) {
         const taskId = {
@@ -596,6 +599,16 @@ const handleDeleteTask = (e)=>{
         renderTasksByStatus();
     } else return;
 };
+const handleGetProjectTasks = (e)=>{
+    if (e.target.getAttribute("data-id").includes("project")) {
+        console.log("project");
+        const projectId = {
+            project_id: +e.target.getAttribute("data-id").slice(8)
+        };
+        localStorage.setItem("project-id", JSON.stringify(projectId));
+        window.location.href = "http://localhost:1234/src/tasks.html";
+    } else return;
+};
 const handleDeleteProject = (e)=>{
     if (e.target.getAttribute("data-id").includes("delete")) {
         const projectId = {
@@ -607,6 +620,6 @@ const handleDeleteProject = (e)=>{
     } else return;
 };
 
-},{}]},["eKQyl","4TuL5"], "4TuL5", "parcelRequiree8ef")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["eKQyl","4TuL5"], "4TuL5", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.a18026e3.js.map
