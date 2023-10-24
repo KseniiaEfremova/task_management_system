@@ -195,7 +195,7 @@ def run():
                 input_task_id = int(input('Please input ID of the task you would like to delete: '))
                 delete_task(input_task_id)
             except ValueError:
-                print("Invalid Task ID. Please enter a valid ID of the task you would like to delete: ")
+                print('Invalid Task ID. Please enter a valid ID of the task you would like to delete: ')
 
         # ====If User Selects 0 ====
         # Task Management System is exited
