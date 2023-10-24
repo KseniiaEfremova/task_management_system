@@ -207,14 +207,14 @@ def insert_new_project(db_name, table_name, project_name):
             db_connection.close()
             print("DB connection is closed")
 
-def delete_project1():
+def delete_project1(project_id):
     try:
         db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f"Connected to database {db_name}")
 
         # Query
-        query = "DELETE FROM projects WHERE project_id = %s"
+        query = """DELETE FROM projects WHERE project_id = %s"""
         cursor.execute(query, (project_id,))
         db_connection.commit()
 
@@ -230,3 +230,4 @@ def delete_project1():
         cursor.close()
         if db_connection:
             db_connection.close()
+            print("Connection closed")
