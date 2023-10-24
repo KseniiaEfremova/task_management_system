@@ -99,20 +99,19 @@ def adding_task():
     except Exception as exc:
         print(f"An error occurred: {str(exc)}")
         return jsonify({'message': 'An error occurred'}), 500
-<<<<<<< HEAD
-    
+
+
 @app.route('/delete_project/<int:project_id>', methods=['DELETE'])
 def delete_project_route(project_id):
-    result = delete_project(project_id)
+    result = delete_project1(project_id)
     return jsonify(result)
-=======
+
 
 @app.route("/delete_task/<int:task_id>", methods=['DELETE'])
 def delete_task_route(task_id):
     delete_task_fromDB(task_id)
     return f"Task with ID: {task_id} successfully deleted"
 
->>>>>>> develop_2
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
