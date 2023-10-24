@@ -221,6 +221,14 @@ def run():
                 input_status = input(“Please select the new status for your task - ‘todo’, ‘in progress’, ‘in review’, ‘done’: “)
                 update_task(table_name, input_project_id, input_task_id, input_description, formatted_deadline_date, input_status)
 
+            if response.status_code == 200:
+            print(“Task updated successfully!“)
+
+        return response.json()
+         else:
+            print(“Failed to update task!“)
+            return None
+
             # ====If User Selects 6====
             # Please call your delete a project function here :)
             # function is called to delete a project
@@ -264,10 +272,4 @@ def run():
 if __name__ == '__main__':
     run()
 
-if response.status_code == 200:
-        print(“Task updated successfully!“)
 
-        return response.json()
-    else:
-        print(“Failed to update task!“)
-        return None
