@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request, make_response
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1, update_task_db
 tasks_table = 'tasks'
 projects_table = 'projects'
 
@@ -115,3 +115,25 @@ def delete_task_route(task_id):
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
+
+# Route to handle PUT requests for updating a task by its ID
+@app.route("/updatetask/<int:project_id>/<int:task_id>", methods=['PUT'])
+def update_task_by_id(project_id, task_id):
+    try:
+        # Get the update data from the JSON request
+        update_data = request.get_json()
+        if update_data:
+            new_description = update_data['description']
+            new_deadline = update_data['deadline']
+            new_status = update_data['status']
+            # Call the update_task_db  function to update the task in the database
+            updated = update_task_db(DB_NAME, tasks_table, project_id, task_id, new_description, new_deadline, new_status)
+            if updated:
+                return jsonify({‘message’: ‘Task updated successfully’}), 200
+            else:
+                return jsonify({‘message’: ‘Failed to update task’}), 400
+        else:
+            return jsonify({‘message’: ‘Invalid data’}), 400
+    except Exception as exc:
+        print(f”An error occurred: {str(exc)}“)
+        return jsonify({‘message’: ‘An error occurred’}), 500 

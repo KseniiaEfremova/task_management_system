@@ -230,3 +230,22 @@ def delete_project1():
         cursor.close()
         if db_connection:
             db_connection.close()
+
+# Function to update a task
+def update_task_db(db_name, table_name, project_id, task_id, new_description, new_deadline, new_status):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        query = """UPDATE {}
+        SET description = ‘{}‘, deadline = ‘{}‘, status = ‘{}’
+        WHERE project_id = {} AND task_id = {}
+        """.format(table_name, new_description, new_deadline, new_status, project_id, task_id)
+        cursor.execute(query)
+        db_connection.commit()
+        cursor.close()
+        return True
+    except Exception as exc:
+        print(exc)
+        return False
+    finally:
+        if db_connection:
+            db_connection.close()
