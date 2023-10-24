@@ -161,7 +161,7 @@ def insert_new_project(db_name, table_name, project_name):
             db_connection.close()
             print("DB connection is closed")
 
-def delete_project():
+def delete_project1():
     try:
         db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
