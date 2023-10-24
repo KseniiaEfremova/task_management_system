@@ -67,6 +67,7 @@ def connect_to_database_or_create_if_not_exists(db_name):
             exit(1)
     print(f"You are using {db_name} database.")
 
+
 def map_tuple_to_dict(collection):
     formatted_data = []
     for item in collection:
@@ -96,6 +97,26 @@ def get_all_projects(db_name, table_name):
             print("DB connection is closed")
 
     return projects
+
+
+def get_tasks_by_status(db_name, table_name, project_id, status):
+    tasks = []
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        query = """SELECT * FROM {} as t WHERE t.project_id = {} AND t.status = '{}'""".format(table_name, project_id, status)
+        cursor.execute(query)
+        results = cursor.fetchall()
+        tasks = map_tuple_to_dict(results)
+        cursor.close()
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+
+    return tasks
 
 
 def add_new_task(db_name, table_name, project_id, description, deadline, status):

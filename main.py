@@ -25,6 +25,7 @@ def display_projects():
     except Exception as erre:
         print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
+
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
@@ -195,6 +196,7 @@ def run():
     # Except value error - if user enters something other than a number
     except ValueError:
         print("\nInvalid input, enter a numerical digit between 0-7\n")
+
 
 if __name__ == '__main__':
     run()
