@@ -167,9 +167,6 @@ def delete_project():
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f"Connected to database {db_name}")
 
-        # User input
-        project_id = input("Please enter the name of the project you want to delete: ")
-
         # Query
         query = "DELETE FROM projects WHERE project_id = %s"
         cursor.execute(query, (project_id,))
