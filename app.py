@@ -126,14 +126,14 @@ def update_task_by_id(project_id, task_id):
             # Call the update_task_db  function to update the task in the database
             updated = update_task_db(DB_NAME, tasks_table, project_id, task_id, new_description, new_deadline, new_status)
             if updated:
-                return jsonify({‘message’: ‘Task updated successfully’}), 200
+                return jsonify({"message": "Task updated successfully"}), 200
             else:
-                return jsonify({‘message’: ‘Failed to update task’}), 400
+                return jsonify({"message": "Failed to update task"}), 400
         else:
-            return jsonify({‘message’: ‘Invalid data’}), 400
+            return jsonify({"message": "Invalid data"}), 400
     except Exception as exc:
         print(f”An error occurred: {str(exc)}“)
-        return jsonify({‘message’: ‘An error occurred’}), 500 
+        return jsonify({"message": "An error occurred"}), 500 
     
     if __name__ == '__main__':
         app.run(debug=True, port=5001)
