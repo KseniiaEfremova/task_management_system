@@ -1,8 +1,21 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, make_response, request
 from db_utils import get_all_projects, add_new_task, DB_NAME, delete_task_fromDB
 
+tasks_table = 'tasks'
+
 app = Flask(__name__)
-app.secret_key = 'paskudzio'
+
+
+@app.errorhandler(404)
+def handle_404(error):
+    response = make_response(jsonify({'error': 'page not found'}), 404)
+    return response
+
+
+@app.errorhandler(500)
+def handle_500(error):
+    response = make_response(jsonify({'error': 'server is down, contact one of Coding Stars United Developer'}), 500)
+    return response
 
 
 @app.route('/')
@@ -14,6 +27,12 @@ def home():
 def get_projects():
     project_table = "projects"
     res = dict(get_all_projects(DB_NAME, project_table))
+    return jsonify(res)
+
+
+@app.route("/projects/<project_id>/<status>")
+def get_tasks_per_project_by_status(project_id, status):
+    res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
     return jsonify(res)
 
 
@@ -46,7 +65,6 @@ def adding_task():
         print(f"An error occurred: {str(exc)}")
         return jsonify({'message': 'An error occurred'}), 500
 
-
 @app.route("/delete_task/<int:task_id>", methods=['DELETE'])
 def delete_task_route(task_id):
     delete_task_fromDB(task_id)
@@ -54,6 +72,8 @@ def delete_task_route(task_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
+
+
 
 
