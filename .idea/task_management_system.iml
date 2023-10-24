@@ -9,9 +9,13 @@
 =======
     <content url="file://$MODULE_DIR$" />
 <<<<<<< HEAD
+    <orderEntry type="jdk" jdkName="Python 3.10 (task_management_system) (3)" jdkType="Python SDK" />
+=======
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.11 (venv)" jdkType="Python SDK" />
 =======
     <orderEntry type="jdk" jdkName="Python 3.10 (task_management_system) (3)" jdkType="Python SDK" />
+>>>>>>> develop2
 >>>>>>> develop2
 >>>>>>> develop2
     <orderEntry type="sourceFolder" forTests="false" />

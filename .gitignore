@@ -1,6 +1,6 @@
 config.py
 myenv
-*.pyc
-*.xml
-*.mdb
+__pycache__
+.idea
 node_modules
+.parcel-cache
