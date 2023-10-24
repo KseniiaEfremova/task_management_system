@@ -15,7 +15,8 @@ const submitProject = (e) => {
         formError.classList.remove('active');
         const newProject = { project_name };
         postNewProject(newProject);
-        projectForm[0].value = ''
+        projectForm[0].value = '';
+        window.location.href = BASE_LOCATION
     } else {
         formError.classList.add('active')
     }

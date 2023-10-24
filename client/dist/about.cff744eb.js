@@ -592,6 +592,7 @@ const submitProject = (e)=>{
         };
         (0, _requests.postNewProject)(newProject);
         projectForm[0].value = "";
+        window.location.href = BASE_LOCATION;
     } else formError.classList.add("active");
 };
 const submitForm = (e)=>{
