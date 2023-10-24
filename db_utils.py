@@ -67,6 +67,7 @@ def connect_to_database_or_create_if_not_exists(db_name):
             exit(1)
     print(f"You are using {db_name} database.")
 
+
 def map_tuple_to_dict(collection):
     formatted_data = []
     for item in collection:
@@ -80,9 +81,11 @@ def map_tuple_to_dict(collection):
 
 
 def get_all_projects(db_name, table_name):
+    projects = []
     try:
         db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
+<<<<<<< HEAD
         print(f"Connected to database {db_name}")
 
         # User input
@@ -101,12 +104,40 @@ def get_all_projects(db_name, table_name):
     except Exception as exc:
         print(exc)
 
+=======
+        print("Connected to DB: %s" % db_name)
+        query = """SELECT project_id, project_name FROM {}""".format(table_name)
+        cursor.execute(query)
+        projects = cursor.fetchall()
+        cursor.close()
+        
+>>>>>>> develop_2
     finally:
         cursor.close()
         if db_connection:
             db_connection.close()
 
     return projects
+
+
+def get_tasks_by_status(db_name, table_name, project_id, status):
+    tasks = []
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        query = """SELECT * FROM {} as t WHERE t.project_id = {} AND t.status = '{}'""".format(table_name, project_id, status)
+        cursor.execute(query)
+        results = cursor.fetchall()
+        tasks = map_tuple_to_dict(results)
+        cursor.close()
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+
+    return tasks
 
 
 def add_new_task(db_name, table_name, project_id, description, deadline, status):
@@ -119,13 +150,9 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f'Connected to database: {db_name}')
-
         query = """INSERT INTO {} (project_id, description, deadline, status) 
         VALUES ('{}', '{}', '{}', '{}')""".format(table_name, project_id, description, deadline, status)
-
-       
         cursor.execute(query)
-        
         db_connection.commit()
         cursor.close()
         print("\nYour task has been successfully entered into the database!")
@@ -138,6 +165,7 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
             db_connection.close()
             print("Connection closed")
 
+<<<<<<< HEAD
 def delete_project():
     try:
         db_name = 'task_management_system'
@@ -167,3 +195,21 @@ def delete_project():
 
 
 delete_project()
+=======
+
+def insert_new_project(db_name, table_name, project_name):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print("Connected to DB: %s" % db_name)
+
+        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
+
+        cursor.execute(query)
+        db_connection.commit()
+        cursor.close()
+        print(f"\nNew project '{project_name}' has been successfully entered into the database!")
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
+>>>>>>> develop_2
