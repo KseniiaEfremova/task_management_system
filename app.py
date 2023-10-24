@@ -16,10 +16,6 @@ def handle_500(error):
     response = make_response(jsonify({'error': 'server is down, contact one of Coding Stars United Developer'}), 500)
     return response
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
 
 @app.route("/projects")
 def get_projects():

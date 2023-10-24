@@ -9,10 +9,6 @@ CREATE TABLE IF NOT EXISTS `projects` (
     PRIMARY KEY (`project_id`), UNIQUE KEY `project_name` (`project_name`)
     );
 
-<<<<<<< HEAD
-=======
-
->>>>>>> develop2
 CREATE TABLE IF NOT EXISTS `tasks` (
     `task_id` INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
     `project_id` INT NOT NULL,
