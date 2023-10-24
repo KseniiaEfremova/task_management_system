@@ -59,6 +59,62 @@ Here are step-by-step instructions on how to use the task_management_system.sql 
 
 ## API endpoints
 
+### Get All Projects
+
+- **Endpoint:** `/projects`
+- **Method:** GET
+- **Description:** Retrieves a list of all projects from the database.
+
+### Get Tasks in a Project by Status
+
+- **Endpoint:** `/projects/<project_id>/`
+- **Method:** GET
+- **Description:** Retrieves tasks of a specific status within a project.
+
+### Get Task in a Project by ID
+
+- **Endpoint:** `/projects/<project_id>/id/<task_id>`
+- **Method:** GET
+- **Description:** Retrieves a specific task within a project by its ID.
+
+### Add a New Project
+
+- **Endpoint:** `/newproject`
+- **Method:** POST
+- **Description:** Adds a new project to the database.
+
+**Parameters:**
+
+- `table_name` (string): Name of the table (e.g., "projects").
+- `project_name` (string): Name of the new project.
+
+### Add a New Task to a Project
+
+- **Endpoint:** `/newtask`
+- **Method:** POST
+- **Description:** Adds a new task to a project in the database.
+
+**Parameters:**
+
+- `table_name` (string): Name of the table (e.g., "tasks").
+- `project_id` (integer): ID of the project to add the task to.
+- `description` (string): Description of the task.
+- `deadline` (string): Deadline of the task (in YYYY-MM-DD format).
+- `status` (string): Status of the task ("todo", "in progress", "in review," or "done").
+
+### Delete a Project
+
+- **Endpoint:** `/delete_project/int:project_id`
+- **Method:** DELETE
+- **Description:** Deletes a project from the database by its ID.
+
+### Delete a Task
+
+- **Endpoint:** `/delete_task/int:task_id`
+- **Method:** DELETE
+- **Description:** Deletes a task from the database by its ID.
+
+
 The Task Management System allows to perform basic CRUD operations on tasks and projects.   
 You can use the provided endpoints to create, read, update, and delete tasks and projects in the database.   
 The API is designed to help manage tasks efficiently.
