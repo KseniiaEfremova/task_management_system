@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="fbf9c95c-693b-4706-bbda-713d77c1a030" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/task_management_system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/task_management_system.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/db_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
->>>>>>> develop2
-    </list>
+    <list default="true" id="fbf9c95c-693b-4706-bbda-713d77c1a030" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,19 +13,33 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="2Wt8nA1I4HCTluCZVGecof0psIn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> develop2
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+<<<<<<< HEAD
+    &quot;git-widget-placeholder&quot;: &quot;feature/front__end&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kstop/OneDrive/Pulpit/projekty/cfgDegree projects/task_management_system&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\kstop\OneDrive\Pulpit\projekty\cfgDegree projects\task_management_system\client" />
+    </key>
+=======
     &quot;git-widget-placeholder&quot;: &quot;feature/get__tasks&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/kstop/OneDrive/Pulpit/projekty/cfgDegree projects/task_management_system&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
@@ -46,20 +47,17 @@
 }</component>
   <component name="RunManager" selected="Python.main">
 =======
+=======
+>>>>>>> bc17bc5b1cc99c0f3ccd9f7a7937b3aafe002265
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-<<<<<<< HEAD
-    "git-widget-placeholder": "feature/error__handling",
+    "git-widget-placeholder": "feature/base__template",
     "last_opened_file_path": "C:/Users/kstop/OneDrive/Pulpit/projekty/cfgDegree projects/task_management_system"
-=======
-    "git-widget-placeholder": "develop2",
-    "last_opened_file_path": "C:/Users/kstop/OneDrive/Pulpit/projekty/cfgDegree projects/task_management_system",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
->>>>>>> develop2
   }
 }]]></component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Python.app">
 >>>>>>> develop2
     <configuration name="app" type="PythonConfigurationType" factoryName="Python">
@@ -135,7 +133,10 @@
       <item itemvalue="Python.app" />
     </list>
 >>>>>>> develop2
+>>>>>>> develop2
   </component>
+=======
+>>>>>>> bc17bc5b1cc99c0f3ccd9f7a7937b3aafe002265
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

@@ -1,7 +1,5 @@
 import requests
 import tabulate
-from db_utils import get_all_projects, DB_NAME
-import json
 from datetime import datetime
 
 
@@ -27,6 +25,7 @@ def display_projects():
     except Exception as erre:
         print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
+
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
@@ -39,7 +38,8 @@ def get_tasks_in_project():
     statuses = ['todo', 'in progress', 'in review', 'done']
     for status in statuses:
         try:
-            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
+            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}",
+                                 headers={"content-type": "application/json"})
             print(status.upper())
             tabulate_data(tasks)
         except requests.exceptions.HTTPError as error_HTTP:
@@ -50,7 +50,30 @@ def get_tasks_in_project():
             print("Timeout Error:", err_timeout)
         except requests.exceptions.RequestException as err:
             print("OOps: Something Else", err)
- 
+
+
+validate_project_name = lambda project_name: len(project_name) >= 3
+
+
+def add_new_project(table_name, project_name):
+    # Create a dictionary representing the new project data
+    new_project = {
+        "table_name": table_name,
+        "project_name": project_name,
+    }
+
+    response = requests.post(
+        'http://127.0.0.1:5001/newproject',
+        json=new_project
+    )
+
+    if response.status_code == 201:
+        print("Task added successfully!")
+        return response.json()
+    else:
+        print("Failed to add task!")
+        return None
+
 
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
     """ add_task() function akes five parameters 
@@ -98,7 +121,7 @@ def run():
         # Please call your view all projects function here :)
         # function is called to view all existing projects
         if selection == 1:
-            pass
+            display_projects()
 
         # ====If User Selects 2 ====
         # Please call your view all tasks function here :)
@@ -111,7 +134,14 @@ def run():
         # Please call your view add new project function here :)
         # function is called to add a new project
         elif selection == 3:
-            pass
+            table_name = "projects"
+            while True:
+                input_project_name = input("Please enter the name of the New Project: ")
+                if not validate_project_name(input_project_name):
+                    print("Invalid project name. Project name must be at least 3 characters long.")
+                else:
+                    add_new_project(table_name, input_project_name)
+                    break
 
         # ====If User Selects 4====
         # function is called to add a task to a project
@@ -159,13 +189,14 @@ def run():
         # Task Management System is exited
         elif selection == 0:
             print('\Goodbye, you are exiting the Task Management System\n')
-   
+
         # Else, the user is informed that they made the wrong choice of number
         else:
             print("\nIncorrect choice of number, options are between 0-7 only\n")
     # Except value error - if user enters something other than a number
     except ValueError:
         print("\nInvalid input, enter a numerical digit between 0-7\n")
+
 
 if __name__ == '__main__':
     run()
