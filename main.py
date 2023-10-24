@@ -217,7 +217,7 @@ def run():
             # Task Management System is exited
             # while tru loop broken
             elif selection == 0:
-                print('\Goodbye, you are exiting the Task Management System\n')
+                print('\nGoodbye, you are exiting the Task Management System\n')
                 break
 
             # Else, the user is informed that they made the wrong choice of number
