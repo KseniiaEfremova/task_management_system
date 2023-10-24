@@ -137,6 +137,13 @@ def update_task(table_name, input_project_id, input_task_id, input_description, 
         json=updated_task
     )
 
+    if response.status_code == 200:
+        print(“Task updated successfully!“)
+        return response.json()
+    else:
+        print(“Failed to update task!“)
+        return None
+
 def run():
     while True:
         try:
