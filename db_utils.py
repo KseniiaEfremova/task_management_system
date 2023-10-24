@@ -79,6 +79,16 @@ def map_tuple_to_dict(collection):
     return formatted_data
 
 
+def map_project(collection):
+    formatted_data = []
+    for item in collection:
+        formatted_data.append({
+            'project_id': item[0],
+            'project_name': item[1]
+        })
+    return formatted_data
+
+
 def get_all_projects(db_name, table_name):
     projects = []
     try:
@@ -86,7 +96,8 @@ def get_all_projects(db_name, table_name):
         print("Connected to DB: %s" % db_name)
         query = """SELECT project_id, project_name FROM {}""".format(table_name)
         cursor.execute(query)
-        projects = cursor.fetchall()
+        results = cursor.fetchall()
+        projects = map_project(results)
         cursor.close()
         
     finally:

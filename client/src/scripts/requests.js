@@ -25,7 +25,7 @@ const getResponse = async (params) => {
     }
 }
 
-const getProjects = async () => {
+export const getProjects = async () => {
      try {
          const response = await fetch(BASE_URL + 'projects', {
              headers: headers})

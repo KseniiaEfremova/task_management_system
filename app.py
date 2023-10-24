@@ -1,15 +1,18 @@
-from flask import Flask, render_template, jsonify, make_response, request
+from flask import Flask, jsonify, make_response, request
 from db_utils import get_all_projects, get_tasks_by_status, add_new_task, DB_NAME
+from flask_cors import CORS
 tasks_table = 'tasks'
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.errorhandler(404)
 def handle_404(error):
     response = make_response(jsonify({'error': 'page not found'}), 404)
     return response
+
 
 @app.errorhandler(500)
 def handle_500(error):
@@ -20,7 +23,7 @@ def handle_500(error):
 @app.route("/projects")
 def get_projects():
     project_table = "projects"
-    res = dict(get_all_projects(DB_NAME, project_table))
+    res = get_all_projects(DB_NAME, project_table)
     return jsonify(res)
 
 

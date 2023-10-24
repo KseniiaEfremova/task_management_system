@@ -1,10 +1,12 @@
+import { getProjects } from './requests'
+
 const mainList = document.querySelector('.section__list-wrapper');
 const taskLists = document.querySelectorAll('.list__wrapper');
 const deleteProjectButton = document.querySelector('.list__delete-project');
 const BASE_LOCATION = 'http://localhost:1234/';
 
 const createProjectElem = (listElem) => {
-    return `<h3 class="list__elem-title">${listElem['title']}</h3>
+    return `<h3 class="list__elem-title">${listElem['project_name']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
                 <div class="list__elem-just-between">
                     <button data-id="delete-${listElem.project_id}" class="list__delete-project">
@@ -49,9 +51,7 @@ const createListElem = (listElements, list) => {
 }
 
 const renderProjects = async () => {
-    // const projects = await getProjects();
-    // TODO: change this hardcoded data to projects pulled from db
-    const projects = [{ project_id: 2, title: 'Learn Flask' }, {project_id: 1, title: 'task management system'}]
+    const projects = await getProjects();
     createListElem(projects, mainList)
 }
 
