@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/index.3b8f328d.css">
+		<script src="/index.33e1c7a1.js" defer=""></script>
+		<script src="/index.cff744eb.js" defer=""></script>
+		<script src="/index.a18026e3.js" defer=""></script>
+		<script src="/index.a56319bd.js" defer=""></script>
+		<title>Task Management App</title>
+	</head>
+	<body>
+		<nav class="nav__container">
+			<ul class="list__container">
+				<li class="list__item">
+					<a class="list__item-link" href="/">
+						<img src="/home.9c88686c.png" alt="home"><span>Home</span></a>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/about.html">
+						<img src="/about.fd591f3f.png" alt="about"><span>About</span></a>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/authors.html">
+						<img src="/author.5bf0c28a.png" alt="authors"><span>Authors</span></a>
+				</li>
+			</ul>
+		</nav>
+		<main class="main__container">
+			<section class="heading__section">
+				<h1 class="main__heading">Task management system</h1>
+				<a class="main__button" href="/new_task.html">+ Add New Task</a>
+			</section>
+
+			<section class="main__section">
+				<form class="form__control-project" action="#" method="POST">
+					<div class="input__control-project">
+						<label for="title"></label>
+						<input type="text" placeholder="Project title" name="title" class="input__project">
+
+						<button class="main__button submit__button submit__button-project" type="submit">
+							+ Add project
+						</button>
+					</div>
+					<p class="form__error">Fields cannot be empty</p>
+				</form>
+				<ul class="section__list-wrapper"></ul>
+			</section>
+		</main>
+	</body>
+</html>

@@ -16,6 +16,13 @@
 	--border-radius: 0.5rem;
 }
 
+.test {
+	width: 100px;
+	height: 100px;
+	background: url('../../assets/update.png') no-repeat;
+	background-size: cover;
+}
+
 body {
 	font-family: 'Poppins', sans-serif;
 	background: var(--light-100);

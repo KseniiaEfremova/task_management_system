@@ -2,7 +2,7 @@ const handleUpdateTask = (e) => {
     if (e.target.getAttribute('data-id').includes('update')) {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
         localStorage.setItem('task-id', JSON.stringify(taskId));
-        window.location.href = "http://localhost:5500/client/update_task.html"; 
+        window.location.href = "http://localhost:5500/src/update_task.html"; 
     } else {
         return
     } 

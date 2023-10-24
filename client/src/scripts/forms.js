@@ -1,8 +1,8 @@
 const form = document.querySelector('.form__control');
 const formError = document.querySelector('.form__error');
 const submitButton = document.querySelector('.submit__button');
-const submitProjectButton = document.querySelector('.submit__button-project')
-const deleteProjectButton = document.querySelector('.list__delete-project');
+const submitProjectButton = document.querySelector('.submit__button-project');
+
 
 const submitProject = (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const submitForm = (e) => {
         const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
         const project_id = JSON.parse(localStorage.getItem('task-id')['project_id'])
         const taskToUpdate = {project_id, description, status, deadline, task_id }
-        if (window.location.href === "http://localhost:5500/client/new_task.html") {
+        if (window.location.href === "http://localhost:5500/src/new_task.html") {
             postNewTask(newTask);
         } else {
             updateExistingTask(taskToUpdate)
@@ -39,7 +39,7 @@ const submitForm = (e) => {
         form[1].value = '';
         form[2].value = '';
         form[3].value = '';
-        window.location.href = "http://localhost:5500/client/index.html"
+        window.location.href = "http://localhost:5500/src/index.html"
     } else {
         formError.classList.add('active')
     }
@@ -55,7 +55,7 @@ const prepopulateForm = async (task_id, project_id) => {
     form[3].value = project_id;
 }
 
-if (window.location.href === "http://localhost:5500/client/update_task.html") {
+if (window.location.href === "http://localhost:5500/src/update_task.html") {
     const taskToUpdateId = JSON.parse(localStorage.getItem('task-id')['task_id']);
     const taskToUpdateProject = JSON.parse(localStorage.getItem('task-id')['project_id']);
     prepopulateForm(taskToUpdateId, taskToUpdateProject)
