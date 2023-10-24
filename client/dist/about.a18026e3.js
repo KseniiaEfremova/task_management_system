@@ -577,7 +577,11 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"4TuL5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BASE_LOCATION", ()=>BASE_LOCATION);
+parcelHelpers.export(exports, "handleUpdateTask", ()=>handleUpdateTask);
+parcelHelpers.export(exports, "handleDeleteTask", ()=>handleDeleteTask);
 parcelHelpers.export(exports, "handleGetProjectTasks", ()=>handleGetProjectTasks);
+parcelHelpers.export(exports, "handleDeleteProject", ()=>handleDeleteProject);
 const BASE_LOCATION = "http://localhost:1234/";
 const handleUpdateTask = (e)=>{
     if (e.target.getAttribute("data-id").includes("update")) {
@@ -586,7 +590,7 @@ const handleUpdateTask = (e)=>{
             project_id: +e.target.getAttribute("data-id").slice(9)
         };
         localStorage.setItem("task-id", JSON.stringify(taskId));
-        window.location.href = "http://localhost:5500/src/update_task.html";
+        window.location.href = BASE_LOCATION + "update_task.html";
     } else return;
 };
 const handleDeleteTask = (e)=>{
@@ -602,7 +606,6 @@ const handleDeleteTask = (e)=>{
 };
 const handleGetProjectTasks = (e)=>{
     if (e.target.getAttribute("data-id").includes("project")) {
-        console.log("project");
         const projectId = {
             project_id: +e.target.getAttribute("data-id").slice(8)
         };

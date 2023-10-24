@@ -580,6 +580,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getProjects", ()=>getProjects);
 parcelHelpers.export(exports, "getTaskById", ()=>getTaskById);
 parcelHelpers.export(exports, "getTasksByStatus", ()=>getTasksByStatus);
+parcelHelpers.export(exports, "postNewTask", ()=>postNewTask);
+parcelHelpers.export(exports, "postNewProject", ()=>postNewProject);
+parcelHelpers.export(exports, "updateExistingTask", ()=>updateExistingTask);
+parcelHelpers.export(exports, "deleteTask", ()=>deleteTask);
+parcelHelpers.export(exports, "deleteProject", ()=>deleteProject);
 const BASE_URL = "http://127.0.0.1:5001/";
 const headers = {
     "Content-Type": "application/json",

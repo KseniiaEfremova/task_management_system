@@ -68,7 +68,7 @@ export const getTasksByStatus = async (project_id, status) => {
     }
 }
 
-const postNewTask = (newTask) => {
+export const postNewTask = (newTask) => {
     const params = {
         endpointUrl: 'new_task',
         method: 'POST',
@@ -78,7 +78,7 @@ const postNewTask = (newTask) => {
     getResponse(params)
 }
 
-const postNewProject = (newProject) => {
+export const postNewProject = (newProject) => {
      const params = {
         endpointUrl: 'new_project',
         method: 'POST',
@@ -88,7 +88,7 @@ const postNewProject = (newProject) => {
     getResponse(params)
 }
 
-const updateExistingTask = (taskToUpdate) => {
+export const updateExistingTask = (taskToUpdate) => {
     const params = {
         endpointUrl: 'update_task',
         method: 'PUT',
@@ -98,7 +98,7 @@ const updateExistingTask = (taskToUpdate) => {
     getResponse(params)
 }
 
-const deleteTask = (taskId) => {
+export const deleteTask = (taskId) => {
     const params = {
         endpointUrl: '/',
         method: 'DELETE',
@@ -108,7 +108,7 @@ const deleteTask = (taskId) => {
     getResponse(params)
 }
 
-const deleteProject = (projectId) => {
+export const deleteProject = (projectId) => {
     const params = {
         endpointUrl: '/delete',
         method: 'DELETE',

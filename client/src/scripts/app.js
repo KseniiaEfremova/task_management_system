@@ -1,5 +1,5 @@
 import { getProjects, getTasksByStatus } from './requests';
-import { handleGetProjectTasks } from './handlers';
+import { handleGetProjectTasks, handleDeleteProject, handleDeleteTask, handleUpdateTask } from './handlers';
 const mainList = document.querySelector('.section__list-wrapper');
 const taskLists = document.querySelectorAll('.list__wrapper');
 const deleteProjectButton = document.querySelector('.list__delete-project');
@@ -33,7 +33,7 @@ const createTaskElem = (listElem, date) => {
                         <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}-${listElem.project_id}"/>
                     </a>
                     <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
-                        <img class="list__elem-img" src=''/delete.8dd9e795.png'' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}"/>
+                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}"/>
                     </button>
                 </div>
             `
@@ -64,7 +64,6 @@ const renderProjects = async () => {
 const renderTasksByStatus = async () => {
     const projectId = JSON.parse(localStorage.getItem('project-id'))['project_id'];
     const taskListTodo = document.querySelector('.list__wrapper-todo');
-    console.log(taskListTodo);
     const taskListInProgress = document.querySelector('.list__wrapper-inprogress');
     const taskListInReview = document.querySelector('.list__wrapper-inreview');
     const taskListDone = document.querySelector('.list__wrapper-done');
@@ -72,7 +71,6 @@ const renderTasksByStatus = async () => {
     const inReviewTasks = await getTasksByStatus(projectId, 'in review');
     const inProgressTasks = await getTasksByStatus(projectId, 'in progress');
     const doneTasks = await getTasksByStatus(projectId, 'done');
-    console.log(doneTasks)
     if (todoTasks) {
        createListElem(todoTasks, taskListTodo)
     }
@@ -88,9 +86,9 @@ const renderTasksByStatus = async () => {
 }
 
 if (window.location.href === BASE_LOCATION) renderProjects();
-if (window.location.href === BASE_LOCATION + 'tasks.html') renderTasksByStatus();
+if (window.location.href === BASE_LOCATION + 'tasks') renderTasksByStatus();
 
 if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
 if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
 if (deleteProjectButton) deleteProjectButton.addEventListener('click', handleDeleteProject);
-mainList.addEventListener('click', handleGetProjectTasks)
+if (mainList && window.location.href === BASE_LOCATION )mainList.addEventListener('click', handleGetProjectTasks)

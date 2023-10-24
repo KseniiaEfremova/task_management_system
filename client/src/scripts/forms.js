@@ -1,7 +1,10 @@
+import { postNewTask, updateExistingTask } from "./requests";
+
 const form = document.querySelector('.form__control');
 const formError = document.querySelector('.form__error');
 const submitButton = document.querySelector('.submit__button');
 const submitProjectButton = document.querySelector('.submit__button-project');
+const BASE_LOCATION = 'http://localhost:1234/';
 
 
 const submitProject = (e) => {
@@ -26,20 +29,21 @@ const submitForm = (e) => {
     const project_id = form[3].value.trim();
     if (project_id !== '' && description !== '' && status !== '' && deadline !== '') {
         formError.classList.remove('active')
-        const newTask = { description, status, deadline, project_id }
-        const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
-        const project_id = JSON.parse(localStorage.getItem('task-id')['project_id'])
-        const taskToUpdate = {project_id, description, status, deadline, task_id }
-        if (window.location.href === "http://localhost:5500/src/new_task.html") {
+        if (window.location.href === BASE_LOCATION + "new_task.html") {
+            const newTask = { description, status, deadline, project_id }
+            console.log(newTask)
             postNewTask(newTask);
         } else {
+            const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
+            const project_id = JSON.parse(localStorage.getItem('task-id')['project_id'])
+            const taskToUpdate = {project_id, description, status, deadline, task_id }
             updateExistingTask(taskToUpdate)
         }
         form[0].value = '';
         form[1].value = '';
         form[2].value = '';
         form[3].value = '';
-        window.location.href = "http://localhost:5500/src/index.html"
+        // window.location.href = BASE_LOCATION
     } else {
         formError.classList.add('active')
     }
@@ -55,7 +59,7 @@ const prepopulateForm = async (task_id, project_id) => {
     form[3].value = project_id;
 }
 
-if (window.location.href === "http://localhost:5500/src/update_task.html") {
+if (window.location.href === BASE_LOCATION + "update_task.html") {
     const taskToUpdateId = JSON.parse(localStorage.getItem('task-id')['task_id']);
     const taskToUpdateProject = JSON.parse(localStorage.getItem('task-id')['project_id']);
     prepopulateForm(taskToUpdateId, taskToUpdateProject)

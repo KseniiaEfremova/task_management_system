@@ -123,9 +123,14 @@ a {
   box-shadow: 1px 1px 10px var(--primary-200);
 }
 
-.list__wrapper-inprogress .list__elem, .list__wrapper-inreview .list__elem {
+.list__wrapper-inprogress .list__elem {
   border: 1px solid var(--primary-100);
   box-shadow: 1px 1px 10px var(--primary-100);
+}
+
+.list__wrapper-inreview .list__elem {
+  border: 1px solid var(--primary-100);
+  box-shadow: 1px 1px 10px var(--secondary-200);
 }
 
 .list__wrapper-done .list__elem {
