@@ -230,7 +230,8 @@ def delete_project1(project_id):
         cursor.close()
         if db_connection:
             db_connection.close()
-
+            print("Connection closed")
+                  
 # Function to update a task
 def update_task_db(db_name, table_name, project_id, task_id, new_description, new_deadline, new_status):
     try:
