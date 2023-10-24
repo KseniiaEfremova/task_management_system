@@ -10,8 +10,8 @@ def display_projects():
         print("################################\n")
         print("All projects:")
         if data:
-            for proj_id in data:
-                print(f"{proj_id}. {data[proj_id].capitalize()}")
+            for project in data:
+                print(f"{project['proj_id']}. {project['proj_name'].capitalize()}")
         else:
             print("You don't have any projects")
     except requests.exceptions.HTTPError as errh:
