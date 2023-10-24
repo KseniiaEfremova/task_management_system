@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request, make_response
 from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status
 tasks_table = 'tasks'
+projects_table = 'projects'
 
 
 app = Flask(__name__)
@@ -25,8 +26,13 @@ def home():
 
 @app.route("/projects")
 def get_projects():
-    project_table = "projects"
-    res = dict(get_all_projects(DB_NAME, project_table))
+    projects = get_all_projects(DB_NAME, projects_table)
+    res = []
+    for project in projects:
+        id_and_name_project = dict()
+        id_and_name_project["project_id"] = project[0]
+        id_and_name_project["project_name"] = project[1]
+        res.append(id_and_name_project)
     return jsonify(res)
 
 
