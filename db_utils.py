@@ -47,6 +47,7 @@ def create_database(db_name):
         cursor, _ = get_cursor_and_connection(db_name)
         cursor.execute(
             "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(db_name))
+        
     except mysql.connector.Error as err:
         print("Failed creating database: {}".format(err))
         exit(1)
@@ -66,6 +67,7 @@ def connect_to_database_or_create_if_not_exists(db_name):
             print(err)
             exit(1)
     print(f"You are using {db_name} database.")
+
 
 def map_tuple_to_dict(collection):
     formatted_data = []
@@ -88,6 +90,9 @@ def get_all_projects(db_name, table_name):
         cursor.execute(query)
         projects = cursor.fetchall()
         cursor.close()
+    
+    except Exception as e:
+        print(e)
         
     finally:
         if db_connection:
@@ -95,6 +100,26 @@ def get_all_projects(db_name, table_name):
             print("DB connection is closed")
 
     return projects
+
+
+def get_task_by_id(db_name, table_name, project_id, task_id):
+    task = []
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        query = """SELECT * FROM {} as t WHERE t.project_id = {} AND t.task_id = {}""".format(table_name, project_id, task_id)
+        cursor.execute(query)
+        result = cursor.fetchall()
+        task = map_tuple_to_dict(result)
+        cursor.close()
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        if db_connection:
+            db_connection.close()
+
+    return task
 
 
 def get_tasks_by_status(db_name, table_name, project_id, status):
@@ -167,3 +192,18 @@ def delete_task_fromDB(task_id):
 
 
 
+def insert_new_project(db_name, table_name, project_name):
+    try:
+        cursor, db_connection = get_cursor_and_connection(db_name)
+        print("Connected to DB: %s" % db_name)
+
+        query = """INSERT INTO {} (project_name) VALUES ('{}')""".format(table_name, project_name)
+
+        cursor.execute(query)
+        db_connection.commit()
+        cursor.close()
+        print(f"\nNew project '{project_name}' has been successfully entered into the database!")
+    finally:
+        if db_connection:
+            db_connection.close()
+            print("DB connection is closed")
