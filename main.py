@@ -2,8 +2,6 @@ import requests
 import tabulate
 from datetime import datetime
 
-<<<<<<< HEAD
-=======
 
 def display_projects():
     try:
@@ -28,7 +26,6 @@ def display_projects():
         print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
 
->>>>>>> develop_2
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
