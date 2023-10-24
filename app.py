@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, make_response, request
-from db_utils import get_all_projects, get_tasks_by_status, add_new_task, DB_NAME
+from db_utils import get_all_projects, get_task_by_id, get_tasks_by_status, add_new_task, DB_NAME
 tasks_table = 'tasks'
 
 
@@ -28,7 +28,13 @@ def get_projects():
     return jsonify(res)
 
 
-@app.route("/projects/<project_id>/<status>")
+@app.route('/projects/<project_id>id/<task_id>', endpoint='get_taksks_per_project_by_id')
+def get_task_per_project_by_id(project_id, todo_id):
+    response = get_task_by_id(DB_NAME, tasks_table, project_id, todo_id)
+    return jsonify(response)
+
+
+@app.route("/projects/<project_id>/<status>", endpoint='get_tasks_per_project_by_status')
 def get_tasks_per_project_by_status(project_id, status):
     res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
     return jsonify(res)
@@ -48,7 +54,7 @@ def adding_task():
         new_task = request.get_json()
 
         if new_task:
-            table_name = new_task['table_name']
+            table_name = tasks_table
             project_id = new_task['project_id']
             description = new_task['description']
             deadline = new_task['deadline']
