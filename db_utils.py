@@ -214,7 +214,7 @@ def delete_project1(project_id):
         print(f"Connected to database {db_name}")
 
         # Query
-        query = "DELETE FROM projects WHERE project_id = %s"
+        query = """DELETE FROM projects WHERE project_id = %s"""
         cursor.execute(query, (project_id,))
         db_connection.commit()
 
