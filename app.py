@@ -113,9 +113,6 @@ def delete_task_route(task_id):
     return f"Task with ID: {task_id} successfully deleted"
 
 
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
-
 # Route to handle PUT requests for updating a task by its ID
 @app.route("/updatetask/<int:project_id>/<int:task_id>", methods=['PUT'])
 def update_task_by_id(project_id, task_id):
@@ -137,3 +134,6 @@ def update_task_by_id(project_id, task_id):
     except Exception as exc:
         print(f”An error occurred: {str(exc)}“)
         return jsonify({‘message’: ‘An error occurred’}), 500 
+    
+    if __name__ == '__main__':
+    app.run(debug=True, port=5001)
