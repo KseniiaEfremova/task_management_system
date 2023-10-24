@@ -27,7 +27,6 @@ def display_projects():
     except Exception as erre:
         print(f"Failed to retrieve data.Unexpected error occurred: {erre}")
 
-
 def tabulate_data(tasks):
     dataset = list(tasks.json())
     header = dataset[0].keys()
@@ -40,8 +39,7 @@ def get_tasks_in_project():
     statuses = ['todo', 'in progress', 'in review', 'done']
     for status in statuses:
         try:
-            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}",
-                                 headers={"content-type": "application/json"})
+            tasks = requests.get(f"http://localhost:5001/projects/{project_id}/{status}", headers= {"content-type":"application/json"})
             print(status.upper())
             tabulate_data(tasks)
         except requests.exceptions.HTTPError as error_HTTP:
@@ -52,10 +50,10 @@ def get_tasks_in_project():
             print("Timeout Error:", err_timeout)
         except requests.exceptions.RequestException as err:
             print("OOps: Something Else", err)
-
+ 
 
 def add_task(table_name, input_project_id, input_description, formatted_deadline_date, input_status):
-    """ add_task() function akes five parameters
+    """ add_task() function akes five parameters 
     creates a dictionary called new_task with five key-value pairs using the params
     sends a POST request to URL - new_task dict as the request body in JSON format
     checks the response from the server - if status code is 201, it prints success
@@ -75,19 +73,10 @@ def add_task(table_name, input_project_id, input_description, formatted_deadline
 
     if response.status_code == 201:
         print("Task added successfully!")
-        return response.json()
+        return response.json()  
     else:
         print("Failed to add task!")
-        return None
-
-
-def delete_task(task_id):
-    response = requests.delete(f"http://127.0.0.1:5001/delete_task/{int(task_id)}")
-    print(f"Response status code: {response.status_code}")
-    if response.status_code == 200 or response.status_code == 204:
-        print(f"Task with ID: {task_id} successfully deleted")
-    else:
-        print(f"Failed to delete task with ID: {task_id}")
+        return None  
 
 
 def run():
@@ -109,14 +98,14 @@ def run():
         # Please call your view all projects function here :)
         # function is called to view all existing projects
         if selection == 1:
-            pass
+            display_projects()
 
         # ====If User Selects 2 ====
         # Please call your view all tasks function here :)
         # function is called to view all tasks in a project
         elif selection == 2:
             get_tasks_in_project()
-
+            
 
         # ====If User Selects 3====
         # Please call your view add new project function here :)
@@ -167,19 +156,17 @@ def run():
             input_task_id = int(input('Please input ID of the task you would like to delete: '))
             delete_task(input_task_id)
 
-
         # ====If User Selects 0 ====
         # Task Management System is exited
         elif selection == 0:
             print('\Goodbye, you are exiting the Task Management System\n')
-
+   
         # Else, the user is informed that they made the wrong choice of number
         else:
             print("\nIncorrect choice of number, options are between 0-7 only\n")
     # Except value error - if user enters something other than a number
     except ValueError:
         print("\nInvalid input, enter a numerical digit between 0-7\n")
-
 
 if __name__ == '__main__':
     run()

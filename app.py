@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify, make_response, request
-from db_utils import get_all_projects, add_new_task, DB_NAME, delete_task_fromDB
-
+from db_utils import get_all_projects, get_tasks_by_status, add_new_task, DB_NAME, delete_task_fromDB
 tasks_table = 'tasks'
+
 
 app = Flask(__name__)
 
@@ -11,12 +11,10 @@ def handle_404(error):
     response = make_response(jsonify({'error': 'page not found'}), 404)
     return response
 
-
 @app.errorhandler(500)
 def handle_500(error):
     response = make_response(jsonify({'error': 'server is down, contact one of Coding Stars United Developer'}), 500)
     return response
-
 
 @app.route('/')
 def home():
@@ -39,7 +37,7 @@ def get_tasks_per_project_by_status(project_id, status):
 @app.route("/newtask", methods=['POST'])
 def adding_task():
     """ adding_task() function handles POST requests made to /newtask,
-    try the new_task variable receives JSON data, parses it into a Python dict
+    try the new_task variable receives JSON data, parses it into a Python dict 
     if data for new_task has been recieved - this is extracted into variables
     these are passed as params into the add_new_task() function, which is called
     new task data is and a status code of 201, indicating success.
@@ -77,3 +75,7 @@ if __name__ == '__main__':
 
 
 
+    
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
