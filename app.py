@@ -1,6 +1,7 @@
-from flask import Flask, render_template, jsonify, request, make_response
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, delete_project
+from flask import Flask, jsonify, request, make_response
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_project1
 tasks_table = 'tasks'
+projects_table = 'projects'
 
 
 app = Flask(__name__)
@@ -18,19 +19,25 @@ def handle_500(error):
     return response
 
 
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-
 @app.route("/projects")
 def get_projects():
-    project_table = "projects"
-    res = dict(get_all_projects(DB_NAME, project_table))
+    projects = get_all_projects(DB_NAME, projects_table)
+    res = []
+    for project in projects:
+        id_and_name_project = dict()
+        id_and_name_project["project_id"] = project[0]
+        id_and_name_project["project_name"] = project[1]
+        res.append(id_and_name_project)
     return jsonify(res)
 
 
-@app.route("/projects/<project_id>/<status>")
+@app.route('/projects/<project_id>id/<task_id>', endpoint='get_taksks_per_project_by_id')
+def get_task_per_project_by_id(project_id, todo_id):
+    response = get_task_by_id(DB_NAME, tasks_table, project_id, todo_id)
+    return jsonify(response)
+
+
+@app.route("/projects/<project_id>/<status>", endpoint='get_tasks_per_project_by_status')
 def get_tasks_per_project_by_status(project_id, status):
     res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
     return jsonify(res)
@@ -78,7 +85,7 @@ def adding_task():
         new_task = request.get_json()
 
         if new_task:
-            table_name = new_task['table_name']
+            table_name = tasks_table
             project_id = new_task['project_id']
             description = new_task['description']
             deadline = new_task['deadline']
