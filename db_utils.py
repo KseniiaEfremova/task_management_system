@@ -244,3 +244,26 @@ def delete_project_from_DB(db_name, table_name, project_id):
         cursor.close()
         if db_connection:
             db_connection.close()
+
+
+def update_task(db_name, table_name, task, task_id):
+	db_connection = None
+	try:
+		cursor, db_connection = get_cursor_and_connection(db_name)
+		query = "UPDATE {} SET title=%s, description=%s, status=%s, deadline=%s WHERE task_id=%s".format(table_name)
+		cursor.execute(query, (task['title'], task['description'], task['status'], task['deadline'], task_id))
+
+		result = cursor.fetchall()
+		task = map_tuple_to_dict(result)
+		db_connection.commit()
+		cursor.close()
+
+	except Exception as e:
+		print(e)
+
+	finally:
+		if db_connection:
+			db_connection.close()
+			print("Connection closed")
+
+	return task

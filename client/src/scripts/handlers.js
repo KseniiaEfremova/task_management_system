@@ -31,8 +31,7 @@ export const createListElem = (listElements, list) => {
             const date = new Date(listEl.deadline)
             listElem.insertAdjacentHTML(
                 'afterbegin', createTaskElem(listEl, date))
-         }
-        console.log(list)    
+         } 
         list.append(listElem)
     }
 }
