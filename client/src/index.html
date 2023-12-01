@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles/styles.css" />
+		<script src="./scripts/utils.js" defer type="module"></script>
+		<script src="./scripts/requests.js" defer type="module"></script>
+		<script src="./scripts/forms.js" defer type="module"></script>
+		<script src="./scripts/handlers.js" defer type="module"></script>
+		<script src="./scripts/app.js" defer type="module"></script>
+		<title>Task Management App</title>
+	</head>
+	<body>
+		<nav class="nav__container">
+			<ul class="list__container">
+				<li class="list__item">
+					<a class="list__item-link" href="/">
+						<img src="../assets/home.png" alt="home" /><span
+							>Home</span
+						></a
+					>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/src/about.html">
+						<img src="../assets/about.png" alt="about" /><span
+							>About</span
+						></a
+					>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/src/authors.html">
+						<img src="../assets/author.png" alt="authors" /><span
+							>Authors</span
+						></a
+					>
+				</li>
+			</ul>
+		</nav>
+		<main class="main__container">
+			<section class="heading__section">
+				<h1 class="main__heading">Task management system</h1>
+				<a class="main__button" href="/src/new_task.html"
+					>+ Add New Task</a
+				>
+			</section>
+
+			<section class="main__section">
+				<form class="form__control-project" action="#" method="POST">
+					<div class="input__control-project">
+						<label for="title"></label>
+						<input
+							type="text"
+							placeholder="Project title"
+							name="title"
+							class="input__project"
+						/>
+
+						<button
+							class="main__button submit__button submit__button-project"
+							type="submit"
+						>
+							+ Add project
+						</button>
+					</div>
+					<p class="form__error">Fields cannot be empty</p>
+				</form>
+				<ul class="section__list-wrapper"></ul>
+			</section>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="/index.3b8f328d.css">
+		<script src="/index.4f4241d2.js" defer=""></script>
+		<script src="/index.33e1c7a1.js" defer=""></script>
+		<script src="/index.cff744eb.js" defer=""></script>
+		<script src="/index.a18026e3.js" defer=""></script>
+		<script src="/index.a56319bd.js" defer=""></script>
+		<title>Add New Task</title>
+	</head>
+	<body>
+		<nav class="nav__container">
+			<ul class="list__container">
+				<li class="list__item">
+					<a class="list__item-link" href="/"><img src="/home.9c88686c.png" alt="home"><span>Home</span></a>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/about">
+						<img src="/about.fd591f3f.png" alt="about"><span>About</span></a>
+				</li>
+				<li class="list__item">
+					<a class="list__item-link" href="/authors">
+						<img src="/author.5bf0c28a.png" alt="authors"><span>Authors</span></a>
+				</li>
+			</ul>
+		</nav>
+		<main class="main__container">
+			<section class="form__section">
+        		<h1 class="main__heading">Add New Task</h1>
+				<form class="form__control" action="#" method="POST">
+					<div class="input__control">
+						<label for="desc">Description</label>
+						<textarea placeholder="Task description" name="desc" rows="5"></textarea>
+					</div>
+					<div class="input__control">
+						<label for="status">Status</label>
+						<select placeholder="Task status" name="status">
+							<option value="todo">todo</option>
+							<option value="in progress">in progress</option>
+							<option value="in review">in review</option>
+							<option value="done">done</option>
+						</select>
+					</div>
+					<div class="input__control">
+						<label for="deadline">Deadline</label>
+						<input type="date" name="deadline">
+					</div>
+					<div class="input__control">
+						<label for="project">Project Id</label>
+						<input type="number" placeholder="Project Id" name="project">
+					</div>
+
+				<button class="main__button submit__button submit__button-task" type="submit"> + Add Task</button>
+				<p class="form__error">Fields cannot be empty</p>
+			</form>
+			</section>
+		</main>
+	</body>
+</html>

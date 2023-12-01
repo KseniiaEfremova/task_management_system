@@ -1,10 +1,13 @@
-from flask import Flask, jsonify, request, make_response
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1
+from flask import Flask, jsonify, make_response, request
+from flask_cors import CORS
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project_from_DB, update_task_db
 tasks_table = 'tasks'
 projects_table = 'projects'
 
 
 app = Flask(__name__)
+CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:1234"}})
 
 
 @app.errorhandler(404)
@@ -21,26 +24,20 @@ def handle_500(error):
 
 @app.route("/projects")
 def get_projects():
-    projects = get_all_projects(DB_NAME, projects_table)
-    res = []
-    for project in projects:
-        id_and_name_project = dict()
-        id_and_name_project["project_id"] = project[0]
-        id_and_name_project["project_name"] = project[1]
-        res.append(id_and_name_project)
-    return jsonify(res)
+    response = get_all_projects(DB_NAME, projects_table)
+    return jsonify(response)
 
 
-@app.route('/projects/<project_id>id/<task_id>', endpoint='get_taksks_per_project_by_id')
-def get_task_per_project_by_id(project_id, todo_id):
-    response = get_task_by_id(DB_NAME, tasks_table, project_id, todo_id)
+@app.route('/projects/<project_id>/id/<task_id>', endpoint='get_tasks_per_project_by_id')
+def get_task_per_project_by_id(project_id, task_id):
+    response = get_task_by_id(DB_NAME, tasks_table, project_id, task_id)
     return jsonify(response)
 
 
 @app.route("/projects/<project_id>/<status>", endpoint='get_tasks_per_project_by_status')
 def get_tasks_per_project_by_status(project_id, status):
-    res = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
-    return jsonify(res)
+    response = get_tasks_by_status(DB_NAME, tasks_table, project_id, status)
+    return jsonify(response)
 
 
 @app.route("/newproject", methods=['POST'])
@@ -56,9 +53,9 @@ def add_project():
     """
     try:
         new_project = request.get_json()
-
+        print(new_project)
         if new_project:
-            table_name = new_project['table_name']
+            table_name = projects_table
             project_name = new_project['project_name']
 
             insert_new_project(DB_NAME, table_name, project_name)
@@ -103,14 +100,23 @@ def adding_task():
 
 @app.route('/delete_project/<int:project_id>', methods=['DELETE'])
 def delete_project_route(project_id):
-    result = delete_project1(project_id)
+    result = delete_project_from_DB(DB_NAME, project_id)
     return jsonify(result)
 
 
 @app.route("/delete_task/<int:task_id>", methods=['DELETE'])
 def delete_task_route(task_id):
-    delete_task_fromDB(task_id)
-    return f"Task with ID: {task_id} successfully deleted"
+    table_name = tasks_table
+    result = delete_task_fromDB(DB_NAME, table_name, task_id)
+    return jsonify(result)
+
+
+@app.route('/update_task/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    table_name = tasks_table
+    task_to_update = request.get_json(force=True)
+    update_task_db(DB_NAME, table_name, task_to_update, task_id)
+    return jsonify(task_to_update)
 
 
 if __name__ == '__main__':
