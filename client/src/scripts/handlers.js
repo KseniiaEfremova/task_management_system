@@ -119,8 +119,8 @@ export const handleGetProjectTasks = (e) => {
 
 export const handleDeleteProject = (e) => {
     if (e.target.getAttribute('data-id').includes('delete')) {
-        const projectId = { project_id: +(e.target.getAttribute('data-id').slice(7)) }
-        deleteProject(projectId['project_id']);
+        const projectId = +(e.target.getAttribute('data-id').slice(7))
+        deleteProject(projectId);
         const projectLists = mainList.childNodes;
         for (list of projectLists) {
             while (list.lastElementChild) {

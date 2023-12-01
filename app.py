@@ -99,8 +99,7 @@ def adding_task():
 
 @app.route('/delete_project/<int:project_id>', methods=['DELETE'])
 def delete_project_route(project_id):
-    table_name = projects_table
-    result = delete_project_from_DB(DB_NAME, table_name, project_id)
+    result = delete_project_from_DB(DB_NAME, project_id)
     return jsonify(result)
 
 

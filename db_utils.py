@@ -163,9 +163,10 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
     """
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
-        print(f'Connected to database: {db_name}')
+
         query = """INSERT INTO {} (project_id, description, deadline, status) 
         VALUES ('{}', '{}', '{}', '{}')""".format(table_name, project_id, description, deadline, status)
+
         cursor.execute(query)
         db_connection.commit()
         cursor.close()
@@ -177,13 +178,12 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
     finally:
         if db_connection:
             db_connection.close()
-            print("Connection closed")
 
 
 def delete_task_fromDB(db_name, table_name, task_id):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
-        print(f"Connected to database {db_name}")
+
         query = """DELETE FROM {} WHERE task_id = '{}'""".format(table_name, int(task_id))
         cursor.execute(query)
         db_connection.commit()
@@ -197,15 +197,12 @@ def delete_task_fromDB(db_name, table_name, task_id):
     finally:
         if db_connection:
             db_connection.close()
-            print("Connection closed")
-
 
 
 def insert_new_project(db_name, table_name, project_name):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
-        print("Connected to DB: %s" % db_name)
-        print(table_name)
+
         query = "INSERT INTO {} (project_name) VALUES ('{}')".format(table_name, project_name)
 
         cursor.execute(query)
@@ -219,15 +216,12 @@ def insert_new_project(db_name, table_name, project_name):
     finally:
         if db_connection:
             db_connection.close()
-            print("DB connection is closed")
 
-def delete_project_from_DB(db_name, table_name, project_id):
+
+def delete_project_from_DB(db_name, project_id):
     try:
-        db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
-        print(f"Connected to database {db_name}")
 
-        # Query
         query = "DELETE FROM projects WHERE project_id = %s"
         cursor.execute(query, (project_id,))
         db_connection.commit()
@@ -247,7 +241,6 @@ def delete_project_from_DB(db_name, table_name, project_id):
 
 
 def update_task_db(db_name, table_name, task, task_id):
-	db_connection = None
 	try:
 		cursor, db_connection = get_cursor_and_connection(db_name)
 		query = "UPDATE {} SET description=%s, status=%s, deadline=%s WHERE task_id=%s".format(table_name)
@@ -258,10 +251,9 @@ def update_task_db(db_name, table_name, task, task_id):
 		db_connection.commit()
 		cursor.close()
 
-	except Exception as e:
-		print(e)
+	except Exception as exc:
+		print(exc)
 
 	finally:
 		if db_connection:
 			db_connection.close()
-			print("Connection closed")

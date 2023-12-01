@@ -635,6 +635,7 @@ const createListElem = (listElements, list)=>{
 };
 const renderProjects = async ()=>{
     const projects = await (0, _requests.getProjects)();
+    console.log(projects);
     createListElem(projects, mainList);
 };
 const renderTasksByStatus = async ()=>{

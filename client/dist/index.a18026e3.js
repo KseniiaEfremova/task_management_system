@@ -687,10 +687,8 @@ const handleGetProjectTasks = (e)=>{
 };
 const handleDeleteProject = (e)=>{
     if (e.target.getAttribute("data-id").includes("delete")) {
-        const projectId = {
-            project_id: +e.target.getAttribute("data-id").slice(7)
-        };
-        (0, _requests.deleteProject)(projectId["project_id"]);
+        const projectId = +e.target.getAttribute("data-id").slice(7);
+        (0, _requests.deleteProject)(projectId);
         const projectLists = (0, _utils.mainList).childNodes;
         for (list of projectLists)while(list.lastElementChild)list.removeChild(list.lastElementChild);
         renderProjects();
