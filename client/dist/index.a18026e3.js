@@ -685,13 +685,13 @@ const handleGetProjectTasks = (e)=>{
         window.location.href = (0, _utils.BASE_LOCATION) + "tasks.html";
     } else return;
 };
-const handleDeleteProject = (e)=>{
+const handleDeleteProject = async (e)=>{
     if (e.target.getAttribute("data-id").includes("delete")) {
         const projectId = +e.target.getAttribute("data-id").slice(7);
         (0, _requests.deleteProject)(projectId);
         const projectLists = (0, _utils.mainList).childNodes;
         for (list of projectLists)while(list.lastElementChild)list.removeChild(list.lastElementChild);
-        renderProjects();
+        await renderProjects();
     } else return;
 };
 

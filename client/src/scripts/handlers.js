@@ -117,7 +117,7 @@ export const handleGetProjectTasks = (e) => {
     } 
 }
 
-export const handleDeleteProject = (e) => {
+export const handleDeleteProject = async (e) => {
     if (e.target.getAttribute('data-id').includes('delete')) {
         const projectId = +(e.target.getAttribute('data-id').slice(7))
         deleteProject(projectId);
@@ -127,7 +127,7 @@ export const handleDeleteProject = (e) => {
                 list.removeChild(list.lastElementChild);
             }
         }
-       renderProjects();
+        await renderProjects();
     } else {
         return
     }
