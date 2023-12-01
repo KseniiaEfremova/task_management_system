@@ -4,6 +4,7 @@ const headers = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     "Access-Control-Origin": "*",
+                    "Access-Control-Request-Method": "*"
                 }
 
 const getResponse = async (params) => {

@@ -7,6 +7,7 @@ projects_table = 'projects'
 
 app = Flask(__name__)
 CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:1234"}})
 
 
 @app.errorhandler(404)
