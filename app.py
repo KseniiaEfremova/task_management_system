@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project_from_DB
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project_from_DB, update_task_db
 tasks_table = 'tasks'
 projects_table = 'projects'
 
@@ -109,6 +109,15 @@ def delete_task_route(task_id):
     table_name = tasks_table
     result = delete_task_fromDB(DB_NAME, table_name, task_id)
     return jsonify(result)
+
+
+@app.route('/update_task/<int:task_id>', methods=['PUT'])
+def update_task():
+    table_name = tasks_table
+    task_to_update = request.get_json(force=True)
+    task_id = task_to_update['todo_id']
+    update_task_db(DB_NAME, table_name, task_to_update, task_id)
+    return jsonify(task_to_update)
 
 
 if __name__ == '__main__':

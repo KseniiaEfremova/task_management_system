@@ -246,7 +246,7 @@ def delete_project_from_DB(db_name, table_name, project_id):
             db_connection.close()
 
 
-def update_task(db_name, table_name, task, task_id):
+def update_task_db(db_name, table_name, task, task_id):
 	db_connection = None
 	try:
 		cursor, db_connection = get_cursor_and_connection(db_name)
