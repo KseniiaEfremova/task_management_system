@@ -107,8 +107,8 @@ def delete_project_route(project_id):
 @app.route("/delete_task/<int:task_id>", methods=['DELETE'])
 def delete_task_route(task_id):
     table_name = tasks_table
-    delete_task_fromDB(DB_NAME, table_name, task_id)
-    return f"Task with ID: {task_id} successfully deleted"
+    result = delete_task_fromDB(DB_NAME, table_name, task_id)
+    return jsonify(result)
 
 
 if __name__ == '__main__':

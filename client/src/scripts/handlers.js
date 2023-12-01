@@ -1,4 +1,4 @@
-import { deleteTask, deleteProject, getProjects } from './requests';
+import { deleteTask, deleteProject, getProjects, getTasksByStatus } from './requests';
 import { BASE_LOCATION, taskLists, mainList } from './utils';
 
 export const BASE_LOCATION = 'http://localhost:1234/';
@@ -35,6 +35,23 @@ export const createListElem = (listElements, list) => {
         console.log(list)    
         list.append(listElem)
     }
+}
+
+export const createTaskElem = (listElem, date) => {
+    return  `<h3 class="list__elem-title">${listElem.description}</h3>
+                <div class="list__elem-just-between">
+                    <h4 class="list__elem-status">${listElem.status}</h4>
+                    <p class="list__elem-date">${date.toJSON().split('T')[0]}</p>
+                </div>
+                <div class="list__elem-just-between">
+                    <a href='#' data-id="update-${listElem.task_id}-${listElem.project_id}">
+                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}"/>
+                    </a>
+                    <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
+                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}"/>
+                    </button>
+                </div>
+            `
 }
 
 export const renderTasksByStatus = async () => {

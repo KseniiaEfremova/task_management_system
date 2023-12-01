@@ -582,6 +582,7 @@ parcelHelpers.export(exports, "mainList", ()=>mainList);
 parcelHelpers.export(exports, "taskLists", ()=>taskLists);
 parcelHelpers.export(exports, "createProjectElem", ()=>createProjectElem);
 parcelHelpers.export(exports, "createListElem", ()=>createListElem);
+parcelHelpers.export(exports, "createTaskElem", ()=>createTaskElem);
 parcelHelpers.export(exports, "renderTasksByStatus", ()=>renderTasksByStatus);
 parcelHelpers.export(exports, "renderProjects", ()=>renderProjects);
 parcelHelpers.export(exports, "handleUpdateTask", ()=>handleUpdateTask);
@@ -621,16 +622,32 @@ const createListElem = (listElements, list)=>{
         list.append(listElem);
     }
 };
+const createTaskElem = (listElem, date)=>{
+    return `<h3 class="list__elem-title">${listElem.description}</h3>
+                <div class="list__elem-just-between">
+                    <h4 class="list__elem-status">${listElem.status}</h4>
+                    <p class="list__elem-date">${date.toJSON().split("T")[0]}</p>
+                </div>
+                <div class="list__elem-just-between">
+                    <a href='#' data-id="update-${listElem.task_id}-${listElem.project_id}">
+                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}"/>
+                    </a>
+                    <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
+                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}"/>
+                    </button>
+                </div>
+            `;
+};
 const renderTasksByStatus = async ()=>{
     const projectId = JSON.parse(localStorage.getItem("project-id"))["project_id"];
     const taskListTodo = document.querySelector(".list__wrapper-todo");
     const taskListInProgress = document.querySelector(".list__wrapper-inprogress");
     const taskListInReview = document.querySelector(".list__wrapper-inreview");
     const taskListDone = document.querySelector(".list__wrapper-done");
-    const todoTasks = await getTasksByStatus(projectId, "todo");
-    const inReviewTasks = await getTasksByStatus(projectId, "in review");
-    const inProgressTasks = await getTasksByStatus(projectId, "in progress");
-    const doneTasks = await getTasksByStatus(projectId, "done");
+    const todoTasks = await (0, _requests.getTasksByStatus)(projectId, "todo");
+    const inReviewTasks = await (0, _requests.getTasksByStatus)(projectId, "in review");
+    const inProgressTasks = await (0, _requests.getTasksByStatus)(projectId, "in progress");
+    const doneTasks = await (0, _requests.getTasksByStatus)(projectId, "done");
     if (todoTasks) createListElem(todoTasks, taskListTodo);
     if (inReviewTasks) createListElem(inReviewTasks, taskListInReview);
     if (inProgressTasks) createListElem(inProgressTasks, taskListInProgress);
