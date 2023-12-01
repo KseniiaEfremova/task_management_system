@@ -34,9 +34,11 @@ const submitForm = (e) => {
             const newTask = { description, status, deadline, project_id }
             postNewTask(newTask);
         } else {
-            const task_id = JSON.parse(localStorage.getItem('task-id'))['task_id']
-            const project_id = JSON.parse(localStorage.getItem('task-id')['project_id'])
-            const taskToUpdate = {project_id, description, status, deadline, task_id }
+            const taskFromLocal = JSON.parse(localStorage.getItem('task-id'))
+            const projectFromLocal = JSON.parse(localStorage.getItem('project-id'))
+            const task_id = taskFromLocal.task_id
+            const project_id = projectFromLocal.project_id
+            const taskToUpdate = { project_id, description, status, deadline, task_id }
             updateExistingTask(taskToUpdate)
         }
         form[0].value = '';

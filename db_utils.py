@@ -250,8 +250,8 @@ def update_task_db(db_name, table_name, task, task_id):
 	db_connection = None
 	try:
 		cursor, db_connection = get_cursor_and_connection(db_name)
-		query = "UPDATE {} SET title=%s, description=%s, status=%s, deadline=%s WHERE task_id=%s".format(table_name)
-		cursor.execute(query, (task['title'], task['description'], task['status'], task['deadline'], task_id))
+		query = "UPDATE {} SET description=%s, status=%s, deadline=%s WHERE task_id=%s".format(table_name)
+		cursor.execute(query, (task['description'], task['status'], task['deadline'], task_id))
 
 		result = cursor.fetchall()
 		task = map_tuple_to_dict(result)
@@ -265,5 +265,3 @@ def update_task_db(db_name, table_name, task, task_id):
 		if db_connection:
 			db_connection.close()
 			print("Connection closed")
-
-	return task

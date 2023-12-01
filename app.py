@@ -112,10 +112,9 @@ def delete_task_route(task_id):
 
 
 @app.route('/update_task/<int:task_id>', methods=['PUT'])
-def update_task():
+def update_task(task_id):
     table_name = tasks_table
     task_to_update = request.get_json(force=True)
-    task_id = task_to_update['todo_id']
     update_task_db(DB_NAME, table_name, task_to_update, task_id)
     return jsonify(task_to_update)
 

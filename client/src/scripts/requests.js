@@ -48,7 +48,6 @@ export const getTaskById = async (taskId, projectId) => {
         throw new Error('Could not fetch this one!');
     }
         const task = await response.json();
-        console.log(task)
         return task
     } catch (err) {
         console.log(err);
@@ -90,8 +89,10 @@ export const postNewProject = (newProject) => {
 }
 
 export const updateExistingTask = (taskToUpdate) => {
+    console.log(taskToUpdate)
+    const task_id = taskToUpdate.task_id
     const params = {
-        endpointUrl: 'update_task',
+        endpointUrl: `update_task/${task_id}`,
         method: 'PUT',
         body: taskToUpdate,
         errorMessage: 'Could not update this task!'
