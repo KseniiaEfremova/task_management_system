@@ -689,8 +689,7 @@ const handleDeleteProject = async (e)=>{
     if (e.target.getAttribute("data-id").includes("delete")) {
         const projectId = +e.target.getAttribute("data-id").slice(7);
         (0, _requests.deleteProject)(projectId);
-        const projectLists = (0, _utils.mainList).childNodes;
-        for (list of projectLists)while(list.lastElementChild)list.removeChild(list.lastElementChild);
+        while((0, _utils.mainList).lastElementChild)(0, _utils.mainList).removeChild((0, _utils.mainList).lastElementChild);
         await renderProjects();
     } else return;
 };

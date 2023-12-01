@@ -55,8 +55,9 @@ export const createListElem = (listElements, list) => {
 
 export const renderProjects = async () => {
     const projects = await getProjects();
-    console.log(projects)
-    createListElem(projects, mainList)
+    if (projects.length > 0) {
+        createListElem(projects, mainList)
+    }
 }
 
 export const renderTasksByStatus = async () => {

@@ -635,8 +635,7 @@ const createListElem = (listElements, list)=>{
 };
 const renderProjects = async ()=>{
     const projects = await (0, _requests.getProjects)();
-    console.log(projects);
-    createListElem(projects, mainList);
+    if (projects.length > 0) createListElem(projects, mainList);
 };
 const renderTasksByStatus = async ()=>{
     const projectId = JSON.parse(localStorage.getItem("project-id"))["project_id"];

@@ -121,12 +121,9 @@ export const handleDeleteProject = async (e) => {
     if (e.target.getAttribute('data-id').includes('delete')) {
         const projectId = +(e.target.getAttribute('data-id').slice(7))
         deleteProject(projectId);
-        const projectLists = mainList.childNodes;
-        for (list of projectLists) {
-            while (list.lastElementChild) {
-                list.removeChild(list.lastElementChild);
+        while (mainList.lastElementChild) {
+                mainList.removeChild(mainList.lastElementChild);
             }
-        }
         await renderProjects();
     } else {
         return
