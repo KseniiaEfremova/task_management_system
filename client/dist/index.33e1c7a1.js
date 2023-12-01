@@ -589,7 +589,8 @@ const BASE_URL = "http://127.0.0.1:5001/";
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
-    "Access-Control-Origin": "*"
+    "Access-Control-Origin": "*",
+    "Access-Control-Request-Method": "*"
 };
 const getResponse = async (params)=>{
     const { endpointUrl, method, body, errorMessage } = params;
