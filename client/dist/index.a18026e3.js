@@ -664,7 +664,6 @@ const handleUpdateTask = (e)=>{
         };
         localStorage.setItem("task-id", JSON.stringify(taskId));
         window.location.href = (0, _utils.BASE_LOCATION) + "update_task.html";
-        console.log("updating task");
     } else return;
 };
 const handleDeleteTask = (e)=>{
@@ -684,7 +683,6 @@ const handleGetProjectTasks = (e)=>{
         };
         localStorage.setItem("project-id", JSON.stringify(projectId));
         window.location.href = (0, _utils.BASE_LOCATION) + "tasks.html";
-        console.log(projectId);
     } else return;
 };
 const handleDeleteProject = (e)=>{

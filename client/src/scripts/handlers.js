@@ -86,8 +86,7 @@ export const handleUpdateTask = (e) => {
     if (e.target.getAttribute('data-id').includes('update')) {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
         localStorage.setItem('task-id', JSON.stringify(taskId));
-        window.location.href = BASE_LOCATION + "update_task.html"; 
-        console.log('updating task')
+        window.location.href = BASE_LOCATION + 'update_task.html'; 
     } else {
         return
     } 
@@ -101,9 +100,8 @@ export const handleDeleteTask = (e) => {
             while (list.lastElementChild) {
                 list.removeChild(list.lastElementChild);
             }
-        }
-       
-       renderTasksByStatus();
+        } 
+        renderTasksByStatus();
     } else {
         return
     }
@@ -114,7 +112,6 @@ export const handleGetProjectTasks = (e) => {
         const projectId = { project_id: +(e.target.getAttribute('data-id').slice(8)) };
         localStorage.setItem('project-id', JSON.stringify(projectId));
         window.location.href = BASE_LOCATION + 'tasks.html'; 
-        console.log(projectId)
     } else {
         return
     } 
@@ -130,7 +127,6 @@ export const handleDeleteProject = (e) => {
                 list.removeChild(list.lastElementChild);
             }
         }
-       
        renderProjects();
     } else {
         return

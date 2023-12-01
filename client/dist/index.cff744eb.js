@@ -632,8 +632,7 @@ const submitForm = (e)=>{
 };
 const prepopulateForm = async (task_id, project_id)=>{
     const taskToUpdate = await (0, _requests.getTaskById)(task_id, project_id);
-    console.log(taskToUpdate);
-    const { description, status, deadline } = taskToUpdate[0];
+    const { description, status, deadline } = taskToUpdate;
     date = new Date(deadline);
     form[0].value = description;
     form[1].value = status;
