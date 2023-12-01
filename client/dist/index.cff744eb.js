@@ -575,21 +575,24 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"298UJ":[function(require,module,exports) {
+var _requests = require("./requests");
 const form = document.querySelector(".form__control");
 const formError = document.querySelector(".form__error");
-const submitButton = document.querySelector(".submit__button");
+const submitTaskButton = document.querySelector(".submit__button-task");
 const submitProjectButton = document.querySelector(".submit__button-project");
+const BASE_LOCATION = "http://localhost:1234/";
 const submitProject = (e)=>{
     e.preventDefault();
     const projectForm = document.querySelector(".form__control-project");
-    const project_id = projectForm[0].value.trim();
-    if (project_id !== "") {
+    const project_name = projectForm[0].value.trim();
+    if (project_name !== "") {
         formError.classList.remove("active");
         const newProject = {
-            project_id
+            project_name
         };
-        postNewProject(newProject);
-        form[0].value = "";
+        (0, _requests.postNewProject)(newProject);
+        projectForm[0].value = "";
+        window.location.href = BASE_LOCATION;
     } else formError.classList.add("active");
 };
 const submitForm = (e)=>{
@@ -600,28 +603,31 @@ const submitForm = (e)=>{
     const project_id = form[3].value.trim();
     if (project_id !== "" && description !== "" && status !== "" && deadline !== "") {
         formError.classList.remove("active");
-        const newTask = {
-            description,
-            status,
-            deadline,
-            project_id
-        };
-        const task_id = JSON.parse(localStorage.getItem("task-id"))["task_id"];
-        const project_id = JSON.parse(localStorage.getItem("task-id")["project_id"]);
-        const taskToUpdate = {
-            project_id,
-            description,
-            status,
-            deadline,
-            task_id
-        };
-        if (window.location.href === "http://localhost:5500/src/new_task.html") postNewTask(newTask);
-        else updateExistingTask(taskToUpdate);
+        if (window.location.href === BASE_LOCATION + "new_task.html") {
+            const newTask = {
+                description,
+                status,
+                deadline,
+                project_id
+            };
+            (0, _requests.postNewTask)(newTask);
+        } else {
+            const task_id = JSON.parse(localStorage.getItem("task-id"))["task_id"];
+            const project_id = JSON.parse(localStorage.getItem("task-id")["project_id"]);
+            const taskToUpdate = {
+                project_id,
+                description,
+                status,
+                deadline,
+                task_id
+            };
+            (0, _requests.updateExistingTask)(taskToUpdate);
+        }
         form[0].value = "";
         form[1].value = "";
         form[2].value = "";
         form[3].value = "";
-        window.location.href = "http://localhost:5500/src/index.html";
+        window.location.href = BASE_LOCATION;
     } else formError.classList.add("active");
 };
 const prepopulateForm = async (task_id, project_id)=>{
@@ -633,14 +639,14 @@ const prepopulateForm = async (task_id, project_id)=>{
     form[2].value = date.toJSON().split("T")[0];
     form[3].value = project_id;
 };
-if (window.location.href === "http://localhost:5500/src/update_task.html") {
+if (window.location.href === BASE_LOCATION + "update_task.html") {
     const taskToUpdateId = JSON.parse(localStorage.getItem("task-id")["task_id"]);
     const taskToUpdateProject = JSON.parse(localStorage.getItem("task-id")["project_id"]);
     prepopulateForm(taskToUpdateId, taskToUpdateProject);
 }
-if (submitButton) submitButton.addEventListener("click", submitForm);
+if (submitTaskButton) submitTaskButton.addEventListener("click", submitForm);
 if (submitProjectButton) submitProjectButton.addEventListener("click", submitProject);
 
-},{}]},["bO0RY","298UJ"], "298UJ", "parcelRequiree8ef")
+},{"./requests":"dY7Is"}]},["bO0RY","298UJ"], "298UJ", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.cff744eb.js.map

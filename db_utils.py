@@ -20,7 +20,7 @@ def connect_to_mysql_database(db_name):
             host=host,
             user=user,
             passwd=password,
-            auth_plugin='mysql_native_password',
+            # auth_plugin='mysql_native_password',
             database=db_name
         )
         return db_connection
@@ -92,6 +92,8 @@ def map_project(collection):
 
 
 def get_all_projects(db_name, table_name):
+    db_connection = None
+    projects = []
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
         print("Connected to DB: %s" % db_name)
@@ -178,14 +180,11 @@ def add_new_task(db_name, table_name, project_id, description, deadline, status)
             print("Connection closed")
 
 
-def delete_task_fromDB(task_id):
+def delete_task_fromDB(db_name, table_name, task_id):
     try:
-        db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)
         print(f"Connected to database {db_name}")
-
-        # Query deleting the task with ID provided by the user from the db
-        query = """DELETE FROM tasks WHERE TASK_id = '{x}'""".format(x=task_id)
+        query = """DELETE FROM {} WHERE task_id = '{}'""".format(table_name, int(task_id))
         cursor.execute(query)
         db_connection.commit()
 
@@ -222,7 +221,7 @@ def insert_new_project(db_name, table_name, project_name):
             db_connection.close()
             print("DB connection is closed")
 
-def delete_project1():
+def delete_project_from_DB(db_name, table_name, project_id):
     try:
         db_name = 'task_management_system'
         cursor, db_connection = get_cursor_and_connection(db_name)

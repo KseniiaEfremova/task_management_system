@@ -1,18 +1,16 @@
 import { getProjects, getTasksByStatus } from './requests';
 import { handleGetProjectTasks, handleDeleteProject, handleDeleteTask, handleUpdateTask } from './handlers';
-const mainList = document.querySelector('.section__list-wrapper');
-const taskLists = document.querySelectorAll('.list__wrapper');
-const deleteProjectButton = document.querySelector('.list__delete-project');
-const BASE_LOCATION = 'http://localhost:1234/';
+export const BASE_LOCATION = 'http://localhost:1234/';
+export const mainList = document.querySelector('.section__list-wrapper');
+export const taskLists = document.querySelectorAll('.list__wrapper');
 
-
-const createProjectElem = (listElem) => {
+export const createProjectElem = (listElem) => {
     return `
                 <h3 class="list__elem-title">${listElem['project_name']}</h3>
                 <p class="list__elem-desc">${listElem['project_id']}</p>
                 <div class="list__elem-just-between">
-                    <button data-id="delete-${listElem.project_id}" class="list__delete-project">
-                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" class="list__delete-project"/>
+                    <button data-id="delete-${listElem.project_id}">
+                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" />
                     </button>
                       <button data-id="project-${listElem.project_id}" type="button">
                         <img class="list__elem-img" src='/update.eaa90a6d.png' alt='update' data-id="project-${listElem.project_id}"/>
@@ -21,8 +19,7 @@ const createProjectElem = (listElem) => {
             </a>
             `}
 
-
-const createTaskElem = (listElem, date) => {
+export const createTaskElem = (listElem, date) => {
     return  `<h3 class="list__elem-title">${listElem.description}</h3>
                 <div class="list__elem-just-between">
                     <h4 class="list__elem-status">${listElem.status}</h4>
@@ -30,16 +27,16 @@ const createTaskElem = (listElem, date) => {
                 </div>
                 <div class="list__elem-just-between">
                     <a href='#' data-id="update-${listElem.task_id}-${listElem.project_id}">
-                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}-${listElem.project_id}"/>
+                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}"/>
                     </a>
                     <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
-                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}"/>
+                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}"/>
                     </button>
                 </div>
             `
 }
 
-const createListElem = (listElements, list) => {
+export const createListElem = (listElements, list) => {
      for (const listEl of listElements) {
         const listElem = document.createElement('li')
         listElem.classList.add('list__elem')
@@ -56,12 +53,12 @@ const createListElem = (listElements, list) => {
     }
 }
 
-const renderProjects = async () => {
+export const renderProjects = async () => {
     const projects = await getProjects();
     createListElem(projects, mainList)
 }
 
-const renderTasksByStatus = async () => {
+export const renderTasksByStatus = async () => {
     const projectId = JSON.parse(localStorage.getItem('project-id'))['project_id'];
     const taskListTodo = document.querySelector('.list__wrapper-todo');
     const taskListInProgress = document.querySelector('.list__wrapper-inprogress');
@@ -86,9 +83,10 @@ const renderTasksByStatus = async () => {
 }
 
 if (window.location.href === BASE_LOCATION) renderProjects();
-if (window.location.href === BASE_LOCATION + 'tasks') renderTasksByStatus();
+if (window.location.href === BASE_LOCATION + 'tasks.html') renderTasksByStatus();
 
 if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleDeleteTask));
 if (taskLists) taskLists.forEach((list) => list.addEventListener('click', handleUpdateTask));
-if (deleteProjectButton) deleteProjectButton.addEventListener('click', handleDeleteProject);
-if (mainList && window.location.href === BASE_LOCATION )mainList.addEventListener('click', handleGetProjectTasks)
+
+if (mainList && window.location.href === BASE_LOCATION) mainList.addEventListener('click', handleGetProjectTasks)
+if (mainList && window.location.href === BASE_LOCATION) mainList.addEventListener('click', handleDeleteProject)

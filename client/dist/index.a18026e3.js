@@ -577,8 +577,69 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"4TuL5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BASE_LOCATION", ()=>BASE_LOCATION);
+parcelHelpers.export(exports, "mainList", ()=>mainList);
+parcelHelpers.export(exports, "taskLists", ()=>taskLists);
+parcelHelpers.export(exports, "createProjectElem", ()=>createProjectElem);
+parcelHelpers.export(exports, "createListElem", ()=>createListElem);
+parcelHelpers.export(exports, "renderTasksByStatus", ()=>renderTasksByStatus);
+parcelHelpers.export(exports, "renderProjects", ()=>renderProjects);
+parcelHelpers.export(exports, "handleUpdateTask", ()=>handleUpdateTask);
+parcelHelpers.export(exports, "handleDeleteTask", ()=>handleDeleteTask);
 parcelHelpers.export(exports, "handleGetProjectTasks", ()=>handleGetProjectTasks);
+parcelHelpers.export(exports, "handleDeleteProject", ()=>handleDeleteProject);
+var _requests = require("./requests");
+var _utils = require("./utils");
 const BASE_LOCATION = "http://localhost:1234/";
+const mainList = document.querySelector(".section__list-wrapper");
+const taskLists = document.querySelectorAll(".list__wrapper");
+const createProjectElem = (listElem)=>{
+    return `
+                <h3 class="list__elem-title">${listElem["project_name"]}</h3>
+                <p class="list__elem-desc">${listElem["project_id"]}</p>
+                <div class="list__elem-just-between">
+                    <button data-id="delete-${listElem.project_id}">
+                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" />
+                    </button>
+                      <button data-id="project-${listElem.project_id}" type="button">
+                        <img class="list__elem-img" src='/update.eaa90a6d.png' alt='update' data-id="project-${listElem.project_id}"/>
+                    </button>
+                </div>
+            </a>
+            `;
+};
+const createListElem = (listElements, list)=>{
+    for (const listEl of listElements){
+        const listElem = document.createElement("li");
+        listElem.classList.add("list__elem");
+        if (window.location.href === (0, _utils.BASE_LOCATION)) listElem.insertAdjacentHTML("afterbegin", createProjectElem(listEl));
+        else {
+            const date = new Date(listEl.deadline);
+            listElem.insertAdjacentHTML("afterbegin", createTaskElem(listEl, date));
+        }
+        console.log(list);
+        list.append(listElem);
+    }
+};
+const renderTasksByStatus = async ()=>{
+    const projectId = JSON.parse(localStorage.getItem("project-id"))["project_id"];
+    const taskListTodo = document.querySelector(".list__wrapper-todo");
+    const taskListInProgress = document.querySelector(".list__wrapper-inprogress");
+    const taskListInReview = document.querySelector(".list__wrapper-inreview");
+    const taskListDone = document.querySelector(".list__wrapper-done");
+    const todoTasks = await getTasksByStatus(projectId, "todo");
+    const inReviewTasks = await getTasksByStatus(projectId, "in review");
+    const inProgressTasks = await getTasksByStatus(projectId, "in progress");
+    const doneTasks = await getTasksByStatus(projectId, "done");
+    if (todoTasks) createListElem(todoTasks, taskListTodo);
+    if (inReviewTasks) createListElem(inReviewTasks, taskListInReview);
+    if (inProgressTasks) createListElem(inProgressTasks, taskListInProgress);
+    if (doneTasks) createListElem(doneTasks, taskListDone);
+};
+const renderProjects = async ()=>{
+    const projects = await (0, _requests.getProjects)();
+    createListElem(projects, (0, _utils.mainList));
+};
 const handleUpdateTask = (e)=>{
     if (e.target.getAttribute("data-id").includes("update")) {
         const taskId = {
@@ -586,29 +647,27 @@ const handleUpdateTask = (e)=>{
             project_id: +e.target.getAttribute("data-id").slice(9)
         };
         localStorage.setItem("task-id", JSON.stringify(taskId));
-        window.location.href = "http://localhost:5500/src/update_task.html";
+        window.location.href = (0, _utils.BASE_LOCATION) + "update_task.html";
     } else return;
 };
 const handleDeleteTask = (e)=>{
     if (e.target.getAttribute("data-id").includes("delete")) {
         const taskId = {
-            task_id: +e.target.getAttribute("data-id").slice(7),
-            project_id: +e.target.getAttribute("data-id").slice(9)
+            task_id: +e.target.getAttribute("data-id").slice(7)
         };
-        deleteTask(taskId);
-        for (list of taskLists)while(list.lastElementChild)list.removeChild(list.lastElementChild);
+        (0, _requests.deleteTask)(taskId["task_id"]);
+        for (list of (0, _utils.taskLists))while(list.lastElementChild)list.removeChild(list.lastElementChild);
         renderTasksByStatus();
     } else return;
 };
 const handleGetProjectTasks = (e)=>{
     if (e.target.getAttribute("data-id").includes("project")) {
-        console.log("project");
         const projectId = {
             project_id: +e.target.getAttribute("data-id").slice(8)
         };
         localStorage.setItem("project-id", JSON.stringify(projectId));
-        window.location.href = BASE_LOCATION + "tasks";
-        return false;
+        window.location.href = (0, _utils.BASE_LOCATION) + "tasks.html";
+        console.log(projectId);
     } else return;
 };
 const handleDeleteProject = (e)=>{
@@ -616,12 +675,13 @@ const handleDeleteProject = (e)=>{
         const projectId = {
             project_id: +e.target.getAttribute("data-id").slice(7)
         };
-        deleteProject(projectId[project_id]);
+        (0, _requests.deleteProject)(projectId["project_id"]);
+        const projectLists = (0, _utils.mainList).childNodes;
         for (list of projectLists)while(list.lastElementChild)list.removeChild(list.lastElementChild);
         renderProjects();
     } else return;
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["eKQyl","4TuL5"], "4TuL5", "parcelRequiree8ef")
+},{"./requests":"dY7Is","./utils":"bVlgj","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["eKQyl","4TuL5"], "4TuL5", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.a18026e3.js.map

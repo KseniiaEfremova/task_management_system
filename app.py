@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
-from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project1
+from db_utils import get_all_projects, add_new_task, DB_NAME, insert_new_project, get_tasks_by_status, get_task_by_id, delete_task_fromDB ,delete_project_from_DB
 tasks_table = 'tasks'
 projects_table = 'projects'
 
@@ -27,7 +27,7 @@ def get_projects():
     return jsonify(response)
 
 
-@app.route('/projects/<project_id>id/<task_id>', endpoint='get_taksks_per_project_by_id')
+@app.route('/projects/<project_id>/id/<task_id>', endpoint='get_taksks_per_project_by_id')
 def get_task_per_project_by_id(project_id, todo_id):
     response = get_task_by_id(DB_NAME, tasks_table, project_id, todo_id)
     return jsonify(response)
@@ -99,13 +99,15 @@ def adding_task():
 
 @app.route('/delete_project/<int:project_id>', methods=['DELETE'])
 def delete_project_route(project_id):
-    result = delete_project1(project_id)
+    table_name = projects_table
+    result = delete_project_from_DB(DB_NAME, table_name, project_id)
     return jsonify(result)
 
 
 @app.route("/delete_task/<int:task_id>", methods=['DELETE'])
 def delete_task_route(task_id):
-    delete_task_fromDB(task_id)
+    table_name = tasks_table
+    delete_task_fromDB(DB_NAME, table_name, task_id)
     return f"Task with ID: {task_id} successfully deleted"
 
 

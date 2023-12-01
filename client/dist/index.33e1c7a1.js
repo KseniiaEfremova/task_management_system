@@ -580,6 +580,11 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getProjects", ()=>getProjects);
 parcelHelpers.export(exports, "getTaskById", ()=>getTaskById);
 parcelHelpers.export(exports, "getTasksByStatus", ()=>getTasksByStatus);
+parcelHelpers.export(exports, "postNewTask", ()=>postNewTask);
+parcelHelpers.export(exports, "postNewProject", ()=>postNewProject);
+parcelHelpers.export(exports, "updateExistingTask", ()=>updateExistingTask);
+parcelHelpers.export(exports, "deleteTask", ()=>deleteTask);
+parcelHelpers.export(exports, "deleteProject", ()=>deleteProject);
 const BASE_URL = "http://127.0.0.1:5001/";
 const headers = {
     "Content-Type": "application/json",
@@ -639,7 +644,7 @@ const getTasksByStatus = async (project_id, status)=>{
 };
 const postNewTask = (newTask)=>{
     const params = {
-        endpointUrl: "new_task",
+        endpointUrl: "newtask",
         method: "POST",
         body: newTask,
         errorMessage: "Could not add new task!"
@@ -648,7 +653,7 @@ const postNewTask = (newTask)=>{
 };
 const postNewProject = (newProject)=>{
     const params = {
-        endpointUrl: "new_project",
+        endpointUrl: "newproject",
         method: "POST",
         body: newProject,
         errorMessage: "Could not add new project!"
@@ -666,16 +671,16 @@ const updateExistingTask = (taskToUpdate)=>{
 };
 const deleteTask = (taskId)=>{
     const params = {
-        endpointUrl: "/",
+        endpointUrl: `/delete_task/${taskId}`,
         method: "DELETE",
         body: taskId,
-        errorMessage: "Could not delete todo!"
+        errorMessage: "Could not delete task!"
     };
     getResponse(params);
 };
 const deleteProject = (projectId)=>{
     const params = {
-        endpointUrl: "/delete",
+        endpointUrl: `/delete_project/${projectId}`,
         method: "DELETE",
         body: projectId,
         errorMessage: "Could not delete this project!"
@@ -683,36 +688,6 @@ const deleteProject = (projectId)=>{
     getResponse(params);
 };
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}]},["i2Ll9","dY7Is"], "dY7Is", "parcelRequiree8ef")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["i2Ll9","dY7Is"], "dY7Is", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.33e1c7a1.js.map

@@ -575,19 +575,28 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"bAabt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BASE_LOCATION", ()=>BASE_LOCATION);
+parcelHelpers.export(exports, "mainList", ()=>mainList);
+parcelHelpers.export(exports, "taskLists", ()=>taskLists);
+parcelHelpers.export(exports, "createProjectElem", ()=>createProjectElem);
+parcelHelpers.export(exports, "createTaskElem", ()=>createTaskElem);
+parcelHelpers.export(exports, "createListElem", ()=>createListElem);
+parcelHelpers.export(exports, "renderProjects", ()=>renderProjects);
+parcelHelpers.export(exports, "renderTasksByStatus", ()=>renderTasksByStatus);
 var _requests = require("./requests");
 var _handlers = require("./handlers");
+const BASE_LOCATION = "http://localhost:1234/";
 const mainList = document.querySelector(".section__list-wrapper");
 const taskLists = document.querySelectorAll(".list__wrapper");
-const deleteProjectButton = document.querySelector(".list__delete-project");
-const BASE_LOCATION = "http://localhost:1234/";
 const createProjectElem = (listElem)=>{
     return `
                 <h3 class="list__elem-title">${listElem["project_name"]}</h3>
                 <p class="list__elem-desc">${listElem["project_id"]}</p>
                 <div class="list__elem-just-between">
-                    <button data-id="delete-${listElem.project_id}" class="list__delete-project">
-                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" class="list__delete-project"/>
+                    <button data-id="delete-${listElem.project_id}">
+                        <img class="list__elem-img" src='/delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.project_id}" />
                     </button>
                       <button data-id="project-${listElem.project_id}" type="button">
                         <img class="list__elem-img" src='/update.eaa90a6d.png' alt='update' data-id="project-${listElem.project_id}"/>
@@ -604,10 +613,10 @@ const createTaskElem = (listElem, date)=>{
                 </div>
                 <div class="list__elem-just-between">
                     <a href='#' data-id="update-${listElem.task_id}-${listElem.project_id}">
-                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}-${listElem.project_id}"/>
+                        <img class="list__elem-img" src='update.eaa90a6d.png' alt='update' data-id="update-${listElem.task_id}"/>
                     </a>
                     <button data-id="delete-${listElem.task_id}-${listElem.project_id}" >
-                        <img class="list__elem-img" src=''/delete.8dd9e795.png'' alt='delete' data-id="delete-${listElem.task_id}-${listElem.project_id}"/>
+                        <img class="list__elem-img" src='delete.8dd9e795.png' alt='delete' data-id="delete-${listElem.task_id}"/>
                     </button>
                 </div>
             `;
@@ -631,7 +640,6 @@ const renderProjects = async ()=>{
 const renderTasksByStatus = async ()=>{
     const projectId = JSON.parse(localStorage.getItem("project-id"))["project_id"];
     const taskListTodo = document.querySelector(".list__wrapper-todo");
-    console.log(taskListTodo);
     const taskListInProgress = document.querySelector(".list__wrapper-inprogress");
     const taskListInReview = document.querySelector(".list__wrapper-inreview");
     const taskListDone = document.querySelector(".list__wrapper-done");
@@ -639,7 +647,6 @@ const renderTasksByStatus = async ()=>{
     const inReviewTasks = await (0, _requests.getTasksByStatus)(projectId, "in review");
     const inProgressTasks = await (0, _requests.getTasksByStatus)(projectId, "in progress");
     const doneTasks = await (0, _requests.getTasksByStatus)(projectId, "done");
-    console.log(doneTasks);
     if (todoTasks) createListElem(todoTasks, taskListTodo);
     if (inReviewTasks) createListElem(inReviewTasks, taskListInReview);
     if (inProgressTasks) createListElem(inProgressTasks, taskListInProgress);
@@ -647,11 +654,11 @@ const renderTasksByStatus = async ()=>{
 };
 if (window.location.href === BASE_LOCATION) renderProjects();
 if (window.location.href === BASE_LOCATION + "tasks.html") renderTasksByStatus();
-if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleDeleteTask));
-if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", handleUpdateTask));
-if (deleteProjectButton) deleteProjectButton.addEventListener("click", handleDeleteProject);
-mainList.addEventListener("click", (0, _handlers.handleGetProjectTasks));
+if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", (0, _handlers.handleDeleteTask)));
+if (taskLists) taskLists.forEach((list)=>list.addEventListener("click", (0, _handlers.handleUpdateTask)));
+if (mainList && window.location.href === BASE_LOCATION) mainList.addEventListener("click", (0, _handlers.handleGetProjectTasks));
+if (mainList && window.location.href === BASE_LOCATION) mainList.addEventListener("click", (0, _handlers.handleDeleteProject));
 
-},{"./requests":"dY7Is","./handlers":"4TuL5"}]},["cvbMW","bAabt"], "bAabt", "parcelRequiree8ef")
+},{"./handlers":"4TuL5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./requests":"dY7Is"}]},["cvbMW","bAabt"], "bAabt", "parcelRequiree8ef")
 
 //# sourceMappingURL=index.a56319bd.js.map

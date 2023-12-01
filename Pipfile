@@ -4,14 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-<<<<<<< HEAD
 flask = "==3.0.0"
-=======
-flask = "*"
 mysql-connector-repackaged = "==0.3.1"
+flask-cors = "*"
 mysql-connector-python = "*"
-requests = "*"
->>>>>>> develop_2
 
 [dev-packages]
 

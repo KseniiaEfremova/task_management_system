@@ -3,13 +3,13 @@
 	"version": "1.0.0",
 	"description": "client for task management app",
 	"main": "app.js",
-	"proxy": "http://127.0.0.1:5000",
+	"proxy": "http://127.0.0.1:5001",
 	"scripts": {
-		"start": "parcel src/*.html"
+		"start": "parcel src/index.html"
 	},
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
-		"parcel": "^2.10.0"
+		"parcel": "^2.10.1"
 	}
 }

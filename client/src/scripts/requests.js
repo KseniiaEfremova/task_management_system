@@ -103,7 +103,7 @@ export const deleteTask = (taskId) => {
         endpointUrl: `/delete_task/${taskId}`,
         method: 'DELETE',
         body: taskId,
-        errorMessage: 'Could not delete todo!'
+        errorMessage: 'Could not delete task!'
     }
     getResponse(params)
 }
