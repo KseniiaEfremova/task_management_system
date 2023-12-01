@@ -222,7 +222,9 @@ def delete_project_from_DB(db_name, project_id):
     try:
         cursor, db_connection = get_cursor_and_connection(db_name)
 
+
         query = "DELETE FROM projects WHERE project_id = %s"
+
         cursor.execute(query, (project_id,))
         db_connection.commit()
 
@@ -238,6 +240,7 @@ def delete_project_from_DB(db_name, project_id):
         cursor.close()
         if db_connection:
             db_connection.close()
+
 
 
 def update_task_db(db_name, table_name, task, task_id):
