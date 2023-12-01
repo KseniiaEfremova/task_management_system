@@ -1,4 +1,4 @@
-import { postNewTask, postNewProject, updateExistingTask } from "./requests";
+import { postNewTask, postNewProject, updateExistingTask, getTaskById } from "./requests";
 
 const form = document.querySelector('.form__control');
 const formError = document.querySelector('.form__error');
@@ -50,7 +50,9 @@ const submitForm = (e) => {
 }
 
 const prepopulateForm = async (task_id, project_id) => {
+    
     const taskToUpdate = await getTaskById(task_id, project_id);
+    console.log(taskToUpdate)
     const { description, status, deadline } = taskToUpdate[0];
     date = new Date(deadline)
     form[0].value = description;
@@ -60,8 +62,10 @@ const prepopulateForm = async (task_id, project_id) => {
 }
 
 if (window.location.href === BASE_LOCATION + "update_task.html") {
-    const taskToUpdateId = JSON.parse(localStorage.getItem('task-id')['task_id']);
-    const taskToUpdateProject = JSON.parse(localStorage.getItem('task-id')['project_id']);
+    const taskFromLocal = JSON.parse(localStorage.getItem('task-id'))
+    const projectFromLocal = JSON.parse(localStorage.getItem('project-id'))
+    const taskToUpdateId = taskFromLocal.task_id
+    const taskToUpdateProject = projectFromLocal.project_id
     prepopulateForm(taskToUpdateId, taskToUpdateProject)
 }
 

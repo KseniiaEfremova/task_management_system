@@ -27,9 +27,9 @@ def get_projects():
     return jsonify(response)
 
 
-@app.route('/projects/<project_id>/id/<task_id>', endpoint='get_taksks_per_project_by_id')
-def get_task_per_project_by_id(project_id, todo_id):
-    response = get_task_by_id(DB_NAME, tasks_table, project_id, todo_id)
+@app.route('/projects/<project_id>/id/<task_id>', endpoint='get_tasks_per_project_by_id')
+def get_task_per_project_by_id(project_id, task_id):
+    response = get_task_by_id(DB_NAME, tasks_table, project_id, task_id)
     return jsonify(response)
 
 

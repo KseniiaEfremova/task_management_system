@@ -87,6 +87,7 @@ export const handleUpdateTask = (e) => {
         const taskId = { task_id: +(e.target.getAttribute('data-id').slice(7)), project_id: +(e.target.getAttribute('data-id').slice(9)) };
         localStorage.setItem('task-id', JSON.stringify(taskId));
         window.location.href = BASE_LOCATION + "update_task.html"; 
+        console.log('updating task')
     } else {
         return
     } 

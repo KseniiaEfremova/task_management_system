@@ -42,12 +42,13 @@ export const getProjects = async () => {
 
 export const getTaskById = async (taskId, projectId) => {
     try {
-        const response = await fetch(BASE_URL + `projects/${projectId}/${taskId}`, {
+        const response = await fetch(BASE_URL + `projects/${projectId}/id/${taskId}`, {
             headers: headers})
     if (!response.ok) {
         throw new Error('Could not fetch this one!');
     }
         const task = await response.json();
+        console.log(task)
         return task
     } catch (err) {
         console.log(err);

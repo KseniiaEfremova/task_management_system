@@ -664,6 +664,7 @@ const handleUpdateTask = (e)=>{
         };
         localStorage.setItem("task-id", JSON.stringify(taskId));
         window.location.href = (0, _utils.BASE_LOCATION) + "update_task.html";
+        console.log("updating task");
     } else return;
 };
 const handleDeleteTask = (e)=>{
